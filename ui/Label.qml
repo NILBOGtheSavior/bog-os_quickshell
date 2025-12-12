@@ -1,4 +1,4 @@
-// Buton.qml
+// Label.qml
 
 import QtQuick
 import QtQuick.Layouts
@@ -12,7 +12,7 @@ Rectangle {
 
     signal clicked
 
-    implicitWidth: label.implicitWidth + 10
+    implicitWidth: label.implicitWidth + 5
     // Layout.preferredWidth: label.implicitWidth
     Layout.fillHeight: true
 
@@ -22,17 +22,6 @@ Rectangle {
 
     border.width: 2
     border.color: 'green'
-
-    MouseArea {
-        // property bool disabled
-
-        anchors.fill: parent
-
-        onClicked: {
-            if (root.active)
-                console.log("Button Clicked!");
-        }
-    }
 
     Text {
         id: label

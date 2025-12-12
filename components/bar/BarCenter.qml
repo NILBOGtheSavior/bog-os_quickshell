@@ -1,10 +1,12 @@
-import Quickshell
 import QtQuick
 import qs.widgets
 
-Workspaces {
-    Text {
-        text: " BogOS\t"
-        color: 'white'
+Item {
+    Workspaces {
+        Text {
+            anchors.centerIn: parent
+            text: "WORKSPACES HERE"
+            color: 'white'
+        }
     }
 }

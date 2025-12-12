@@ -1,16 +1,19 @@
 import Quickshell
 import QtQuick
+import QtQuick.Layouts
 import qs.ui
 
-Item {
+RowLayout {
+    Layout.fillWidth: true
     Button {
-        anchors.fill: parent
-        text: "Hello World"
-    }
-    Text {
-        anchors.centerIn: parent
         font: "BogOS"
-        color: 'white'
-        text: ' '
+        text: ''
+    }
+    Button {
+        text: ''
+    }
+    Label {
+        // Layout.alignment: Qt.AlignLeft
+        text: "BogOS"
     }
 }

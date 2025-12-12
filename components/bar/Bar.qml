@@ -23,17 +23,20 @@ Scope {
 
             RowLayout {
                 anchors.fill: parent
-                anchors.margins: 8
+                // anchors.margins: 8
                 spacing: 12
 
                 Layout.fillWidth: true
 
                 BarLeft {
-
                     Layout.alignment: Qt.AlignLeft
                 }
-                BarCenter {}
-                BarRight {}
+                BarCenter {
+                    Layout.alignment: Qt.AlignCenter
+                }
+                BarRight {
+                    Layout.alignment: Qt.AlignRight
+                }
             }
         }
     }

@@ -27,6 +27,7 @@ Scope {
                 spacing: 12
 
                 Layout.fillWidth: true
+                Layout.fillHeight: true
 
                 BarLeft {
                     Layout.alignment: Qt.AlignLeft

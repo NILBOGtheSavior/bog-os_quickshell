@@ -1,12 +1,16 @@
 import QtQuick
+import QtQuick.Layouts
+import qs.ui
 import qs.widgets
 
-Item {
+Container {
+    Layout.fillHeight: true
+    Layout.fillWidth: true
+
+    color: 'transparent'
+
     Workspaces {
-        Text {
-            anchors.centerIn: parent
-            text: "WORKSPACES HERE"
-            color: 'white'
-        }
+        color: 'transparent'
+        anchors.centerIn: parent
     }
 }

@@ -4,7 +4,7 @@ import QtQuick.Layouts
 import qs.ui
 
 RowLayout {
-    Layout.fillWidth: true
+    // Layout.fillWidth: true
     Button {
         font: "BogOS"
         text: ''

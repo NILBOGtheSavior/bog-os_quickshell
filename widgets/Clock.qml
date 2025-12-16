@@ -1,8 +1,7 @@
 import QtQuick
-
+import qs.ui
 import qs.state
 
-Text {
-    color: 'white'
+Label {
     text: Time.time
 }

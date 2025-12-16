@@ -1,6 +1,6 @@
 import Quickshell
-import "./components/bar"
+import qs.components.bar
 
-Scope {
+ShellRoot {
     Bar {}
 }

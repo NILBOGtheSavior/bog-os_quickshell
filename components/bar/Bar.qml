@@ -1,5 +1,6 @@
 import Quickshell
-import "../../widgets"
+import QtQuick
+import QtQuick.Layouts
 
 Scope {
 
@@ -9,6 +10,8 @@ Scope {
         PanelWindow {
             required property var modelData
             screen: modelData
+            color: Qt.rgba(0, 0, 0, 0.75)
+            // color: 'transparent'
 
             anchors {
                 top: true
@@ -18,8 +21,19 @@ Scope {
 
             implicitHeight: 30
 
-            Clock {
-                anchors.centerIn: parent
+            RowLayout {
+                anchors.fill: parent
+                anchors.margins: 8
+                spacing: 12
+
+                Layout.fillWidth: true
+
+                BarLeft {
+
+                    Layout.alignment: Qt.AlignLeft
+                }
+                BarCenter {}
+                BarRight {}
             }
         }
     }

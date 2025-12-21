@@ -17,7 +17,7 @@ Item {
                 Layout.alignment: Qt.AlignCenter
                 required property var modelData
                 text: `${modelData.id}`
-                textColor: modelData.focused ? "#000000" : "#898989c0"
+                textColor: modelData.focused ? "#000000" : Qt.rgba(0.3, 0.3, 0.3, 0.75)
                 background: modelData.focused ? "#80A961" : "transparent"
             }
         }

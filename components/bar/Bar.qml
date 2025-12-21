@@ -1,6 +1,5 @@
 import Quickshell
 import QtQuick
-import QtQuick.Layouts
 
 Variants {
     model: Quickshell.screens
@@ -9,7 +8,6 @@ Variants {
         id: root
         required property var modelData
         screen: modelData
-        // color: Qt.rgba(0, 0, 0, 0.75)
         color: 'transparent'
 
         anchors {
@@ -19,7 +17,7 @@ Variants {
         }
 
         margins {
-            top: 5
+            top: 3
             left: 5
             right: 5
         }

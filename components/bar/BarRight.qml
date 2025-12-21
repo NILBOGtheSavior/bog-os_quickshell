@@ -1,8 +1,18 @@
 import QtQuick
 import QtQuick.Layouts
+import qs.ui
 import qs.widgets
 
-RowLayout {
-    Battery {}
-    Clock {}
+Container {
+    implicitWidth: layout.implicitWidth + layout.anchors.leftMargin + layout.anchors.rightMargin
+    RowLayout {
+        id: layout
+        anchors {
+            fill: parent
+            leftMargin: 15
+            rightMargin: 15
+        }
+        Battery {}
+        Clock {}
+    }
 }

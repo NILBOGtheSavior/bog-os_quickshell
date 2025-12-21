@@ -4,7 +4,7 @@ import QtQuick.Layouts
 import Quickshell.Services.UPower
 import qs.ui
 
-Container {
+Item {
     Layout.fillHeight: true
     // Layout.fillWidth: true
     Layout.preferredWidth: label.implicitWidth + 10

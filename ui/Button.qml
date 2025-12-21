@@ -20,13 +20,16 @@ Rectangle {
 
     color: 'transparent'
 
-    border.width: 2
-    border.color: 'green'
-
     MouseArea {
         // property bool disabled
 
         anchors.fill: parent
+
+        HoverHandler {
+            id: pointer
+            acceptedDevices: PointerDevice.AllDevices
+            cursorShape: Qt.PointingHandCursor
+        }
 
         onClicked: {
             if (root.active)

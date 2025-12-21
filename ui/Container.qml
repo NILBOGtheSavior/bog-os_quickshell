@@ -4,14 +4,11 @@ import QtQuick.Layouts
 Rectangle {
     id: root
     state: "EXITED"
-    // color: 'transparent'
     color: Qt.rgba(0, 0, 0, 0.75)
 
     border.width: 1
-    // border.color: mouse.hovered ? "#80A961" : "#696969aa"
     radius: 25
 
-    // Layout.preferredWidth: children.implicitWidth + 10
     Layout.fillHeight: true
 
     HoverHandler {

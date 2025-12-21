@@ -1,9 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell.Hyprland
-import qs.ui
-
-// import qs.ui
 
 Item {
     Layout.preferredWidth: layout.implicitWidth

@@ -41,28 +41,5 @@ Variants {
             anchors.right: parent.right
             anchors.bottom: parent.bottom
         }
-
-        // RowLayout {
-        //     anchors.fill: parent
-        //     // anchors.margins: 8
-        //     spacing: 12
-        //
-        //     Layout.fillWidth: true
-        //     Layout.fillHeight: true
-        //
-        //     BarLeft {
-        //         Layout.alignment: Qt.AlignLeft
-        //         Layout.fillWidth: false
-        //     }
-        //     BarCenter {
-        //         // Layout.fillWidth: true
-        //         // Layout.alignment: Qt.AlignCenter
-        //         anchors.verticalCenter: parent.verticalCenter
-        //     }
-        //     BarRight {
-        //         Layout.alignment: Qt.AlignRight
-        //         Layout.fillWidth: false
-        //     }
-        // }
     }
 }

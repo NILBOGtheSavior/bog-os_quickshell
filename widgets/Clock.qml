@@ -5,7 +5,6 @@ import qs.state
 
 Item {
     Layout.preferredWidth: label.implicitWidth + 10
-    // Layout.fillHeight: true
 
     Label {
         id: label

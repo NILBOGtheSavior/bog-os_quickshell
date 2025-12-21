@@ -13,16 +13,11 @@ Rectangle {
     signal clicked
 
     implicitWidth: label.implicitWidth + 10
-    // Layout.preferredWidth: label.implicitWidth
     Layout.fillHeight: true
-
-    // Layout.fillWidth: true
 
     color: 'transparent'
 
     MouseArea {
-        // property bool disabled
-
         anchors.fill: parent
 
         HoverHandler {

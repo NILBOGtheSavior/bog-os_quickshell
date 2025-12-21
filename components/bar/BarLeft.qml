@@ -1,4 +1,3 @@
-import Quickshell
 import QtQuick
 import QtQuick.Layouts
 import qs.ui
@@ -14,7 +13,6 @@ Container {
         }
 
         Button {
-            // Layout.fillHeight: true
             font: "BogOS"
             text: ''
         }
@@ -22,7 +20,6 @@ Container {
             text: ''
         }
         Label {
-            // Layout.alignment: Qt.AlignLeft
             text: "BogOS"
         }
     }

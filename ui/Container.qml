@@ -1,10 +1,11 @@
 import QtQuick
 import QtQuick.Layouts
+import qs.config
 
 Rectangle {
     id: root
     state: "DEFAULT"
-    color: Qt.rgba(0, 0, 0, 0.75)
+    color: Colors.background
 
     border.width: 1
     radius: 25
@@ -30,14 +31,14 @@ Rectangle {
             name: "HOVERED"
             PropertyChanges {
                 target: root
-                border.color: "#80A961"
+                border.color: Colors.primary
             }
         },
         State {
             name: "DEFAULT"
             PropertyChanges {
                 target: root
-                border.color: Qt.rgba(0.3, 0.3, 0.3, 0.75)
+                border.color: Colors.secondary
             }
         }
     ]

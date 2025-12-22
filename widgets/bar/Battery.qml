@@ -48,7 +48,7 @@ Item {
             var key = percentage - (percentage % 10);
             var icon = icons[state][key];
             // var icon = "";
-            return `<${state}> ${icon} ${percentage}%`;
+            return `${icon} ${percentage}%`;
         }
     }
 }

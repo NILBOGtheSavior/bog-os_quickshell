@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import qs.ui
-import qs.state
+import qs.services
 
 Item {
     Layout.preferredWidth: label.implicitWidth + 10

@@ -12,6 +12,7 @@ Container {
             leftMargin: 15
             rightMargin: 15
         }
+        Network {}
         Battery {}
         Clock {}
     }

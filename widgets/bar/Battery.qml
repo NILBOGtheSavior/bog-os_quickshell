@@ -12,7 +12,7 @@ Item {
         anchors.centerIn: parent
         text: {
             const icons = {
-                1: {
+                "charging": {
                     100: "󰂅 ",
                     90: "󰂋 ",
                     80: "󰂊 ",
@@ -25,7 +25,7 @@ Item {
                     10: "󰢜 ",
                     0: "󰢟 "
                 },
-                2: {
+                "discharging": {
                     100: "󰁹",
                     90: "󰂂",
                     80: "󰂁",
@@ -38,26 +38,41 @@ Item {
                     10: "󰁺",
                     0: "󰂃"
                 },
-                4: "󰂄"
+                "full": "󰂄",
+                "pending": "󱧥",
+                "unknown": "󰂑"
             };
-            var percentage = Math.round(UPower.displayDevice.percentage * 100);
+            var percentage = `${Math.round(UPower.displayDevice.percentage * 100)}%`;
             var state = UPower.displayDevice.state;
+            var info = UPower.displayDevice.iconName;
             var key = percentage - (percentage % 10);
             var icon = "";
             switch (state) {
-                case 1:
-                case 2:
-                icon = icons[state][key];
+            case 0:
+                icon = icons["unknown"];
                 break;
-                case 3:
+            case 1:
+                icon = icons["charging"][key];
+                break;
+            case 2:
+                icon = icons["discharging"][key];
+                break;
+            case 3:
                 icon = "IDK";
                 break;
-                case 4:
-                icon = icons[state];
+            case 4:
+                icon = icons["full"];
+                percentage = "";
+                break;
+            case 5:
+            case 6:
+                icon = icons["pending"];
                 break;
             }
+
             // var icon = "";
-            return `${icon} ${percentage}%`;
+            return `${icon} ${percentage}`;
+            // <${info}, ${state}>
         }
     }
 }

@@ -11,6 +11,6 @@ Item {
         id: label
         anchors.centerIn: parent
         // text: `${Hyprland.focusedWorkspace.id}` == `${Hyprland.activeToplevel.workspace.id}` ? `${Hyprland.activeToplevel.title}` : "BogOS"
-        text: `${Hyprland.focusedWorkspace.id}` == `${Hyprland.activeToplevel?.workspace?.id}` ? `${Hyprland.activeToplevel.title}` : "BogOS"
+        text: `${Hyprland.focusedWorkspace?.id}` == `${Hyprland.activeToplevel?.workspace?.id}` ? `${Hyprland.activeToplevel?.title}` : "BogOS"
     }
 }

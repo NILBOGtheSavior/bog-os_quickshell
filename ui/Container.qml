@@ -3,7 +3,7 @@ import QtQuick.Layouts
 
 Rectangle {
     id: root
-    state: "EXITED"
+    state: "DEFAULT"
     color: Qt.rgba(0, 0, 0, 0.75)
 
     border.width: 1
@@ -20,7 +20,7 @@ Rectangle {
             if (hovered) {
                 root.state = "HOVERED";
             } else {
-                root.state = "EXITED";
+                root.state = "DEFAULT";
             }
         }
     }
@@ -34,7 +34,7 @@ Rectangle {
             }
         },
         State {
-            name: "EXITED"
+            name: "DEFAULT"
             PropertyChanges {
                 target: root
                 border.color: Qt.rgba(0.3, 0.3, 0.3, 0.75)
@@ -45,14 +45,14 @@ Rectangle {
     transitions: [
         Transition {
             from: "HOVERED"
-            to: "EXITED"
+            to: "DEFAULT"
             ColorAnimation {
                 target: root
                 duration: 100
             }
         },
         Transition {
-            from: "EXITED"
+            from: "DEFAULT"
             to: "HOVERED"
             ColorAnimation {
                 target: root

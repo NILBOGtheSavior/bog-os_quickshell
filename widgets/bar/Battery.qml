@@ -43,12 +43,12 @@ Item {
                     90: "󰂄"
                 }
             };
-            var percentage = UPower.displayDevice.percentage * 100;
+            var percentage = Math.round(UPower.displayDevice.percentage * 100);
             var state = UPower.displayDevice.state;
             var key = percentage - (percentage % 10);
             var icon = icons[state][key];
             // var icon = "";
-            return `${icon} ${percentage}%`;
+            return `<${state}> ${icon} ${percentage}%`;
         }
     }
 }

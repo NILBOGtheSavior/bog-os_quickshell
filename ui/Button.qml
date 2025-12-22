@@ -10,7 +10,13 @@ Rectangle {
     property string text: ""
     property font font
 
+    property bool isHovered
     signal clicked
+    // signal hovered(hover: bool)
+
+    // onHovered: hover => {
+    //     isHovered = hover;
+    // }
 
     implicitWidth: label.implicitWidth + 10
     Layout.fillHeight: true
@@ -24,11 +30,15 @@ Rectangle {
             id: pointer
             acceptedDevices: PointerDevice.AllDevices
             cursorShape: Qt.PointingHandCursor
+
+            onHoveredChanged: {
+                root.isHovered = hovered;
+            }
         }
 
         onClicked: {
             if (root.active)
-                console.log("Button Clicked!");
+                root.clicked();
         }
     }
 

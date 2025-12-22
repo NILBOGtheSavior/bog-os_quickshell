@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import qs.ui
-import qs.widgets
+import qs.widgets.bar
 
 Container {
     implicitWidth: layout.implicitWidth + layout.anchors.leftMargin + layout.anchors.rightMargin

@@ -1,4 +1,4 @@
-// Buton.qml
+// Menu Item
 
 import QtQuick
 import QtQuick.Layouts
@@ -13,8 +13,9 @@ Rectangle {
     property bool isHovered
     signal clicked
 
-    implicitWidth: label.implicitWidth + 10
-    Layout.fillHeight: true
+    implicitWidth: label.implicitWidth
+    Layout.leftMargin: 10
+    Layout.rightMargin: 10
 
     color: 'transparent'
 

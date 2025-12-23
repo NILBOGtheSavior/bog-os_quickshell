@@ -1,8 +1,9 @@
 pragma Singleton
 
 import QtQuick
+import Quickshell
 
-QtObject {
+Singleton {
     property color primary: "#80a961"   // bog-os green
     property color secondary: "#394260" // slate blue
     property color background: "#1D2230"// charcoal black

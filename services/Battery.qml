@@ -13,6 +13,8 @@ Singleton {
     function getPercentage(): string {
         if (state != 4)
             return `${percentage}%`;
+        else
+            return "";
     }
 
     function getIcon(): string {

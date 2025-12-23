@@ -42,10 +42,11 @@ Item {
                 "pending": "󱧥",
                 "unknown": "󰂑"
             };
-            var percentage = `${Math.round(UPower.displayDevice.percentage * 100)}%`;
+            var capacity = Math.round(UPower.displayDevice.percentage * 100);
+            var percentage = `${capacity}%`;
             var state = UPower.displayDevice.state;
             var info = UPower.displayDevice.iconName;
-            var key = percentage - (percentage % 10);
+            var key = capacity - (capacity % 10);
             var icon = "";
             switch (state) {
             case 0:

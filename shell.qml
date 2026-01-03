@@ -8,9 +8,5 @@ ShellRoot {
     }
     SystemMenu {
         id: systemmenu
-        anchors {
-            top: true
-            left: true
-        }
     }
 }

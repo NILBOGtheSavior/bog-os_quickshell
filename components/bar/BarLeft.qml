@@ -18,8 +18,7 @@ Container {
             font: "BogOS"
             text: ''
             onClicked: {
-                console.log("System tray clicked!");
-                Quickshell.execDetached("kitty");
+                systemmenu.visible = !systemmenu.visible;
             }
         }
         Button {

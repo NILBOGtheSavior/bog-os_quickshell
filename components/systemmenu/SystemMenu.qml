@@ -3,40 +3,75 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
+import Quickshell.Hyprland
 import qs.ui
 import qs.config
 
 PanelWindow {
+    id: root
     visible: false
-    // height: 200
     implicitWidth: layout.implicitWidth * 2
     implicitHeight: layout.implicitHeight
     color: "transparent"
+
+    anchors {
+        top: true
+        left: true
+    }
 
     margins.left: 5
 
     Container {
         anchors.fill: parent
+        implicitWidth: layout.implicitWidth * 2
+        implicitHeight: layout.implicitHeight
+
+        onFocusChanged: {
+            console.log("Focus changed");
+        }
+
+        MouseArea {
+            anchors.fill: parent
+            hoverEnabled: true
+        }
+
         radius: 15
         ColumnLayout {
             id: layout
             anchors.fill: parent
-            MenuOption {
+            HoverHandler {
+                id: pointer
+                acceptedDevices: PointerDevice.AllDevices
+                cursorShape: Qt.ArrowCursor
+
+                onHoveredChanged: {
+                    systemmenu.visible = hovered;
+                    // console.log(hovered);
+                }
+            }
+            MenuItem {
                 text: "   Info"
             }
-            MenuOption {
+            MenuItem {
                 text: "󰤄   Suspend"
             }
-            MenuOption {
+            MenuItem {
                 text: "   Lock"
+                onClicked: {
+                    Quickshell.execDetached('hyprlock');
+                }
             }
-            MenuOption {
-                text: "󰗽   Logout"
+            MenuItem {
+                text: "󰿅   Logout"
+                onClicked: {
+                    Quickshell.execDetached('sudo systemctl restart sddm');
+                    // Qt.quit();
+                }
             }
-            MenuOption {
+            MenuItem {
                 text: "   Restart"
             }
-            MenuOption {
+            MenuItem {
                 text: "⏻   Shutdown"
             }
         }

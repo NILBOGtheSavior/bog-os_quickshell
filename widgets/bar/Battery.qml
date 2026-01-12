@@ -11,6 +11,5 @@ Item {
         id: label
         anchors.centerIn: parent
         text: `${Battery.getIcon()} ${Battery.getPercentage()}`
-        // <${info}, ${state}>
     }
 }

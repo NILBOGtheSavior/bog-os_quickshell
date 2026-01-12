@@ -4,6 +4,8 @@ import qs.ui
 import qs.widgets.bar
 
 Container {
+    property var screen
+
     implicitWidth: layout.implicitWidth + layout.anchors.leftMargin + layout.anchors.rightMargin
     RowLayout {
         id: layout

@@ -12,8 +12,13 @@ Container {
             leftMargin: 15
             rightMargin: 15
         }
+
+        Audio {}
         Network {}
-        Battery {}
+        // Battery {}
         Clock {}
+        Button {
+            text: "󰍜"
+        }
     }
 }

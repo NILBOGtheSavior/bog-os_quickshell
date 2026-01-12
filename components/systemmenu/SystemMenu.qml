@@ -26,10 +26,6 @@ PanelWindow {
         implicitWidth: layout.implicitWidth * 2
         implicitHeight: layout.implicitHeight
 
-        onFocusChanged: {
-            console.log("Focus changed");
-        }
-
         MouseArea {
             anchors.fill: parent
             hoverEnabled: true
@@ -64,15 +60,20 @@ PanelWindow {
             MenuItem {
                 text: "󰿅   Logout"
                 onClicked: {
-                    Quickshell.execDetached('sudo systemctl restart sddm');
-                    // Qt.quit();
+                    Quickshell.execDetached('hyprctl dispatch exit');
                 }
             }
             MenuItem {
                 text: "   Restart"
+                onClicked: {
+                    Quickshell.execDetached("hyprshutdown --post-cmd 'reboot'");
+                }
             }
             MenuItem {
                 text: "⏻   Shutdown"
+                onClicked: {
+                    Quickshell.execDetached("hyprshutdown --post-cmd 'shutdown -P 0'");
+                }
             }
         }
     }

@@ -22,6 +22,7 @@ Container {
             }
         }
         Button {
+            font: "JetBrainsMono Nerd Font"
             text: ''
             onClicked: {
                 Quickshell.execDetached("hyprlauncher");

@@ -13,12 +13,16 @@ Item {
         implicitWidth: layout.implicitWidth
 
         Repeater {
-            model: Hyprland.workspaces
+            // model: Hyprland.workspaces
+            model: Hyprland.workspaces.values.filter(ws => {
+                return ws.monitor && ws.monitor.name === screen.name;
+            })
             delegate: Workspace {
                 id: workspace
+
                 Layout.alignment: Qt.AlignCenter
                 required property var modelData
-                text: `${modelData.id}`
+                text: `${modelData.name}`
                 state: {
                     if (modelData.focused)
                         return "ACTIVE";

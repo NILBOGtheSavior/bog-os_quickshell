@@ -9,6 +9,7 @@ Rectangle {
     property bool active: true
     property string text: ""
     property font font
+    property int fontsize
 
     property bool isHovered
     signal clicked

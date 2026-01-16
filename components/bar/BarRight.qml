@@ -18,7 +18,15 @@ Container {
         // Battery {}
         Clock {}
         Button {
-            text: "󰍜"
+            text: {
+                if (controlpanel.visible)
+                    return " ";
+                else
+                    return "󰍜 ";
+            }
+            onClicked: {
+                controlpanel.visible = !controlpanel.visible;
+            }
         }
     }
 }

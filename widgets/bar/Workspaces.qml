@@ -13,7 +13,6 @@ Item {
         implicitWidth: layout.implicitWidth
 
         Repeater {
-            // model: Hyprland.workspaces
             model: Hyprland.workspaces.values.filter(ws => {
                 return ws.monitor && ws.monitor.name === screen.name;
             })

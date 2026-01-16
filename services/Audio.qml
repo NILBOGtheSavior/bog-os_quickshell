@@ -13,14 +13,14 @@ Singleton {
     readonly property var devices: Pipewire.nodes.values.reduce((acc, node) => {
         if (!node.isStream) {
             if (node.isSink)
-                acc.output.push(node);
+                acc.outputs.push(node);
             else if (node.audio)
-                acc.input.push(node);
+                acc.inputs.push(node);
         }
         return acc;
     }, {
-        output: [],
-        input: []
+        outputs: [],
+        inputs: []
     })
 
     function testAudio() {
@@ -38,10 +38,20 @@ Singleton {
         default_output.audio.volume = vol;
     }
 
-    function setInputVolume() {
+    function setInputVolume(vol) {
+        default_input.audio.muted = false;
+        default_input.audio.volume = vol;
+    }
+
+    function toggleOutputMute() {
+        default_output.audio.muted = !default_output.audio.muted;
+    }
+
+    function toggleInputMute() {
+        default_input.audio.muted = !default_input.audio.muted;
     }
 
     PwObjectTracker {
-        objects: [root.devices.output, root.devices.input]
+        objects: [...root.devices.outputs, ...root.devices.inputs]
     }
 }

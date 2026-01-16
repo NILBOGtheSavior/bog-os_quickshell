@@ -9,6 +9,7 @@ Item {
 
     ColumnLayout {
         anchors.centerIn: parent
+        width: 290
 
         OutputPicker {}
         InputPicker {}

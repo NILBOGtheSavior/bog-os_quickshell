@@ -6,8 +6,8 @@ import qs.services
 
 Container {
     Layout.alignment: Qt.AlignCenter
-    Layout.preferredWidth: 290
     Layout.preferredHeight: layout.implicitHeight + 25
+    Layout.fillWidth: true
 
     ColumnLayout {
         id: layout
@@ -41,18 +41,44 @@ Container {
                 }
             }
             Button {
+                id: arrow
                 Layout.alignment: Qt.AlignRight
-                text: ""
-                // ""
+                text: {
+                    if (dropdown.visible)
+                        return "";
+                    else
+                        return "";
+                }
                 font.pixelSize: 20
+
+                onClicked: {
+                    dropdown.visible = !dropdown.visible;
+                }
             }
         }
         ColumnLayout {
+            id: dropdown
+            visible: false
             Repeater {
                 model: Audio.devices.inputs
-                delegate: Label {
+                delegate: Item {
+                    id: menu_item
                     required property var modelData
-                    text: `${modelData.nickname}`
+                    implicitHeight: label.implicitHeight
+
+                    Button {
+                        id: button
+                        Layout.fillWidth: true
+                        implicitHeight: label.implicitHeight
+                        implicitWidth: 290
+                        Label {
+                            id: label
+                            text: `${menu_item.modelData.nickname}`
+                        }
+                        onClicked: {
+                            Audio.setInputDevice(menu_item.modelData);
+                        }
+                    }
                 }
             }
         }

@@ -23,14 +23,12 @@ Singleton {
         inputs: []
     })
 
-    function testAudio() {
-        console.log("Default: " + default_output.audio.volume);
+    function setOutputDevice(node) {
+        Pipewire.preferredDefaultAudioSink = node;
     }
 
-    function setOutputDevice() {
-    }
-
-    function setInputDevice() {
+    function setInputDevice(node) {
+        Pipewire.preferredDefaultAudioSource = node;
     }
 
     function setOutputVolume(vol) {

@@ -28,6 +28,7 @@ PanelWindow {
 
         ColumnLayout {
             anchors.fill: parent
+            // Layout.fillWidth: true
             Audio {
                 Layout.alignment: Qt.AlignCenter
             }

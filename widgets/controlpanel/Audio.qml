@@ -1,15 +1,22 @@
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls
-import Quickshell
-import qs.ui
-import qs.services
 
 Item {
 
+    Layout.fillWidth: true
+    Layout.fillHeight: false
+
+    implicitHeight: layout.implicitHeight
+
+    Layout.topMargin: 5
+    Layout.leftMargin: 5
+    Layout.rightMargin: 5
+    Layout.bottomMargin: 5
+
     ColumnLayout {
-        anchors.centerIn: parent
-        width: 290
+        id: layout
+
+        anchors.fill: parent
 
         OutputPicker {}
         InputPicker {}

@@ -3,7 +3,7 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
-import qs.ui
+import qs.ui.bar
 
 Item {
     Layout.fillHeight: true

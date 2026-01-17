@@ -1,12 +1,12 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
-import qs.ui
+import qs.ui.controlpanel
 import qs.widgets.controlpanel
 
 PanelWindow {
     id: root
-    visible: false
+    visible: true
     color: "transparent"
 
     anchors {
@@ -21,16 +21,27 @@ PanelWindow {
         bottom: 5
     }
 
-    implicitWidth: 310
+    implicitWidth: 400
 
     Container {
         anchors.fill: parent
 
-        ColumnLayout {
-            anchors.fill: parent
-            // Layout.fillWidth: true
-            Audio {
-                Layout.alignment: Qt.AlignCenter
+        Item {
+            anchors.left: parent.left
+            anchors.right: parent.right
+            implicitHeight: layout.implicitHeight
+
+            ColumnLayout {
+                id: layout
+
+                anchors.fill: parent
+
+                Media {
+                    Layout.alignment: Qt.AlignTop
+                }
+                Audio {
+                    Layout.alignment: Qt.AlignCenter
+                }
             }
         }
     }

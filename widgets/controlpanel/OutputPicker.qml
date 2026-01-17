@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
-import qs.ui
+import qs.ui.controlpanel
 import qs.services
 
 Container {
@@ -15,14 +15,13 @@ Container {
             Layout.alignment: Qt.AlignLeft
             Layout.leftMargin: 20
             Layout.rightMargin: 20
-            Button {
+            IconButton {
                 text: {
                     if (Audio.default_output.audio.muted == true)
                         return " ";
                     else
                         return " ";
                 }
-                font.pixelSize: 20
                 onClicked: {
                     Audio.toggleOutputMute();
                 }

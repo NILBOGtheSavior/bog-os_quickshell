@@ -1,5 +1,5 @@
 import QtQuick
-import qs.ui
+import qs.ui.bar
 import qs.services
 
 Item {

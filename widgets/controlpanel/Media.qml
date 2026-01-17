@@ -1,6 +1,5 @@
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Controls
 import Quickshell.Widgets
 import qs.ui.controlpanel
 import qs.services
@@ -10,55 +9,110 @@ Item {
     Layout.fillHeight: false
     implicitHeight: layout.implicitHeight
 
-    Layout.topMargin: 5
-    Layout.leftMargin: 5
-    Layout.rightMargin: 5
-    Layout.bottomMargin: 5
-
-    Component.onCompleted: {
-        Media.testMedia();
-    }
-
     Container {
         anchors.fill: parent
 
         ColumnLayout {
             id: layout
-
             anchors.fill: parent
+            // currentIndex: 0
 
-            RowLayout {
-                IconImage {
-                    id: coverart
+            Repeater {
 
-                    Layout.topMargin: 10
-                    Layout.leftMargin: 10
-                    Layout.rightMargin: 5
-                    Layout.bottomMargin: 5
+                model: Media.players
+                delegate: ColumnLayout {
+                    id: player
 
-                    width: 75
-                    height: 75
-                    source: Media.players[0].trackArtUrl
-                }
-                ColumnLayout {
-                    Label {
-                        text: Media.players[0].trackTitle
-                        font.weight: 800
+                    required property var modelData
+
+                    RowLayout {
+
+                        IconImage {
+                            id: coverart
+
+                            Layout.topMargin: 15
+                            Layout.leftMargin: 15
+                            Layout.rightMargin: 5
+                            Layout.bottomMargin: 5
+
+                            width: 75
+                            height: 75
+                            source: player.modelData.trackArtUrl
+                        }
+                        ColumnLayout {
+                            Label {
+                                text: Utils.truncateString(player.modelData.trackTitle, 25)
+                                font.weight: 800
+                            }
+                            Label {
+                                text: Utils.truncateString(player.modelData.trackArtist, 25)
+                            }
+                        }
                     }
-                    Label {
-                        text: Media.players[0].trackArtist
+                    Slider {
+                        visible: player.modelData.positionSupported
+                        Layout.fillWidth: true
+                        Layout.leftMargin: 25
+                        Layout.rightMargin: 25
+                        live: false
+                        from: 0
+                        value: player.modelData.position
+                        to: player.modelData.length
+                        onMoved: {
+                            // This needs to be fixed.
+                            player.modelData.position = valueAt(position);
+                        }
                     }
-                }
-            }
-            Slider {
-                Layout.fillWidth: true
-                Layout.leftMargin: 10
-                Layout.rightMargin: 10
-            }
-            RowLayout {
-                Button {
-                    Label {
-                        text: ""
+                    RowLayout {
+                        Layout.alignment: Qt.AlignCenter
+
+                        Layout.topMargin: 10
+                        Layout.bottomMargin: 10
+
+                        IconButton {
+                            active: player.modelData.shuffle
+                            disabled: !player.modelData.shuffleSupported
+                            text: ""
+                            onClicked: {
+                                player.modelData.shuffle = !player.modelData.shuffle;
+                            }
+                        }
+                        // IconButton {
+                        //     text: ""
+                        // }
+                        IconButton {
+                            disabled: !player.modelData.canGoPrevious
+                            text: ""
+                            onClicked: player.modelData.previous()
+                        }
+                        IconButton {
+                            text: player.modelData.isPlaying ? "" : ""
+                            onClicked: player.modelData.isPlaying = !player.modelData.isPlaying
+                        }
+                        IconButton {
+                            disabled: !player.modelData.canGoNext
+                            text: ""
+                            onClicked: player.modelData.next()
+                        }
+                        // IconButton {
+                        //     text: ""
+                        // }
+                        IconButton {
+                            active: player.modelData.loopState
+                            disabled: !player.modelData.loopSupported
+                            text: {
+                                if (player.modelData.loopState == 1)
+                                    return "";
+                                else
+                                    return "";
+                            }
+                            onClicked: {
+                                if (player.modelData.loopState < 2)
+                                    player.modelData.loopState += 1;
+                                else
+                                    player.modelData.loopState = 0;
+                            }
+                        }
                     }
                 }
             }

@@ -9,11 +9,14 @@ Singleton {
 
     readonly property list<MprisPlayer> players: Mpris.players.values
 
-    function updatePlayers() {
-        console.log(players[0].trackArtUrl);
-    }
-
-    function testMedia() {
-        console.log(players[0].trackArtUrl);
+    Timer {
+        running: MprisPlaybackState.Playing
+        interval: 1000
+        repeat: true
+        onTriggered: {
+            for (let player of root.players)
+                if (player.playbackState == MprisPlaybackState.Playing)
+                    player.positionChanged();
+        }
     }
 }

@@ -18,9 +18,9 @@ Container {
             IconButton {
                 text: {
                     if (Audio.default_output.audio.muted == true)
-                        return " ";
+                        return "";
                     else
-                        return " ";
+                        return "";
                 }
                 onClicked: {
                     Audio.toggleOutputMute();
@@ -29,13 +29,7 @@ Container {
             Label {
                 Layout.alignment: Qt.AlignCenter
                 Layout.fillWidth: true
-                text: {
-                    var name = Audio.default_output.nickname;
-                    if (name.length > 20)
-                        return `${name.slice(0, 19)}...`;
-                    else
-                        return name;
-                }
+                text: Utils.truncateString(Audio.default_output.nickname, 20)
             }
             Button {
                 id: arrow

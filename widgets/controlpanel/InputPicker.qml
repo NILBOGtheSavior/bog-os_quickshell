@@ -19,9 +19,9 @@ Container {
             IconButton {
                 text: {
                     if (Audio.default_input.audio.muted)
-                        return " ";
+                        return "";
                     else
-                        return " ";
+                        return "";
                 }
 
                 onClicked: {
@@ -31,15 +31,9 @@ Container {
             Label {
                 Layout.alignment: Qt.AlignCenter
                 Layout.fillWidth: true
-                text: {
-                    var name = Audio.default_input.nickname;
-                    if (name.length > 20)
-                        return `${name.slice(0, 19)}...`;
-                    else
-                        return name;
-                }
+                text: Utils.truncateString(Audio.default_input.nickname, 20)
             }
-            IconButton {
+            Button {
                 id: arrow
                 Layout.alignment: Qt.AlignRight
                 text: {

@@ -23,7 +23,7 @@ PanelWindow {
 
     implicitWidth: 400
 
-    Container {
+    Item {
         anchors.fill: parent
 
         Item {
@@ -36,12 +36,8 @@ PanelWindow {
 
                 anchors.fill: parent
 
-                Media {
-                    Layout.alignment: Qt.AlignTop
-                }
-                Audio {
-                    Layout.alignment: Qt.AlignCenter
-                }
+                Media {}
+                Audio {}
             }
         }
     }

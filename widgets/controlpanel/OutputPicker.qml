@@ -1,3 +1,5 @@
+pragma ComponentBehavior: Bound
+
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
@@ -49,26 +51,22 @@ Container {
         }
         ColumnLayout {
             id: dropdown
+
+            Layout.leftMargin: 15
+            Layout.rightMargin: 15
             visible: false
             Repeater {
                 model: Audio.devices.outputs
-                delegate: Item {
-                    id: menu_item
+                delegate: LabelButton {
                     required property var modelData
-                    implicitHeight: label.implicitHeight
 
-                    Button {
-                        id: button
-                        Layout.fillWidth: true
-                        implicitHeight: label.implicitHeight
-                        implicitWidth: 290
-                        Label {
-                            id: label
-                            text: `${menu_item.modelData.nickname}`
-                        }
-                        onClicked: {
-                            Audio.setOutputDevice(menu_item.modelData);
-                        }
+                    active: Audio.default_output == modelData
+
+                    Layout.fillWidth: true
+                    text: `${modelData.nickname}`
+                    onClicked: {
+                        Audio.setOutputDevice(modelData);
+                        dropdown.visible = false;
                     }
                 }
             }

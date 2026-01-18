@@ -6,7 +6,7 @@ import qs.widgets.controlpanel
 
 PanelWindow {
     id: root
-    visible: true
+    visible: false
     color: "transparent"
 
     anchors {

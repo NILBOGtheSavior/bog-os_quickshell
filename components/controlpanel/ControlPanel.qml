@@ -6,7 +6,7 @@ import qs.widgets.controlpanel
 
 PanelWindow {
     id: root
-    visible: false
+    // visible: false
     color: "transparent"
 
     anchors {
@@ -36,6 +36,7 @@ PanelWindow {
 
                 anchors.fill: parent
 
+                Dashboard {}
                 Media {}
                 Audio {}
             }

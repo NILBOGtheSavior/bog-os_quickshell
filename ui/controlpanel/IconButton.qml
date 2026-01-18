@@ -93,7 +93,7 @@ Rectangle {
             }
             PropertyChanges {
                 target: label
-                color: Colors.background
+                color: Colors.secondary
             }
         },
         State {

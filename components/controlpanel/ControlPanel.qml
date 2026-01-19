@@ -6,13 +6,13 @@ import qs.widgets.controlpanel
 
 PanelWindow {
     id: root
-    // visible: false
+    visible: false
     color: "transparent"
 
     anchors {
         top: true
         right: true
-        bottom: true
+        // bottom: true
     }
 
     margins {
@@ -22,6 +22,7 @@ PanelWindow {
     }
 
     implicitWidth: 400
+    implicitHeight: layout.height
 
     Item {
         anchors.fill: parent

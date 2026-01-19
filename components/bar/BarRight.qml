@@ -3,29 +3,59 @@ import QtQuick.Layouts
 import qs.ui.bar
 import qs.widgets.bar
 
-Container {
-    implicitWidth: layout.implicitWidth + layout.anchors.leftMargin + layout.anchors.rightMargin
-    RowLayout {
-        id: layout
-        anchors {
-            fill: parent
-            leftMargin: 15
-            rightMargin: 15
-        }
+RowLayout {
+    Container {
+        id: tray
 
-        Audio {}
-        Network {}
-        // Battery {}
-        Clock {}
-        Button {
-            text: {
-                if (controlpanel.visible)
-                    return " ";
-                else
-                    return "󰍜 ";
+        visible: false
+
+        implicitWidth: systemtray.implicitWidth + systemtray.anchors.leftMargin + systemtray.anchors.rightMargin
+
+        SystemTray {
+            id: systemtray
+            anchors {
+                fill: parent
+                leftMargin: 15
+                rightMargin: 15
             }
-            onClicked: {
-                controlpanel.visible = !controlpanel.visible;
+        }
+    }
+    Container {
+        implicitWidth: layout.implicitWidth + layout.anchors.leftMargin + layout.anchors.rightMargin
+        RowLayout {
+            id: layout
+            anchors {
+                fill: parent
+                leftMargin: 15
+                rightMargin: 15
+            }
+
+            Button {
+                text: {
+                    if (tray.visible)
+                        return "󱗼";
+                    else
+                        return "󱗽";
+                }
+                onClicked: {
+                    tray.visible = !tray.visible;
+                }
+            }
+
+            Audio {}
+            Network {}
+            // Battery {}
+            Clock {}
+            Button {
+                text: {
+                    if (controlpanel.visible)
+                        return " ";
+                    else
+                        return "󰍜 ";
+                }
+                onClicked: {
+                    controlpanel.visible = !controlpanel.visible;
+                }
             }
         }
     }

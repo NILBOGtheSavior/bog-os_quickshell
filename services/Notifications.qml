@@ -7,7 +7,6 @@ import Quickshell.Services.Notifications
 Singleton {
     id: root
 
-    property var notifications: []
     readonly property var trackedNotifications: server.trackedNotifications
 
     property NotificationServer server: NotificationServer {

@@ -1,5 +1,4 @@
 pragma Singleton
-pragma ComponentBehavior: Bound
 
 import QtQuick
 import Quickshell
@@ -9,23 +8,17 @@ Singleton {
     id: root
 
     property var notifications: []
-    property var notificationServer: server
+    readonly property var trackedNotifications: server.trackedNotifications
 
-    NotificationServer {
+    property NotificationServer server: NotificationServer {
         id: server
+
+        persistenceSupported: true
+        bodySupported: true
+        actionsSupported: true
+
         onNotification: notification => {
-            root.notifications.push({
-                id: notification.id,
-                popup: notification.transient,
-                application: notification.appName,
-                urgency: notification.urgency,
-                timeout: notification.expireTimeout,
-                image: notification.image,
-                summary: notification.summary,
-                appName: notification.appName,
-                appIcon: notification.appIcon,
-                body: notification.body
-            });
+            notification.tracked = true;
         }
     }
 }

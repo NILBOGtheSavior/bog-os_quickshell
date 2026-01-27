@@ -1,6 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
-import qs.ui.bar
+import qs.ui
 import qs.services
 
 Item {

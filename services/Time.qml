@@ -12,6 +12,10 @@ Singleton {
         Qt.formatDateTime(clock.date, "dddd MMMM d");
     }
 
+    readonly property string time24: {
+        Qt.formatTime(clock.date, "HH:mm");
+    }
+
     SystemClock {
         id: clock
         precision: SystemClock.Minutes

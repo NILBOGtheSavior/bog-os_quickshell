@@ -1,8 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
-import Quickshell
 import Quickshell.Widgets
-import qs.ui.bar
 import qs.services
 
 RowLayout {
@@ -13,7 +11,7 @@ RowLayout {
 
             width: 15
             height: 15
-            source: modelData.icon
+            source: modelData?.icon
         }
     }
 }

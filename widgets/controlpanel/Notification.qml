@@ -1,12 +1,15 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell.Widgets
+import qs.ui
 import qs.ui.controlpanel
+import qs.config
 
 Container {
     id: root
 
     required property var objectModel
+    required property string time
 
     implicitHeight: layout.implicitHeight
     Layout.leftMargin: 10
@@ -20,6 +23,7 @@ Container {
             Layout.topMargin: 10
             Layout.leftMargin: 10
             Layout.bottomMargin: 10
+            Layout.alignment: Qt.AlignTop
             visible: icon.source !== ""
             width: 50
             height: 50
@@ -42,15 +46,25 @@ Container {
             Label {
                 Layout.leftMargin: 10
                 Layout.bottomMargin: 10
+                Layout.maximumWidth: 250
+                wrapMode: Text.Wrap
                 text: root.objectModel.body
             }
         }
-        IconButton {
-            Layout.alignment: Qt.AlignRight
-            Layout.rightMargin: 10
-            text: ""
-            onClicked: {
-                root.objectModel.dismiss();
+        ColumnLayout {
+            IconButton {
+                Layout.alignment: Qt.AlignTop
+                Layout.topMargin: 10
+                Layout.rightMargin: 10
+                text: ""
+                onClicked: {
+                    root.objectModel.dismiss();
+                }
+            }
+            Label {
+                color: Colors.secondary
+                text: root.time
+                font.pixelSize: 10
             }
         }
     }

@@ -3,6 +3,7 @@ pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
+import qs.ui
 import qs.ui.controlpanel
 import qs.services
 

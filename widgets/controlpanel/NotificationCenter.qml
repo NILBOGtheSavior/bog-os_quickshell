@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
+import qs.ui
 import qs.services
 
 ColumnLayout {
@@ -14,6 +15,7 @@ ColumnLayout {
             required property var modelData
 
             objectModel: modelData
+            time: Notifications.getNotificationTime(modelData.id)
         }
     }
 }

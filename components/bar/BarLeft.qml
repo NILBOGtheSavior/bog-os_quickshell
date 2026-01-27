@@ -14,13 +14,7 @@ Container {
             rightMargin: 15
         }
 
-        Button {
-            font: "BogOS"
-            text: ''
-            onClicked: {
-                systemmenu.visible = !systemmenu.visible;
-            }
-        }
+        SystemMenu {}
         Button {
             font: "JetBrainsMono Nerd Font"
             text: ''

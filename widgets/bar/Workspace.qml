@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
+import qs.ui
 import qs.ui.bar
 import qs.config
 

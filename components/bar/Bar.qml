@@ -29,7 +29,9 @@ Variants {
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.bottom: parent.bottom
+            clip: false
         }
+
         BarCenter {
             screen: root.screen
             anchors.top: parent.top

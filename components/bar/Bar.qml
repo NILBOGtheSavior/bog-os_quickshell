@@ -39,6 +39,7 @@ Variants {
             anchors.bottom: parent.bottom
         }
         BarRight {
+            id: rightbar
             anchors.top: parent.top
             anchors.right: parent.right
             anchors.bottom: parent.bottom

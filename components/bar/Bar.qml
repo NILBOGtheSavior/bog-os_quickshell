@@ -1,6 +1,5 @@
 import Quickshell
 import QtQuick
-import qs.components.systemmenu
 
 Variants {
     model: Quickshell.screens
@@ -29,7 +28,6 @@ Variants {
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.bottom: parent.bottom
-            clip: false
         }
 
         BarCenter {
@@ -38,6 +36,7 @@ Variants {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottom: parent.bottom
         }
+
         BarRight {
             id: rightbar
             anchors.top: parent.top

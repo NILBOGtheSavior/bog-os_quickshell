@@ -5,30 +5,50 @@ import Quickshell.Widgets
 import qs.ui.bar
 import qs.services
 
-RowLayout {
-    Repeater {
-        model: SystemTray.items.values
-        delegate: Button {
-            id: menuItem
+Container {
+    id: tray
 
-            required property var modelData
+    readonly property bool empty: {
+        return (SystemTray.items.values.length < 1);
+    }
 
-            onClicked: {
-                menu.open();
-            }
-            IconImage {
-                anchors.centerIn: parent
+    visible: !empty
 
-                width: 15
-                height: 15
-                source: menuItem.modelData?.icon
+    implicitWidth: systemTray.implicitWidth + systemTray.anchors.leftMargin + systemTray.anchors.rightMargin
 
-                QsMenuAnchor {
-                    id: menu
-                    anchor.window: root
-                    anchor.rect.x: rightbar.x + menuItem.x
-                    anchor.rect.y: menuItem.y + rightbar.height
-                    menu: menuItem.modelData.menu
+    RowLayout {
+        id: systemTray
+
+        anchors {
+            fill: parent
+            leftMargin: 15
+            rightMargin: 15
+        }
+
+        Repeater {
+            model: SystemTray.items.values
+            delegate: Button {
+                id: menuItem
+
+                required property var modelData
+
+                onClicked: {
+                    menu.open();
+                }
+                IconImage {
+                    anchors.centerIn: parent
+
+                    width: 15
+                    height: 15
+                    source: menuItem.modelData?.icon
+
+                    QsMenuAnchor {
+                        id: menu
+                        anchor.window: root
+                        anchor.rect.x: rightbar.x + menuItem.x
+                        anchor.rect.y: menuItem.y + rightbar.height
+                        menu: menuItem.modelData.menu
+                    }
                 }
             }
         }

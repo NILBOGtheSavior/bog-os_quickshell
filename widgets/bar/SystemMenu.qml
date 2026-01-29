@@ -1,6 +1,8 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
+import Quickshell.Hyprland
+import qs.components
 import qs.ui.bar
 
 Button {
@@ -10,12 +12,13 @@ Button {
 
     onClicked: {
         dropdown.visible = !dropdown.visible;
+        grab.active = !grab.active;
     }
 
     DropdownMenu {
         id: dropdown
 
-        anchor.window: root
+        anchor.window: WindowManager.bar
         anchor.rect.x: menubutton.x
         anchor.rect.y: menubutton.y + menubutton.height
 
@@ -45,5 +48,14 @@ Button {
                 command: ["systemctl", "shutdown"]
             }
         ]
+
+        HyprlandFocusGrab {
+            id: grab
+            windows: [dropdown]
+
+            onCleared: {
+                dropdown.visible = false;
+            }
+        }
     }
 }

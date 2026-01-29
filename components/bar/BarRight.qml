@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import qs.ui.bar
 import qs.widgets.bar
+import qs.components.controlpanel
 
 RowLayout {
     SystemTray {
@@ -34,17 +35,7 @@ RowLayout {
             Network {}
             // Battery {}
             Clock {}
-            Button {
-                text: {
-                    if (controlpanel.visible)
-                        return " ";
-                    else
-                        return "󰍜 ";
-                }
-                onClicked: {
-                    controlpanel.visible = !controlpanel.visible;
-                }
-            }
+            ControlPanel {}
         }
     }
 }

@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Widgets
+import qs.components
 import qs.ui.bar
 import qs.services
 
@@ -44,7 +45,7 @@ Container {
 
                     QsMenuAnchor {
                         id: menu
-                        anchor.window: root
+                        anchor.window: WindowManager.bar
                         anchor.rect.x: rightbar.x + menuItem.x
                         anchor.rect.y: menuItem.y + rightbar.height
                         menu: menuItem.modelData.menu

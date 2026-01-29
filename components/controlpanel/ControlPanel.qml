@@ -1,46 +1,73 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
+import Quickshell.Hyprland
+import qs.components
 import qs.ui.controlpanel
 import qs.widgets.controlpanel
 
-PanelWindow {
-    id: root
-    visible: false
-    color: "transparent"
-
-    anchors {
-        top: true
-        right: true
-        // bottom: true
+Button {
+    text: {
+        if (controlpanel.visible)
+            return " ";
+        else
+            return "󰍜 ";
     }
 
-    margins {
-        top: 5
-        right: 5
-        bottom: 5
+    onClicked: {
+        controlpanel.visible = !controlpanel.visible;
+        grab.active = !grab.active;
     }
 
-    implicitWidth: 400
-    implicitHeight: layout.height
+    PopupWindow {
+        id: controlpanel
 
-    Item {
-        anchors.fill: parent
+        anchor.window: WindowManager.bar
+        anchor.rect.x: WindowManager.bar.width
+        anchor.rect.y: WindowManager.bar.height + 5
+        visible: false
+        color: "transparent"
+
+        // anchors {
+        //     top: true
+        //     right: true
+        //     // bottom: true
+        // }
+
+        // margins {
+        //     top: 5
+        //     right: 5
+        //     bottom: 5
+        // }
+
+        implicitWidth: 400
+        implicitHeight: layout.height
 
         Item {
-            anchors.left: parent.left
-            anchors.right: parent.right
-            implicitHeight: layout.implicitHeight
+            anchors.fill: parent
 
-            ColumnLayout {
-                id: layout
+            Item {
+                anchors.left: parent.left
+                anchors.right: parent.right
+                implicitHeight: layout.implicitHeight
 
-                anchors.fill: parent
+                ColumnLayout {
+                    id: layout
 
-                Dashboard {}
-                Media {}
-                Audio {}
+                    anchors.fill: parent
+
+                    Dashboard {}
+                    Media {}
+                    Audio {}
+                }
             }
+        }
+
+        HyprlandFocusGrab {
+            id: grab
+            windows: [controlpanel, WindowManager.bar]
+
+            onCleared: controlpanel.visible = false
         }
     }
 }

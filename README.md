@@ -11,19 +11,19 @@ BogOS Quickshell is the custom built desktop shell for BogOS. It is built with t
 - [ ] WiFi module
 - [ ] Volume indicator (In progress)
 - [ ] Brightness indicator
-- [ ] System tray
-- [ ] System menu (In progress)
+- [X] System tray
+- [X] System menu
 - [ ] Search icon (Need to make custom launcher)
 - [ ] Workspace applications
 
 ## System Menu
 
-- [ ] Info
-- [ ] Suspend
+- [X] Info
+- [X] Suspend
 - [X] Lock
-- [ ] Logout
-- [ ] Restart
-- [ ] Shutdown
+- [X] Logout
+- [X] Restart
+- [X] Shutdown
 
 ## Control Panel
 
@@ -33,5 +33,5 @@ BogOS Quickshell is the custom built desktop shell for BogOS. It is built with t
     - [ ] Brightness
     - [X] Volume
 - [X] Media controller
-- [ ] Notification center (In progress)
+- [X] Notification center
 - [ ] Calendar

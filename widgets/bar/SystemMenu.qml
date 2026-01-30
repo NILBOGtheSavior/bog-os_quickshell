@@ -45,7 +45,7 @@ Button {
             },
             {
                 title: "⏻   Shutdown",
-                command: ["systemctl", "shutdown"]
+                command: ["systemctl", "poweroff"]
             }
         ]
 

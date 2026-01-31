@@ -33,6 +33,7 @@ Item {
                 text: Time.date
                 font.pixelSize: 24
             }
+            Calendar {}
             NotificationCenter {}
         }
     }

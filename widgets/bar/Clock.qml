@@ -5,9 +5,9 @@ import qs.ui
 
 RowLayout {
     anchors.centerIn: parent
-    spacing: 20
+    spacing: 10
     Label {
-        text: Time.date
+        text: Time.date_short
     }
     Label {
         text: Time.time

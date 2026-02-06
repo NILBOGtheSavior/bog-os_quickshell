@@ -11,7 +11,12 @@ Singleton {
     readonly property string date_full: {
         Qt.formatDateTime(clock.date, "dddd MMMM d");
     }
-
+    readonly property string date_short: {
+        Qt.formatDateTime(clock.date, "ddd");
+    }
+    readonly property string date_concat: {
+        Qt.formatDateTime(clock.date, "yyyy/MM/dd");
+    }
     readonly property string time24: {
         Qt.formatTime(clock.date, "HH:mm");
     }

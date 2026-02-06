@@ -9,7 +9,7 @@ Singleton {
         })
 
     readonly property font paragraph: ({
-            family: "0xProto Nerd Font Mono",
+            family: "DroidSansM Nerd Font",
             pixelSize: 14
         })
 }

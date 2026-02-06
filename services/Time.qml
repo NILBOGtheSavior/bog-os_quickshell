@@ -8,7 +8,7 @@ Singleton {
     readonly property string time: {
         Qt.formatDateTime(clock.date, "hh:mm AP");
     }
-    readonly property string date: {
+    readonly property string date_full: {
         Qt.formatDateTime(clock.date, "dddd MMMM d");
     }
 

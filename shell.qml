@@ -1,5 +1,8 @@
 //@ pragma UseQApplication
 
 import Quickshell
+import qs.components
 
-ShellRoot {}
+ShellRoot {
+    Bar {}
+}

@@ -1,9 +1,9 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
-import qs.config
-import qs.services
 import qs.widgets.bar
+import qs.config
+import qs.ui
 
 Variants {
     model: Quickshell.screens
@@ -14,8 +14,7 @@ Variants {
         screen: modelData
 
         implicitHeight: 30
-        // color: "transparent"
-        color: Colors.background
+        color: "transparent"
 
         Component.onCompleted: {
             Global.bar = root;
@@ -27,13 +26,48 @@ Variants {
             right: true
         }
 
-        RowLayout {
-            Layout.fillHeight: true
-            SystemMenu {
-                anchors.centerIn: parent
-            }
+        margins {
+            left: 5
+            top: 4
+            right: 5
         }
 
-        Clock {}
+        Container {
+            anchors.fill: parent
+            RowLayout {
+                id: leftIsland
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left: parent.left
+                anchors.leftMargin: Styles.padding * 2
+
+                SystemMenu {}
+            }
+            RowLayout {
+                id: centerIsland
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.horizontalCenter: parent.horizontalCenter
+
+                height: root.implicitHeight
+
+                Button {
+                    id: button
+                    radius: 15
+                    // Layout.fillHeight: true
+                    onClicked: {
+                        console.log("clicked");
+                    }
+
+                    text: "Placeholder"
+                }
+            }
+            RowLayout {
+                id: rightIsland
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.right: parent.right
+                anchors.rightMargin: Styles.padding * 2
+
+                Clock {}
+            }
+        }
     }
 }

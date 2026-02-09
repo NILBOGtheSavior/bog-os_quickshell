@@ -10,6 +10,9 @@ Singleton {
 
     readonly property font paragraph: ({
             family: "DroidSansM Nerd Font",
-            pixelSize: 14
+            // family: "BlexMono Nerd Font",
+            // family: "Hurmit Nerd Font",
+            // family: "UbuntuMono Nerd Font",
+            pixelSize: 15
         })
 }

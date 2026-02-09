@@ -15,8 +15,8 @@ Rectangle {
     property alias text: label.text
     property alias font: label.font
 
-    implicitWidth: contentItem.childrenRect.width + (Styles.padding * 2)
-    implicitHeight: contentItem.childrenRect.height + (Styles.padding * 2)
+    width: 25
+    height: 25
 
     color: Colors.background
     border.width: 1

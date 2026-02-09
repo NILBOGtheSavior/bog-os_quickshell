@@ -16,11 +16,9 @@ Rectangle {
     property alias font: label.font
 
     implicitWidth: contentItem.childrenRect.width + (Styles.padding * 2)
-    implicitHeight: contentItem.childrenRect.height + (Styles.padding * 2)
+    implicitHeight: contentItem.childrenRect.height
 
-    color: Colors.background
-    border.width: 1
-    radius: Styles.radius
+    color: "transparent"
 
     MouseArea {
         anchors.fill: parent
@@ -36,7 +34,6 @@ Rectangle {
 
     Item {
         id: contentItem
-        anchors.centerIn: parent
         width: childrenRect.width
         height: childrenRect.height
 
@@ -51,18 +48,8 @@ Rectangle {
             name: "hovered"
             when: hover.hovered
             PropertyChanges {
-                root {
-                    border.color: Colors.accent1
-                }
-            }
-        },
-        State {
-            name: "active"
-            when: root.active
-            PropertyChanges {
-                root {
+                label {
                     color: Colors.accent1
-                    border.color: Colors.secondary
                 }
             }
         },
@@ -70,8 +57,8 @@ Rectangle {
             name: "default"
             when: !hover.hovered && !root.active
             PropertyChanges {
-                root {
-                    border.color: Colors.secondary
+                label {
+                    color: Colors.foreground
                 }
             }
         }

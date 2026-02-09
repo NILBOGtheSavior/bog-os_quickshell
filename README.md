@@ -4,12 +4,12 @@ BogOS Quickshell is the custom built desktop shell for BogOS. It is built with t
 
 ## Bar Module
 
-- [ ] Clock date and time
+- [X] Clock date and time
 - [ ] Battery
 - [ ] Workspaces
-- [ ] Active window label (In progress)
+- [ ] Active window label
 - [ ] WiFi module
-- [ ] Volume indicator (In progress)
+- [ ] Volume indicator
 - [ ] Brightness indicator
 - [ ] System tray
 - [ ] System menu

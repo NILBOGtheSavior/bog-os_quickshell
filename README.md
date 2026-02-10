@@ -19,11 +19,11 @@ BogOS Quickshell is the custom built desktop shell for BogOS. It is built with t
 ## System Menu
 
 - [ ] Info
-- [ ] Suspend
-- [ ] Lock
-- [ ] Logout
-- [ ] Restart
-- [ ] Shutdown
+- [X] Suspend
+- [X] Lock
+- [X] Logout
+- [X] Restart
+- [X] Shutdown
 
 ## Control Panel
 

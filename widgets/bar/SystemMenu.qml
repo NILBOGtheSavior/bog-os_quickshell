@@ -4,9 +4,8 @@ import Quickshell.Hyprland
 import qs.config
 import qs.ui
 
-IconButton {
+LabelButton {
     id: root
-    radius: 15
     font: Fonts.bogos
     text: ''
 
@@ -23,15 +22,15 @@ IconButton {
 
         menuItems: [
             {
-                title: "   Info",
+                title: "   Info",
                 command: ["kitty", "--hold", "-e", "fastfetch"]
             },
             {
-                title: "󰤄   Suspend",
+                title: "󰍷   Suspend",
                 command: ["systemctl", "suspend"]
             },
             {
-                title: "   Lock",
+                title: "   Lock",
                 command: ["hyprlock"]
             },
             {
@@ -43,7 +42,7 @@ IconButton {
                 command: ["systemctl", "reboot"]
             },
             {
-                title: "⏻   Shutdown",
+                title: "󰤆   Shutdown",
                 command: ["systemctl", "poweroff"]
             }
         ]

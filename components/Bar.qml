@@ -48,17 +48,7 @@ Variants {
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 height: root.implicitHeight
-
-                Button {
-                    id: button
-                    radius: 15
-                    // Layout.fillHeight: true
-                    onClicked: {
-                        console.log("clicked");
-                    }
-
-                    text: "Placeholder"
-                }
+                Workspaces {}
             }
             RowLayout {
                 id: rightIsland

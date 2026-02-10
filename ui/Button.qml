@@ -49,10 +49,13 @@ Rectangle {
     states: [
         State {
             name: "hovered"
-            when: hover.hovered
+            when: hover.hovered && !root.active
             PropertyChanges {
                 root {
                     border.color: Colors.accent1
+                }
+                label {
+                    color: Colors.accent1
                 }
             }
         },
@@ -62,7 +65,10 @@ Rectangle {
             PropertyChanges {
                 root {
                     color: Colors.accent1
-                    border.color: Colors.secondary
+                    border.color: Colors.accent1
+                }
+                label {
+                    color: Colors.background
                 }
             }
         },
@@ -72,6 +78,20 @@ Rectangle {
             PropertyChanges {
                 root {
                     border.color: Colors.secondary
+                }
+            }
+        }
+    ]
+    transitions: [
+        Transition {
+            ParallelAnimation {
+                ColorAnimation {
+                    property: "color"
+                    duration: 100
+                }
+                ColorAnimation {
+                    property: "border.color"
+                    duration: 100
                 }
             }
         }

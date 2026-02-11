@@ -29,7 +29,6 @@ PopupWindow {
                     Layout.fillWidth: true
                     Layout.leftMargin: 10
                     Layout.rightMargin: 10
-
                     text: modelData.title
 
                     onClicked: {

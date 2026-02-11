@@ -5,6 +5,9 @@ import QtQuick
 
 Singleton {
     id: root
+
+    readonly property var clock: clock
+
     readonly property string time: {
         Qt.formatDateTime(clock.date, "hh:mm AP");
     }
@@ -20,6 +23,10 @@ Singleton {
     readonly property string time24: {
         Qt.formatTime(clock.date, "HH:mm");
     }
+
+    readonly property int day: clock.date.getDate()
+    readonly property int month: clock.date.getMonth()
+    readonly property int year: clock.date.getFullYear()
 
     SystemClock {
         id: clock

@@ -19,6 +19,12 @@ Singleton {
             pixelSize: 15
         })
 
+    readonly property font medium_bold: ({
+            family: "BlexMono Nerd Font",
+            pixelSize: 15,
+            weight: 800
+        })
+
     readonly property font large: ({
             family: "BlexMono Nerd Font",
             pixelSize: 18

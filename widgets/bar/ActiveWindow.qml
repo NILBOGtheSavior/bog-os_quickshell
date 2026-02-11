@@ -4,7 +4,7 @@ import qs.ui
 
 Label {
     property var activeWindow: Hyprland.activeToplevel
-    text: activeWindow ? activeWindow.lastIpcObject.class : "BogOS"
+    text: activeWindow?.lastIpcObject?.class || "BogOS"
 
     Connections {
         target: Hyprland

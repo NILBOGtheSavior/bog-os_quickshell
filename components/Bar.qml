@@ -58,7 +58,9 @@ Variants {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.right: parent.right
                 anchors.rightMargin: Styles.padding * 2
+                spacing: Styles.spacing
 
+                Calendar {}
                 Clock {}
             }
         }

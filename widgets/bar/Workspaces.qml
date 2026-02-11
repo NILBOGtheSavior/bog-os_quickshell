@@ -26,6 +26,7 @@ RowLayout {
 
             active: modelData.focused
 
+            font: Fonts.small
             color: Colors.secondary
 
             onClicked: {

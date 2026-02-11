@@ -2,6 +2,6 @@ import QtQuick
 import qs.config
 
 Text {
-    font: Fonts.paragraph
+    font: Fonts.medium
     color: Colors.foreground
 }

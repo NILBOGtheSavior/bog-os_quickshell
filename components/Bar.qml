@@ -40,7 +40,10 @@ Variants {
                 anchors.left: parent.left
                 anchors.leftMargin: Styles.padding * 2
 
+                spacing: Styles.spacing * 2
+
                 SystemMenu {}
+                ActiveWindow {}
             }
             RowLayout {
                 id: centerIsland

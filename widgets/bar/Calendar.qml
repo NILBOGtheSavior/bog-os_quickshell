@@ -51,7 +51,6 @@ LabelButton {
                         text: ""
                         font: Fonts.large
                         onClicked: {
-                            console.log("Previous month");
                             root.currentMonth--;
                             if (root.currentMonth < 0) {
                                 root.currentMonth = 11;
@@ -76,7 +75,6 @@ LabelButton {
                         text: ""
                         font: Fonts.large
                         onClicked: {
-                            console.log("Next month");
                             root.currentMonth++;
                             if (root.currentMonth > 11) {
                                 root.currentMonth = 0;

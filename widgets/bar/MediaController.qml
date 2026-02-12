@@ -18,6 +18,13 @@ Repeater {
             id: layout
             anchors.centerIn: parent
             IconImage {
+                visible: status != coverart.visible
+                Layout.leftMargin: Styles.padding
+                width: 15
+                height: 15
+                source: 'root:/assets/media-icon.png'
+            }
+            IconImage {
                 id: coverart
                 visible: status == Image.Ready
                 Layout.leftMargin: Styles.padding

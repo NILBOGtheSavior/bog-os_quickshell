@@ -5,6 +5,9 @@ import Quickshell
 import Quickshell.Services.UPower
 
 Singleton {
+
+    property bool hasBattery: UPower.devices.length > 0
+
     property int percentage: Math.round(UPower.displayDevice.percentage * 100)
     property int emptyIn: UPower.displayDevice.timeToEmpty
     property int fullIn: UPower.displayDevice.timeToFull

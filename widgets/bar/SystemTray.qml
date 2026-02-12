@@ -16,7 +16,8 @@ Container {
     Layout.fillHeight: true
     RowLayout {
         id: layout
-        anchors.fill: parent
+        anchors.centerIn: parent
+
         Repeater {
             model: SystemTray.applications
             delegate: LabelButton {

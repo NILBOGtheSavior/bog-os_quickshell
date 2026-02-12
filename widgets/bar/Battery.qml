@@ -4,9 +4,8 @@ import qs.services
 
 Loader {
     active: Battery.hasBattery
-    sourceComponent: Component {
-        Label {
-            text: Battery.getIcon()
-        }
+    visible: active
+    sourceComponent: Label {
+        text: Battery.getIcon()
     }
 }

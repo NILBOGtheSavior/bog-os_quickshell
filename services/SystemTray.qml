@@ -8,5 +8,5 @@ import Quickshell.Services.SystemTray
 Singleton {
     id: root
 
-    readonly property var items: SystemTray.items
+    readonly property var applications: SystemTray.items.values
 }

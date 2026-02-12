@@ -10,6 +10,7 @@ import qs.ui
 
 Container {
     id: root
+    visible: SystemTray.applications.length > 0
     color: Colors.secondary
     implicitWidth: layout.implicitWidth + Styles.padding * 2
     Layout.fillHeight: true
@@ -17,7 +18,7 @@ Container {
         id: layout
         anchors.fill: parent
         Repeater {
-            model: SystemTray.items.values
+            model: SystemTray.applications
             delegate: LabelButton {
                 id: menuItem
                 required property var modelData

@@ -6,7 +6,7 @@ import Quickshell.Services.UPower
 
 Singleton {
 
-    property bool hasBattery: UPower.devices.length > 0
+    property bool hasBattery: UPower.displayDevice.isLaptopBattery
 
     property int percentage: Math.round(UPower.displayDevice.percentage * 100)
     property int emptyIn: UPower.displayDevice.timeToEmpty

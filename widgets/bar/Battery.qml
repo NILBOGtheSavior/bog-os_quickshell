@@ -6,7 +6,7 @@ Loader {
     active: Battery.hasBattery
     sourceComponent: Component {
         Label {
-            text: Battery.getIcon
+            text: Battery.getIcon()
         }
     }
 }

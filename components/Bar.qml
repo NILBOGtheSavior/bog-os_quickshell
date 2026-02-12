@@ -62,8 +62,8 @@ Variants {
 
                 SystemTray {}
                 MediaController {}
-                VolumeController {}
                 Battery {}
+                VolumeController {}
                 Calendar {}
                 Clock {}
             }

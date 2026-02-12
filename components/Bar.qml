@@ -60,6 +60,7 @@ Variants {
                 anchors.rightMargin: Styles.padding * 2
                 spacing: Styles.spacing
 
+                SystemTray {}
                 MediaController {}
                 VolumeController {}
                 Calendar {}

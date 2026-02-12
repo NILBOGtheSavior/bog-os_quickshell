@@ -16,9 +16,9 @@ LabelButton {
 
     DropdownMenu {
         id: menu
-        anchor.window: Global.bar
-        anchor.rect.x: root.x
-        anchor.rect.y: root.y + Global.bar.height
+        anchor.item: root
+        anchor.rect.x: root.x - Styles.padding * 2
+        anchor.rect.y: root.height + Styles.padding
 
         menuItems: [
             {

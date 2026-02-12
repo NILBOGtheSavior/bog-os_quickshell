@@ -61,6 +61,7 @@ Variants {
                 spacing: Styles.spacing
 
                 MediaController {}
+                VolumeController {}
                 Calendar {}
                 Clock {}
             }

@@ -35,6 +35,7 @@ Repeater {
             LabelButton {
                 font: Fonts.small
                 text: ""
+                onClicked: player.modelData.previous()
             }
             LabelButton {
                 font: Fonts.small
@@ -45,6 +46,7 @@ Repeater {
                 Layout.rightMargin: Styles.padding
                 font: Fonts.small
                 text: ""
+                onClicked: player.modelData.next()
             }
         }
     }

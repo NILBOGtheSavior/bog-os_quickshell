@@ -7,24 +7,27 @@ import qs.ui
 RowLayout {
     id: root
     state: "default"
+
+    property var speaker: Audio.default_output?.audio
+
     LabelButton {
         font: Fonts.small
         text: {
-            if (Audio.default_output.audio.volume == 0 || Audio.default_output.audio.muted)
+            if (root.speaker.volume == 0 || root.speaker.muted)
                 return " ";
-            else if (Audio.default_output.audio.volume < 0.33)
+            else if (root.speaker.volume < 0.33)
                 return " ";
-            else if (Audio.default_output.audio.volume < 0.67)
+            else if (root.speaker.volume < 0.67)
                 return " ";
             else
                 return " ";
         }
-        onClicked: Audio.default_output.audio.muted = !Audio.default_output.audio.muted
+        onClicked: root.speaker.muted = !root.speaker.muted
     }
     Slider {
         id: slider
         from: 0
-        value: Audio.default_output.audio.volume
+        value: root.speaker.volume || 0
         to: 1
 
         onMoved: Audio.setOutputVolume(position)
@@ -61,11 +64,16 @@ RowLayout {
             from: "hovered"
             to: "default"
             reversible: true
-            NumberAnimation {
-                target: slider
-                properties: "implicitWidth,opacity"
-                duration: 100
-                easing.type: Easing.InOutQuad
+            SequentialAnimation {
+                NumberAnimation {
+                    target: slider
+                    properties: "implicitWidth,opacity"
+                    duration: 100
+                    easing.type: Easing.InOutQuad
+                }
+                PauseAnimation {
+                    duration: 750
+                }
             }
         }
     ]

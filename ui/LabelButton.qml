@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Layouts
+import Quickshell.Widgets
 import qs.config
 import qs.ui
 
@@ -14,6 +15,7 @@ Rectangle {
     default property alias contents: contentItem.data
     property alias text: label.text
     property alias font: label.font
+    property alias icon: iconSource.source
 
     implicitWidth: contentItem.childrenRect.width
     implicitHeight: contentItem.childrenRect.height
@@ -37,9 +39,17 @@ Rectangle {
         width: childrenRect.width
         height: childrenRect.height
 
-        Label {
-            id: label
-            visible: text !== ""
+        RowLayout {
+            IconImage {
+                id: iconSource
+                visible: source != ""
+                width: 25
+                height: 25
+            }
+            Label {
+                id: label
+                visible: text !== ""
+            }
         }
     }
 

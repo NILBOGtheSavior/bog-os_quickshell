@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
+import Quickshell.Wayland
 import qs.widgets.bar
 import qs.config
 import qs.ui
@@ -19,7 +20,6 @@ Variants {
         Component.onCompleted: {
             Global.bar = root;
         }
-
         anchors {
             left: true
             top: true
@@ -43,6 +43,7 @@ Variants {
                 spacing: Styles.spacing * 2
 
                 SystemMenu {}
+                ApplicationLauncher {}
                 ActiveWindow {}
             }
             RowLayout {

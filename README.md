@@ -14,10 +14,11 @@ BogOS Quickshell is the custom built desktop shell for BogOS. It is built with t
 - [X] System tray
 - [X] System menu
 - [X] Search launcher
-    - See if there is a way to group the bar with the popup window to solve focus issue
 - [ ] Workspace applications
 - [X] Media controller
 - [X] Notifier
+    - Find a way to reset animation on new notification
+    - Find a way to suspend animation on hover
 
 ## System Menu
 

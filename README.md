@@ -17,6 +17,7 @@ BogOS Quickshell is the custom built desktop shell for BogOS. It is built with t
     - See if there is a way to group the bar with the popup window to solve focus issue
 - [ ] Workspace applications
 - [X] Media controller
+- [X] Notifier
 
 ## System Menu
 

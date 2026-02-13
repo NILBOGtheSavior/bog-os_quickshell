@@ -50,8 +50,17 @@ RowLayout {
 
     onSelectionIndexChanged: scrollToSelected()
 
+    function clearSearch() {
+        root.searchActive = false;
+        inputLabel.text = "";
+        popup.visible = false;
+        grab.active = false;
+    }
+
     LabelButton {
+        id: searchButton
         text: ""
+        implicitWidth: popup.visible ? popup.implicitWidth : 15
         onClicked: {
             root.searchActive = true;
             popup.visible = true;
@@ -60,70 +69,110 @@ RowLayout {
                 inputLabel.forceActiveFocus();
             });
         }
-    }
-
-    InputLabel {
-        id: inputLabel
-        visible: root.searchActive
-        placeholder: "Search"
-        onTextChanged: {
-            root.selectionIndex = -1;
-            root.updateFilter();
-        }
-
-        Keys.onEscapePressed: {
-            root.searchActive = false;
-            text = "";
-            popup.visible = false;
-            grab.active = false;
-        }
-
-        Keys.onDownPressed: {
-            if (root.selectionIndex < root.filteredApps.length - 1) {
-                root.selectionIndex++;
-            }
-        }
-
-        Keys.onUpPressed: {
-            if (root.selectionIndex > 0) {
-                root.selectionIndex--;
-            }
-        }
-
-        Keys.onReturnPressed: {
-            if (root.filteredApps.length > 0) {
-                root.filteredApps[root.selectionIndex].execute();
-                root.searchActive = false;
-                text = "";
-                popup.visible = false;
+        Behavior on implicitWidth {
+            NumberAnimation {
+                duration: 100
+                easing.type: Easing.OutCubic
             }
         }
     }
 
     PopupWindow {
         id: popup
-        visible: false
-        anchor.item: inputLabel
-        anchor.rect.y: inputLabel.height + Styles.padding
+        anchor.item: searchButton
         color: "transparent"
         implicitWidth: 300
-        implicitHeight: 300
+        implicitHeight: Math.max(scrollView.implicitHeight, 100)
 
         Container {
             anchors.fill: parent
+            ColumnLayout {
+                Container {
+                    color: Colors.secondary
+                    height: 20
+                    Layout.fillWidth: true
+                    RowLayout {
+                        anchors.fill: parent
+                        LabelButton {
+                            Layout.leftMargin: Styles.padding
 
-            ScrollView {
-                id: scrollView
-                anchors.fill: parent
+                            font: Fonts.small
+                            text: ""
+                            onClicked: root.clearSearch()
+                        }
+                        InputLabel {
+                            id: inputLabel
+                            Layout.fillWidth: true
+                            visible: root.searchActive
+                            placeholder: "Search"
+                            onTextChanged: {
+                                root.selectionIndex = -1;
+                                root.updateFilter();
+                            }
 
-                ColumnLayout {
-                    id: listView
-                    anchors.fill: parent
+                            Keys.onEscapePressed: {
+                                root.searchActive = false;
+                                text = "";
+                                popup.visible = false;
+                                grab.active = false;
+                            }
 
-                    Repeater {
-                        id: repeater
-                        model: root.filteredApps
-                        delegate: applicationEntry
+                            Keys.onDownPressed: {
+                                if (root.selectionIndex < root.filteredApps.length - 1) {
+                                    root.selectionIndex++;
+                                }
+                            }
+
+                            Keys.onUpPressed: {
+                                if (root.selectionIndex > 0) {
+                                    root.selectionIndex--;
+                                }
+                            }
+
+                            Keys.onReturnPressed: {
+                                if (root.filteredApps.length > 0) {
+                                    root.filteredApps[root.selectionIndex].execute();
+                                    root.clearSearch();
+                                }
+                            }
+                        }
+                    }
+                }
+                ScrollView {
+                    id: scrollView
+                    implicitHeight: Math.min(listView.implicitHeight, 300)
+
+                    ColumnLayout {
+                        id: listView
+
+                        LabelButton {
+                            visible: root.filteredApps.length === 0
+                            implicitWidth: 280
+                            Layout.leftMargin: 10
+                            Layout.rightMargin: 10
+
+                            radius: Styles.radius
+
+                            text: "No results found"
+                        }
+
+                        Repeater {
+                            id: repeater
+                            model: root.filteredApps
+                            delegate: applicationEntry
+                        }
+                    }
+                }
+            }
+            transform: Scale {
+                origin.y: popup.height / 2
+                xScale: popup.visible ? 1 : 0
+                yScale: 1
+
+                Behavior on xScale {
+                    NumberAnimation {
+                        duration: 100
+                        easing.type: Easing.OutCubic
                     }
                 }
             }

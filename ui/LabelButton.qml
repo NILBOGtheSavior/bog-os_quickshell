@@ -17,6 +17,8 @@ Rectangle {
     property alias text: label.text
     property alias font: label.font
     property alias icon: iconSource.source
+    property alias iconWidth: iconSource.width
+    property alias iconHeight: iconSource.height
 
     implicitWidth: contentItem.childrenRect.width
     implicitHeight: contentItem.childrenRect.height

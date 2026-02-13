@@ -11,6 +11,8 @@ Singleton {
     readonly property var trackedNotifications: server.trackedNotifications
     property var notificationTimes: ({})
 
+    signal notifier(var notification)
+
     property NotificationServer server: NotificationServer {
         id: server
 
@@ -20,6 +22,8 @@ Singleton {
 
         onNotification: notification => {
             notification.tracked = true;
+
+            root.notifier(notification);
 
             var times = root.notificationTimes;
             times[notification.id] = Time.time24;

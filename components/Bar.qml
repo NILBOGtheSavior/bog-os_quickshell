@@ -61,6 +61,7 @@ Variants {
                 anchors.rightMargin: Styles.padding * 2
                 spacing: Styles.spacing
 
+                Notifier {}
                 SystemTray {}
                 MediaController {}
                 Battery {}

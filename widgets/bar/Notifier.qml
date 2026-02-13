@@ -9,7 +9,7 @@ Container {
     property var currentNotification: null
     property string displayText: ""
     property string displayIcon: ""
-
+    visible: root.currentNotification !== null || scaleAnim.running
     implicitWidth: layout.implicitWidth + Styles.padding * 2
     Layout.fillHeight: true
     color: Colors.secondary
@@ -49,6 +49,7 @@ Container {
 
         Behavior on xScale {
             NumberAnimation {
+                id: scaleAnim
                 duration: 300
                 easing.type: Easing.OutCubic
             }

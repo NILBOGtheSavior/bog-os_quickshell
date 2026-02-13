@@ -65,9 +65,7 @@ RowLayout {
             root.searchActive = true;
             popup.visible = true;
             grab.active = true;
-            Qt.callLater(() => {
-                inputLabel.forceActiveFocus();
-            });
+            inputLabel.forceActiveFocus();
         }
         Behavior on implicitWidth {
             NumberAnimation {
@@ -111,10 +109,7 @@ RowLayout {
                             }
 
                             Keys.onEscapePressed: {
-                                root.searchActive = false;
-                                text = "";
-                                popup.visible = false;
-                                grab.active = false;
+                                root.clearSearch();
                             }
 
                             Keys.onDownPressed: {
@@ -131,7 +126,7 @@ RowLayout {
 
                             Keys.onReturnPressed: {
                                 if (root.filteredApps.length > 0) {
-                                    root.filteredApps[root.selectionIndex].execute();
+                                    root.filteredApps[Math.max(root.selectionIndex, 0)].execute();
                                     root.clearSearch();
                                 }
                             }

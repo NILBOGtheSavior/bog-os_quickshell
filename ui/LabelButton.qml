@@ -12,6 +12,7 @@ Rectangle {
     signal clicked
     property bool active
 
+    color: "transparent"
     default property alias contents: contentItem.data
     property alias text: label.text
     property alias font: label.font
@@ -19,8 +20,6 @@ Rectangle {
 
     implicitWidth: contentItem.childrenRect.width
     implicitHeight: contentItem.childrenRect.height
-
-    color: "transparent"
 
     MouseArea {
         anchors.fill: parent

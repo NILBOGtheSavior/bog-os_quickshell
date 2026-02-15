@@ -229,4 +229,23 @@ RowLayout {
             ]
         }
     }
+    GlobalShortcut {
+        name: "launcher"
+        description: "Toggle application launcher"
+        onPressed: {
+            // Only respond if this is the focused monitor
+            if (Hyprland.focusedMonitor && Hyprland.focusedMonitor.name === screen.name) {
+                if (popup.visible) {
+                    root.clearSearch();
+                } else {
+                    root.searchActive = true;
+                    popup.visible = true;
+                    grab.active = true;
+                    Qt.callLater(() => {
+                        inputLabel.forceActiveFocus();
+                    });
+                }
+            }
+        }
+    }
 }

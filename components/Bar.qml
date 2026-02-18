@@ -65,6 +65,7 @@ Variants {
                 MediaController {}
                 Battery {}
                 VolumeController {}
+                Weather {}
                 Calendar {}
                 Clock {}
                 LabelButton {

@@ -6,6 +6,8 @@ import qs.ui.controlpanel
 
 GridLayout {
     columns: 3
+    rowSpacing: Styles.padding * 2
+    columnSpacing: Styles.padding * 2
 
     QuickToggle {
         icon: "󰀂"

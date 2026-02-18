@@ -22,7 +22,7 @@ PanelWindow {
         top: 5
         bottom: 5
     }
-    implicitWidth: 300
+    implicitWidth: 350
     implicitHeight: layout.implicitHeight + Styles.padding * 4
     color: "transparent"
     Container {
@@ -36,6 +36,7 @@ PanelWindow {
                 topMargin: 10
                 bottomMargin: 10
             }
+            Dashboard {}
             QuickToggles {}
         }
     }

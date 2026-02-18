@@ -29,4 +29,9 @@ Singleton {
             family: "BlexMono Nerd Font",
             pixelSize: 18
         })
+
+    readonly property font xlarge: ({
+            family: "BlexMono Nerd Font",
+            pixelSize: 24
+        })
 }

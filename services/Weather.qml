@@ -13,6 +13,7 @@ Singleton {
     property int code: -1
     property string unit
     property string icon: getIcon(code)
+    property string description: getDescription(code)
 
     Component.onCompleted: fetchWeather()
 
@@ -20,7 +21,7 @@ Singleton {
         weather.running = true;
     }
 
-    function weatherDescription(code) {
+    function getDescription(code) {
         var descriptions = {
             0: "Clear sky",
             1: "Mainly clear",
@@ -51,7 +52,7 @@ Singleton {
             96: "Thunderstorm with slight hail",
             99: "Thunderstorm with heavy hail"
         };
-        return descriptions[code] || "Unknown";
+        return descriptions[code] || "";
     }
     function getIcon(code) {
         var icons = {

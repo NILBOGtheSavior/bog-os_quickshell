@@ -1,27 +1,43 @@
 import QtQuick
 import QtQuick.Layouts
-import qs.ui
+import qs.config
+import qs.services
+import qs.ui.controlpanel
 
 GridLayout {
     columns: 3
-    rows: 2
 
-    Button {
-        text: "Yo"
+    QuickToggle {
+        icon: "󰀂"
+        text: "Network"
     }
-    Button {
-        text: "Yo"
+    QuickToggle {
+        active: VPN.connected
+        icon: "󰖂"
+        text: "VPN"
+        onClicked: {
+            VPN.toggleVpn();
+        }
+        Component.onCompleted: VPN.checkStatus()
     }
-    Button {
-        text: "Yo"
+    QuickToggle {
+        icon: ""
+        text: "Bluetooth"
     }
-    Button {
-        text: "Yo"
+    QuickToggle {
+        active: Global.dnd
+        icon: ""
+        text: "DND"
+        onClicked: {
+            Global.dnd = !Global.dnd;
+        }
     }
-    Button {
-        text: "Yo"
+    QuickToggle {
+        icon: "󰖨"
+        text: "Night Light"
     }
-    Button {
-        text: "Yo"
+    QuickToggle {
+        icon: ""
+        text: "Dark Mode"
     }
 }

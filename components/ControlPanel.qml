@@ -1,36 +1,49 @@
 import QtQuick
+import QtQuick.Layouts
 import Quickshell
 import Quickshell.Hyprland
+import qs.config
 import qs.ui
 import qs.widgets.controlpanel
 
 PanelWindow {
     id: root
-    visible: false
-    exclusionMode: ExclusionMode.Normal
+    visible: true
+    // exclusionMode: ExclusionMode.Normal
+    Component.onCompleted: {
+        Global.controlPanel = root;
+    }
     anchors {
         top: true
-        left: true
-        bottom: true
+        right: true
     }
     margins {
-        left: 5
+        right: 5
         top: 5
         bottom: 5
     }
     implicitWidth: 300
+    implicitHeight: layout.implicitHeight + Styles.padding * 4
     color: "transparent"
     Container {
         anchors.fill: parent
-        QuickToggles {}
+        ColumnLayout {
+            id: layout
+            anchors {
+                fill: parent
+                leftMargin: 10
+                rightMargin: 10
+                topMargin: 10
+                bottomMargin: 10
+            }
+            QuickToggles {}
+        }
     }
     GlobalShortcut {
         name: "controlpanel"
         description: "Toggle control panel"
         onPressed: {
-            if (Hyprland.focusedMonitor && Hyprland.focusedMonitor.name === screen.name) {
-                root.visible = !root.visible;
-            }
+            root.visible = !root.visible;
         }
     }
 }

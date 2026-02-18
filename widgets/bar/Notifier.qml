@@ -29,9 +29,11 @@ Container {
     Connections {
         target: Notifications
         function onNotifier(notif: var) {
-            root.currentNotification = notif;
-            root.displayText = Utils.truncateString(notif.body, 25);
-            root.displayIcon = notif.image;
+            if (!Global.dnd) {
+                root.currentNotification = notif;
+                root.displayText = Utils.truncateString(notif.body, 25);
+                root.displayIcon = notif.image;
+            }
         }
     }
     Timer {

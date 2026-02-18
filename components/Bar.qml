@@ -67,6 +67,11 @@ Variants {
                 VolumeController {}
                 Calendar {}
                 Clock {}
+                LabelButton {
+                    font: Fonts.large
+                    text: Global.controlPanel.visible ? "󰅙" : "󰹯"
+                    onClicked: Global.controlPanel.visible = !Global.controlPanel.visible
+                }
             }
         }
     }

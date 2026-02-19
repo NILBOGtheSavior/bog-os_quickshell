@@ -20,15 +20,38 @@ ColumnLayout {
             onClicked: Notifications.clearAllNotifications()
         }
     }
-    ScrollView {
-        Layout.maximumHeight: 200
+    Container {
+        implicitHeight: 250
         Layout.fillWidth: true
-        ColumnLayout {
-            anchors.fill: parent
-            spacing: Styles.spacing
-            Repeater {
-                model: Notifications.trackedNotifications
-                delegate: notification
+        color: Colors.secondary
+        ScrollView {
+            anchors {
+                fill: parent
+                leftMargin: 10
+                topMargin: 10
+                bottomMargin: 10
+            }
+            ColumnLayout {
+                anchors.fill: parent
+                anchors.rightMargin: 10
+                spacing: Styles.spacing
+                Item {
+                    visible: Notifications.trackedNotifications.values.length == 0
+                    Layout.fillWidth: true
+                    implicitHeight: placeholder.implicitHeight
+                    Label {
+                        id: placeholder
+                        anchors.centerIn: parent
+                        color: Colors.background
+                        font: Fonts.medium_bold
+                        text: "No unread notifications"
+                    }
+                }
+
+                Repeater {
+                    model: Notifications.trackedNotifications
+                    delegate: notification
+                }
             }
         }
     }
@@ -46,6 +69,9 @@ ColumnLayout {
                 IconImage {
                     width: 25
                     height: 25
+                    Layout.leftMargin: Styles.padding
+                    Layout.topMargin: Styles.padding * 2
+                    Layout.alignment: Qt.AlignTop
                     source: root.modelData.image
                 }
                 ColumnLayout {
@@ -56,7 +82,10 @@ ColumnLayout {
                         text: root.modelData.summary
                     }
                     Label {
-                        text: Utils.truncateString(root.modelData.body, 25)
+                        Layout.bottomMargin: Styles.padding
+                        Layout.preferredWidth: 225
+                        wrapMode: Text.WordWrap
+                        text: root.modelData.body
                     }
                 }
                 LabelButton {

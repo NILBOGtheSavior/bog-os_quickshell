@@ -6,5 +6,5 @@ import qs.ui
 Label {
     visible: Weather.code != -1
     font: Fonts.small
-    text: `${Weather.icon} ${Weather.temperature}${Weather.unit}`
+    text: `${Weather.icon} ${Math.round(Weather.temperature)}${Weather.unit}`
 }

@@ -34,4 +34,11 @@ Singleton {
     function getNotificationTime(notificationId) {
         return notificationTimes[notificationId] || null;
     }
+
+    function clearAllNotifications() {
+        var notifications = server.trackedNotifications.values;
+        for (var i = notifications.length - 1; i >= 0; i--) {
+            notifications[i].dismiss();
+        }
+    }
 }

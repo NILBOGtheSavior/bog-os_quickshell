@@ -16,6 +16,7 @@ PanelWindow {
     anchors {
         top: true
         right: true
+        // bottom: true
     }
     margins {
         right: 5
@@ -38,6 +39,7 @@ PanelWindow {
             }
             Dashboard {}
             QuickToggles {}
+            NotificationCenter {}
         }
     }
     GlobalShortcut {

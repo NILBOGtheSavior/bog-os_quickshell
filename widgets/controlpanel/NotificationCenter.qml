@@ -75,7 +75,7 @@ ColumnLayout {
             implicitHeight: layout.implicitHeight + Styles.padding * 2
             ColumnLayout {
                 id: layout
-                implicitWidth: root.width
+                anchors.fill: parent
                 Rectangle {
                     Layout.fillWidth: true
                     Layout.leftMargin: 1
@@ -149,12 +149,15 @@ ColumnLayout {
                 }
 
                 RowLayout {
+                    Layout.fillWidth: true
                     Layout.leftMargin: Styles.padding * 2
+                    Layout.bottomMargin: Styles.padding * 2
                     Repeater {
                         model: root.modelData.actions
                         delegate: Button {
                             required property var modelData
                             text: modelData.text
+                            color: Colors.secondary
                             onClicked: modelData.invoke()
                         }
                     }
@@ -164,6 +167,7 @@ ColumnLayout {
                     }
                 }
                 Container {
+                    Layout.fillWidth: true
                     visible: false
                     color: Colors.secondary
                     height: 50

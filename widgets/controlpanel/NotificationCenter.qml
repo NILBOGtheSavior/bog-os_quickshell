@@ -20,6 +20,7 @@ ColumnLayout {
             text: "Notification Center"
         }
         LabelButton {
+            visible: Notifications.trackedNotifications.values.length > 0
             Layout.rightMargin: Styles.padding
             font: Fonts.large
             text: ""

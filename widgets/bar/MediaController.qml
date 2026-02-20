@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell.Widgets
 import qs.config
@@ -14,6 +15,31 @@ Repeater {
         implicitWidth: layout.width
         Layout.fillHeight: true
         color: Colors.secondary
+        Rectangle {
+            id: backgroundMask
+            layer.enabled: true
+            anchors.fill: backgroundImage
+            radius: Styles.radius
+            color: Colors.background
+        }
+        Image {
+            id: backgroundImage
+            layer.enabled: true
+            anchors.fill: parent
+            anchors.margins: 1
+            opacity: 0.5
+            fillMode: Image.PreserveAspectCrop
+            source: player.modelData.trackArtUrl
+            layer.effect: MultiEffect {
+                maskSource: backgroundMask
+                maskEnabled: true
+                blurEnabled: true
+                blurMax: 64
+                blur: 1.0
+                autoPaddingEnabled: false
+            }
+        }
+
         RowLayout {
             id: layout
             anchors.centerIn: parent

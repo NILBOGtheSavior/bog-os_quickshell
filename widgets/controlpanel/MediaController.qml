@@ -25,7 +25,7 @@ StackLayout {
             Layout.fillWidth: true
             implicitHeight: layout.implicitHeight
             Rectangle {
-                id: mask
+                id: backgroundMask
                 layer.enabled: true
                 anchors.fill: backgroundImage
                 radius: Styles.radius
@@ -40,7 +40,7 @@ StackLayout {
                 fillMode: Image.PreserveAspectCrop
                 source: root.modelData.trackArtUrl
                 layer.effect: MultiEffect {
-                    maskSource: mask
+                    maskSource: backgroundMask
                     maskEnabled: true
                     blurEnabled: true
                     blurMax: 64
@@ -70,10 +70,27 @@ StackLayout {
                 }
                 RowLayout {
                     Layout.margins: Styles.spacing
-                    IconImage {
+                    Item {
                         width: 75
                         height: 75
-                        source: root.modelData.trackArtUrl
+                        Rectangle {
+                            id: coverMask
+                            layer.enabled: true
+                            anchors.fill: coverImage
+                            radius: Styles.radius
+                            color: Colors.background
+                        }
+                        IconImage {
+                            id: coverImage
+                            width: 75
+                            height: 75
+                            layer.enabled: true
+                            source: root.modelData.trackArtUrl
+                            layer.effect: MultiEffect {
+                                maskSource: coverMask
+                                maskEnabled: true
+                            }
+                        }
                     }
                     ColumnLayout {
                         Label {
@@ -120,11 +137,11 @@ StackLayout {
                         Layout.rightMargin: 10
                         text: {
                             switch (root.modelData.playbackState) {
-                                case 0:
+                            case 0:
                                 return "";
-                                case 1:
+                            case 1:
                                 return "";
-                                case 2:
+                            case 2:
                                 return "";
                             }
                         }

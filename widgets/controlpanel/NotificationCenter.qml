@@ -1,5 +1,8 @@
+pragma ComponentBehavior: Bound
+
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Widgets
@@ -8,6 +11,7 @@ import qs.services
 import qs.ui
 
 ColumnLayout {
+    id: root
     Layout.topMargin: Styles.padding * 2
     RowLayout {
         Label {
@@ -23,7 +27,8 @@ ColumnLayout {
         }
     }
     Container {
-        implicitHeight: 300
+        Layout.maximumHeight: 500
+        Layout.preferredHeight: layout.implicitHeight + Styles.spacing * 2
         Layout.fillWidth: true
         color: Colors.secondary
         ScrollView {
@@ -34,6 +39,7 @@ ColumnLayout {
                 bottomMargin: 10
             }
             ColumnLayout {
+                id: layout
                 anchors.fill: parent
                 anchors.rightMargin: 10
                 spacing: Styles.spacing
@@ -69,12 +75,12 @@ ColumnLayout {
     Component {
         id: notification
         Container {
-            id: root
+            id: notificationRoot
             required property var modelData
             Layout.fillWidth: true
-            implicitHeight: layout.implicitHeight + Styles.padding * 2
+            implicitHeight: notificationLayout.implicitHeight + Styles.padding * 2
             ColumnLayout {
-                id: layout
+                id: notificationLayout
                 anchors.fill: parent
                 Rectangle {
                     Layout.fillWidth: true
@@ -85,7 +91,7 @@ ColumnLayout {
                     topLeftRadius: Styles.radius / 2
                     topRightRadius: Styles.radius / 2
                     color: {
-                        switch (root.modelData.urgency) {
+                        switch (notificationRoot.modelData.urgency) {
                         case 0:
                             return Colors.primary;
                         case 1:
@@ -103,48 +109,64 @@ ColumnLayout {
                             Layout.leftMargin: Styles.padding
                             height: 15
                             width: 15
-                            source: Quickshell.iconPath(root.modelData.appIcon, "start-here-symbolic")
+                            source: Quickshell.iconPath(notificationRoot.modelData.appIcon, "start-here-symbolic")
                         }
                         Label {
 
                             color: Colors.background
                             font: Fonts.medium_bold
-                            text: root.modelData.summary
+                            text: notificationRoot.modelData.summary
                         }
                         Label {
                             visible: false
-                            text: root.modelData.expireTimeout
+                            text: notificationRoot.modelData.expireTimeout
                         }
                         Label {
                             Layout.fillWidth: true
                             font: Fonts.small
                             color: Colors.secondary
-                            text: root.modelData.lastGeneration ? "" : Notifications.getNotificationTime(root.modelData.id)
+                            text: notificationRoot.modelData.lastGeneration ? "" : Notifications.getNotificationTime(notificationRoot.modelData.id)
                         }
                         LabelButtonDark {
                             Layout.rightMargin: Styles.padding
                             text: "󰅙"
-                            onClicked: root.modelData.dismiss()
+                            onClicked: notificationRoot.modelData.dismiss()
                         }
                     }
                 }
                 RowLayout {
                     Layout.fillWidth: true
-                    IconImage {
-                        id: notificationImage
-                        visible: source != ""
+                    Item {
+                        visible: notificationImage.source != ""
                         Layout.alignment: Qt.AlignTop
                         Layout.leftMargin: Styles.padding
-                        height: 50
                         width: 50
-                        source: root.modelData.image
+                        height: 50
+                        Rectangle {
+                            id: mask
+                            layer.enabled: true
+                            anchors.fill: notificationImage
+                            radius: Styles.radius
+                            color: Colors.background
+                        }
+                        IconImage {
+                            id: notificationImage
+                            height: 50
+                            width: 50
+                            layer.enabled: true
+                            source: notificationRoot.modelData.image
+                            layer.effect: MultiEffect {
+                                maskSource: mask
+                                maskEnabled: true
+                            }
+                        }
                     }
                     Label {
                         Layout.alignment: Qt.AlignTop
                         Layout.leftMargin: Styles.padding
                         Layout.preferredWidth: notificationImage.visible ? 240 : 300
                         wrapMode: Text.WordWrap
-                        text: root.modelData.body
+                        text: notificationRoot.modelData.body
                     }
                 }
 
@@ -153,7 +175,7 @@ ColumnLayout {
                     Layout.leftMargin: Styles.padding * 2
                     Layout.bottomMargin: Styles.padding * 2
                     Repeater {
-                        model: root.modelData.actions
+                        model: notificationRoot.modelData.actions
                         delegate: Button {
                             required property var modelData
                             text: modelData.text
@@ -162,7 +184,7 @@ ColumnLayout {
                         }
                     }
                     Button {
-                        visible: root.modelData.hasInlineReply
+                        visible: notificationRoot.modelData.hasInlineReply
                         text: "Reply"
                     }
                 }
@@ -175,7 +197,7 @@ ColumnLayout {
                     InputLabel {
                         id: inputLabel
                         anchors.fill: parent
-                        placeholder: root.modelData.inlineReplyPlaceholder
+                        placeholder: notificationRoot.modelData.inlineReplyPlaceholder
                     }
                 }
             }

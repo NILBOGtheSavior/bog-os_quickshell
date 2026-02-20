@@ -32,10 +32,14 @@ BogOS Quickshell is the custom built desktop shell for BogOS. It is built with t
 ## Control Panel
 
 - [ ] Quick settings
-    - [ ] Wifi
+    - [ ] Network
+    - [X] VPN
     - [ ] Bluetooth
-    - [ ] Brightness
-    - [ ] Volume
+    - [X] Do Not Disturb
+    - [ ] Night Light
+    - [ ] Dark Mode
+- [ ] Brightness
+- [ ] Volume
 - [ ] Media controller
 - [X] Notification center
 - [ ] Calendar

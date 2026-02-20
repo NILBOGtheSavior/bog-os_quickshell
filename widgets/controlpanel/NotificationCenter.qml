@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+import Quickshell
 import Quickshell.Widgets
 import qs.config
 import qs.services
@@ -14,14 +15,15 @@ ColumnLayout {
             font: Fonts.large
             text: "Notification Center"
         }
-        Button {
-            font: Fonts.small
-            text: "Clear"
+        LabelButton {
+            Layout.rightMargin: Styles.padding
+            font: Fonts.large
+            text: ""
             onClicked: Notifications.clearAllNotifications()
         }
     }
     Container {
-        implicitHeight: 250
+        implicitHeight: 300
         Layout.fillWidth: true
         color: Colors.secondary
         ScrollView {
@@ -39,17 +41,25 @@ ColumnLayout {
                     visible: Notifications.trackedNotifications.values.length == 0
                     Layout.fillWidth: true
                     implicitHeight: placeholder.implicitHeight
+                    onVisibleChanged: {
+                        if (visible)
+                            placeholder.randomPlaceholder();
+                    }
                     Label {
                         id: placeholder
                         anchors.centerIn: parent
                         color: Colors.background
                         font: Fonts.medium_bold
-                        text: "No unread notifications"
+                        Component.onCompleted: randomPlaceholder()
+                        function randomPlaceholder() {
+                            var options = ["No notifications", "All clear", "You're all caught up", "Nothing to see here", "Inbox zero!", "Peace and quiet", "Enjoy the silence", "No news is good news", "Clean slate", "Nothing new", "You're up to date", "All done here", "Take a break", "Radio silence", "Blissfully empty", "No alerts", "Everything's handled", "Nothing pending", "Looking good", "Zen mode activated", "Distraction-free zone", "No interruptions", "Crystal clear", "Smooth sailing"];
+                            text = options[Math.floor(Math.random() * options.length)];
+                        }
                     }
                 }
 
                 Repeater {
-                    model: Notifications.trackedNotifications
+                    model: Notifications.trackedNotifications.values.slice().reverse()
                     delegate: notification
                 }
             }
@@ -61,38 +71,85 @@ ColumnLayout {
         Container {
             id: root
             required property var modelData
-            implicitHeight: layout.implicitHeight
             Layout.fillWidth: true
-            RowLayout {
+            implicitHeight: layout.implicitHeight + Styles.padding * 2
+            ColumnLayout {
                 id: layout
-                anchors.fill: parent
-                IconImage {
-                    width: 25
-                    height: 25
-                    Layout.leftMargin: Styles.padding
-                    Layout.topMargin: Styles.padding * 2
-                    Layout.alignment: Qt.AlignTop
-                    source: root.modelData.image
-                }
-                ColumnLayout {
+                implicitWidth: root.width
+                Rectangle {
                     Layout.fillWidth: true
-                    Label {
-                        Layout.topMargin: Styles.padding
-                        font: Fonts.medium_bold
-                        text: root.modelData.summary
+                    Layout.leftMargin: 1
+                    Layout.topMargin: 1
+                    Layout.rightMargin: 1
+                    implicitHeight: title.implicitHeight
+                    topLeftRadius: Styles.radius / 2
+                    topRightRadius: Styles.radius / 2
+                    color: {
+                        switch (root.modelData.urgency) {
+                        case 0:
+                            return Colors.primary;
+                        case 1:
+                            return Colors.accent1;
+                        case 2:
+                            return Colors.accent2;
+                        }
+                    }
+
+                    RowLayout {
+                        id: title
+                        anchors.fill: parent
+
+                        IconImage {
+                            Layout.leftMargin: Styles.padding
+                            height: 15
+                            width: 15
+                            source: Quickshell.iconPath(root.modelData.appIcon, "start-here-symbolic")
+                        }
+                        Label {
+
+                            Layout.fillWidth: true
+                            color: Colors.background
+                            text: root.modelData.summary
+                        }
+                        LabelButtonDark {
+                            Layout.rightMargin: Styles.padding
+                            text: "󰅙"
+                            onClicked: root.modelData.dismiss()
+                        }
+                    }
+                }
+                RowLayout {
+                    IconImage {
+                        id: notificationImage
+                        visible: source != ""
+                        Layout.alignment: Qt.AlignTop
+                        Layout.leftMargin: Styles.padding
+                        height: 50
+                        width: 50
+                        source: root.modelData.image
                     }
                     Label {
-                        Layout.bottomMargin: Styles.padding
-                        Layout.preferredWidth: 225
+                        Layout.alignment: Qt.AlignTop
+                        Layout.leftMargin: Styles.padding
+                        Layout.preferredWidth: notificationImage.visible ? 240 : 300
                         wrapMode: Text.WordWrap
                         text: root.modelData.body
                     }
                 }
-                LabelButton {
-                    Layout.rightMargin: Styles.padding
-                    font: Fonts.large
-                    text: "󰅙"
-                    onClicked: root.modelData.dismiss()
+                Container {
+                    color: Colors.secondary
+                    TextInput {}
+                }
+                RowLayout {
+                    Layout.leftMargin: Styles.padding * 2
+                    Repeater {
+                        model: root.modelData.actions
+                        delegate: Button {
+                            required property var modelData
+                            text: modelData.text
+                            onClicked: modelData.invoke()
+                        }
+                    }
                 }
             }
         }

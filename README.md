@@ -19,6 +19,7 @@ BogOS Quickshell is the custom built desktop shell for BogOS. It is built with t
 - [X] Notifier
     - Find a way to reset animation on new notification
     - Find a way to suspend animation on hover
+- [X] Calendar
 
 ## System Menu
 
@@ -40,6 +41,7 @@ BogOS Quickshell is the custom built desktop shell for BogOS. It is built with t
     - [ ] Dark Mode
 - [ ] Brightness
 - [ ] Volume
-- [ ] Media controller
+- [X] Media controller
+    - Disable icon buttons that are incapable of executing
+    - Add placeholders for titles when none are playing
 - [X] Notification center
-- [ ] Calendar

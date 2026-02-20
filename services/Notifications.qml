@@ -28,6 +28,8 @@ Singleton {
             var times = root.notificationTimes;
             times[notification.id] = Time.time24;
             root.notificationTimes = times;
+
+            root.scheduleAutoDismiss(notification);
         }
     }
 
@@ -40,5 +42,17 @@ Singleton {
         for (var i = notifications.length - 1; i >= 0; i--) {
             notifications[i].dismiss();
         }
+    }
+
+    function scheduleAutoDismiss(notification) {
+        if (notification.expireTimeout <= 0)
+            return;
+
+        var timer = Qt.createQmlObject('import QtQuick; Timer { interval: ' + notification.expireTimeout + '; running: true; repeat: false }', root);
+
+        timer.triggered.connect(() => {
+            notification.dismiss();
+            timer.destroy();
+        });
     }
 }

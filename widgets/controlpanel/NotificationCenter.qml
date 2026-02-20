@@ -107,9 +107,19 @@ ColumnLayout {
                         }
                         Label {
 
-                            Layout.fillWidth: true
                             color: Colors.background
+                            font: Fonts.medium_bold
                             text: root.modelData.summary
+                        }
+                        Label {
+                            visible: false
+                            text: root.modelData.expireTimeout
+                        }
+                        Label {
+                            Layout.fillWidth: true
+                            font: Fonts.small
+                            color: Colors.secondary
+                            text: root.modelData.lastGeneration ? "" : Notifications.getNotificationTime(root.modelData.id)
                         }
                         LabelButtonDark {
                             Layout.rightMargin: Styles.padding
@@ -119,6 +129,7 @@ ColumnLayout {
                     }
                 }
                 RowLayout {
+                    Layout.fillWidth: true
                     IconImage {
                         id: notificationImage
                         visible: source != ""
@@ -136,10 +147,7 @@ ColumnLayout {
                         text: root.modelData.body
                     }
                 }
-                Container {
-                    color: Colors.secondary
-                    TextInput {}
-                }
+
                 RowLayout {
                     Layout.leftMargin: Styles.padding * 2
                     Repeater {
@@ -149,6 +157,21 @@ ColumnLayout {
                             text: modelData.text
                             onClicked: modelData.invoke()
                         }
+                    }
+                    Button {
+                        visible: root.modelData.hasInlineReply
+                        text: "Reply"
+                    }
+                }
+                Container {
+                    visible: false
+                    color: Colors.secondary
+                    height: 50
+                    width: 300
+                    InputLabel {
+                        id: inputLabel
+                        anchors.fill: parent
+                        placeholder: root.modelData.inlineReplyPlaceholder
                     }
                 }
             }

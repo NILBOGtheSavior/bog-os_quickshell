@@ -39,8 +39,18 @@ Repeater {
             }
             LabelButton {
                 font: Fonts.small
-                text: player.modelData.isPlaying ? "" : ""
-                onClicked: player.modelData.isPlaying = !player.modelData.isPlaying
+                text: {
+                    switch (player.modelData.playbackState) {
+                    case 0:
+                        return "";
+                    case 1:
+                        return "";
+                    case 2:
+                        return "";
+                    }
+                }
+
+                onClicked: player.modelData.togglePlaying()
             }
             LabelButton {
                 Layout.rightMargin: Styles.padding

@@ -9,14 +9,14 @@ import qs.widgets.controlpanel
 PanelWindow {
     id: root
     visible: true
-    // exclusionMode: ExclusionMode.Normal
+    exclusionMode: ExclusionMode.Normal
     Component.onCompleted: {
         Global.controlPanel = root;
     }
     anchors {
         top: true
         right: true
-        // bottom: true
+        bottom: true
     }
     margins {
         right: 5
@@ -24,22 +24,27 @@ PanelWindow {
         bottom: 5
     }
     implicitWidth: 350
-    implicitHeight: layout.implicitHeight + Styles.padding * 4
+    // implicitHeight: layout.implicitHeight + Styles.padding * 4
     color: "transparent"
     Container {
         anchors.fill: parent
         ColumnLayout {
             id: layout
+            spacing: Styles.spacing
             anchors {
-                fill: parent
                 leftMargin: 10
                 rightMargin: 10
                 topMargin: 10
                 bottomMargin: 10
+                top: parent.top
+                left: parent.left
+                right: parent.right
             }
+
             Dashboard {}
             QuickToggles {}
             NotificationCenter {}
+            MediaController {}
         }
     }
     GlobalShortcut {

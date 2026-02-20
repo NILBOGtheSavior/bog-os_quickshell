@@ -11,14 +11,16 @@ Singleton {
     property var default_input: Pipewire.defaultAudioSource
 
     readonly property var devices: Pipewire.nodes.values.reduce((acc, node) => {
-        if (!node.isStream) {
-            if (node.isSink)
-                acc.outputs.push(node);
-            else if (node.audio)
-                acc.inputs.push(node);
-        }
+        if (node.isStream)
+            acc.streams.push(node);
+        else if (node.isSink)
+            acc.outputs.push(node);
+        else if (node.audio)
+            acc.inputs.push(node);
+
         return acc;
     }, {
+        streams: [],
         outputs: [],
         inputs: []
     })
@@ -50,6 +52,6 @@ Singleton {
     }
 
     PwObjectTracker {
-        objects: [...root.devices.outputs, ...root.devices.inputs]
+        objects: [...root.devices.streams, ...root.devices.outputs, ...root.devices.inputs]
     }
 }

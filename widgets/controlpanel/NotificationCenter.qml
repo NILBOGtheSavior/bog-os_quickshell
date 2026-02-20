@@ -113,10 +113,9 @@ ColumnLayout {
                             source: Quickshell.iconPath(notificationRoot.modelData.appIcon, "start-here-symbolic")
                         }
                         Label {
-
                             color: Colors.background
                             font: Fonts.medium_bold
-                            text: notificationRoot.modelData.summary
+                            text: Utils.truncateString(notificationRoot.modelData.summary, 28)
                         }
                         Label {
                             visible: false

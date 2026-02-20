@@ -43,8 +43,9 @@ PanelWindow {
 
             Dashboard {}
             QuickToggles {}
-            NotificationCenter {}
             MediaController {}
+            NotificationCenter {}
+            VolumeMixer {}
         }
     }
     GlobalShortcut {

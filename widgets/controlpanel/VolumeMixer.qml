@@ -47,7 +47,7 @@ Container {
                     }
                     Label {
                         Layout.fillWidth: true
-                        text: stream.modelData.properties["application.process.binary"] || stream.modelData.properties["application.name"]
+                        text: Utils.truncateString(stream.modelData.properties["application.process.binary"] || stream.modelData.properties["application.name"], 7)
                     }
                     Slider {
                         Layout.leftMargin: 15

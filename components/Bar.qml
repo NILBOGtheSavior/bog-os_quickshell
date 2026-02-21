@@ -70,7 +70,7 @@ Variants {
                 Clock {}
                 LabelButton {
                     font: Fonts.large
-                    text: Global.controlPanel.visible ? "󰅙" : "󰹯"
+                    text: Global.controlPanel.visible ? "" : ""
                     onClicked: Global.controlPanel.visible = !Global.controlPanel.visible
                 }
             }

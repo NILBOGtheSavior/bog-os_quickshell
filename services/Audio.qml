@@ -25,30 +25,20 @@ Singleton {
         inputs: []
     })
 
-    function setOutputDevice(node) {
-        Pipewire.preferredDefaultAudioSink = node;
+    function setDevice(input, node) {
+        if (input)
+            Pipewire.preferredDefaultAudioSource = node;
+        else
+            Pipewire.preferredDefaultAudioSink = node;
     }
 
-    function setInputDevice(node) {
-        Pipewire.preferredDefaultAudioSource = node;
+    function setVolume(device, vol) {
+        device.audio.muted = false;
+        device.audio.volume = vol;
     }
 
-    function setOutputVolume(vol) {
-        default_output.audio.muted = false;
-        default_output.audio.volume = vol;
-    }
-
-    function setInputVolume(vol) {
-        default_input.audio.muted = false;
-        default_input.audio.volume = vol;
-    }
-
-    function toggleOutputMute() {
-        default_output.audio.muted = !default_output.audio.muted;
-    }
-
-    function toggleInputMute() {
-        default_input.audio.muted = !default_input.audio.muted;
+    function toggleMute(device) {
+        device.audio.muted = !device.audio.muted;
     }
 
     PwObjectTracker {

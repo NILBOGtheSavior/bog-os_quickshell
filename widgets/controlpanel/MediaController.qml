@@ -98,9 +98,10 @@ StackLayout {
                             text: Utils.truncateString(root.modelData.trackTitle, 23)
                         }
                         Label {
-                            text: root.modelData.trackAlbum
+                            text: Utils.truncateString(root.modelData.trackAlbum, 23)
                         }
                         Label {
+                            color: Colors.accent1
                             font: Fonts.small
                             text: Utils.truncateString(root.modelData.trackArtist, 30)
                         }

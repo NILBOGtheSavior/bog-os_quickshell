@@ -45,7 +45,7 @@ PanelWindow {
             QuickToggles {}
             MediaController {}
             NotificationCenter {}
-            VolumeMixer {}
+            AudioCenter {}
         }
     }
     GlobalShortcut {

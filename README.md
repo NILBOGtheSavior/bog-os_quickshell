@@ -40,7 +40,7 @@ BogOS Quickshell is the custom built desktop shell for BogOS. It is built with t
     - [ ] Night Light
     - [ ] Dark Mode
 - [ ] Brightness
-- [ ] Volume devices
+- [X] Volume devices
 - [X] Volume mixer
 - [X] Media controller
     - Disable icon buttons that are incapable of executing

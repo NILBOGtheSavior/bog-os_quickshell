@@ -1,3 +1,4 @@
+pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
@@ -8,7 +9,6 @@ import qs.ui
 import qs.ui.controlpanel
 
 Container {
-    id: root
     implicitHeight: layout.implicitHeight
     Layout.fillWidth: true
     ColumnLayout {
@@ -17,7 +17,7 @@ Container {
 
         RowLayout {
             Layout.margins: Styles.spacing
-            Layout.bottomMargin: streams.visible ? 0 : Styles.spacing
+            Layout.bottomMargin: center.visible ? 0 : Styles.spacing
             Label {
                 Layout.fillWidth: true
                 font: Fonts.large
@@ -41,12 +41,14 @@ Container {
                 mutedIcon: ""
                 activeIcon: ""
                 device: Audio.default_output
+                input: false
             }
             Controller {
                 id: input
                 mutedIcon: ""
                 activeIcon: ""
                 device: Audio.default_input
+                input: true
             }
 
             Spacer {}
@@ -87,10 +89,13 @@ Container {
         required property string activeIcon
         required property string mutedIcon
         required property var device
+        required property bool input
         RowLayout {
+            id: controllerLayout
             Layout.leftMargin: Styles.spacing
             Layout.rightMargin: Styles.spacing
             IconButton {
+                id: icon
                 radius: height / 2
                 color: root.device.audio.muted ? "transparent" : Colors.secondary
                 text: root.device.audio.muted ? root.mutedIcon : root.activeIcon
@@ -120,28 +125,34 @@ Container {
                 }
             }
         }
-        ColumnLayout {
+
+        Container {
             id: dropdown
-
-            Layout.leftMargin: 15
-            Layout.rightMargin: 15
             visible: false
-            Repeater {
-                model: Audio.devices.outputs
-                delegate: LabelButton {
-                    required property var modelData
-
-                    active: Audio.default_output == modelData
-
-                    Layout.fillWidth: true
-                    text: `${modelData.nickname}`
-                    onClicked: {
-                        Audio.setDevice(root.device, modelData);
-                        dropdown.visible = false;
+            Layout.fillWidth: true
+            implicitHeight: dropdownLayout.implicitHeight
+            Layout.leftMargin: Styles.padding
+            Layout.rightMargin: Styles.padding
+            color: Colors.secondary
+            ColumnLayout {
+                id: dropdownLayout
+                anchors.fill: parent
+                Repeater {
+                    model: root.input ? Audio.devices.inputs : Audio.devices.outputs
+                    delegate: LabelButton {
+                        required property var modelData
+                        Layout.fillWidth: true
+                        color: root.device == modelData ? Colors.accent2 : "transparent"
+                        text: modelData.nickname
+                        onClicked: {
+                            Audio.setDevice(root.input, modelData);
+                            dropdown.visible = false;
+                        }
                     }
                 }
             }
         }
+
         Slider {
             Layout.alignment: Qt.AlignCenter
             Layout.fillWidth: true

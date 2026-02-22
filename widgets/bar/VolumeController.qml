@@ -30,8 +30,10 @@ RowLayout {
         from: 0
         value: root.speaker.volume || 0
         to: 1
-
-        onMoved: Audio.setOutputVolume(position)
+        onMoved: {
+            // This needs to be fixed.
+            root.speaker.volume = valueAt(position);
+        }
     }
     HoverHandler {
         id: hover

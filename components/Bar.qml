@@ -65,6 +65,7 @@ Variants {
                 MediaController {}
                 Battery {}
                 VolumeController {}
+                Brightness {}
                 Weather {}
                 Calendar {}
                 Clock {}

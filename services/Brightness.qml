@@ -12,7 +12,6 @@ Singleton {
     property int max
 
     Process {
-        id: checkBacklight
         running: true
         command: ["brightnessctl", "--class=backlight", "--list"]
         stdout: StdioCollector {
@@ -22,14 +21,14 @@ Singleton {
 
     Process {
         command: ["brightnessctl", "max"]
-        running: true
+        running: root.hasBacklight
         stdout: SplitParser {
             onRead: data => root.max = parseInt(data)
         }
     }
     Process {
         command: ["brightnessctl", "get"]
-        running: true
+        running: root.hasBacklight
         stdout: SplitParser {
             onRead: data => root.level = parseInt(data)
         }

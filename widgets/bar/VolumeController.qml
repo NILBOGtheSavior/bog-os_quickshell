@@ -9,7 +9,7 @@ RowLayout {
     id: root
     state: "default"
 
-    property var speaker: Audio.default_output?.audio
+    property var speaker: Audio.default_output.audio
 
     LabelButton {
         font: Fonts.small

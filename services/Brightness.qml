@@ -7,8 +7,18 @@ import Quickshell.Io
 Singleton {
     id: root
 
+    property bool hasBacklight: false
     property int level
     property int max
+
+    Process {
+        id: checkBacklight
+        running: true
+        command: ["brightnessctl", "--class=backlight", "--list"]
+        stdout: StdioCollector {
+            onStreamFinished: console.log(this.text)
+        }
+    }
 
     Process {
         command: ["brightnessctl", "max"]

@@ -9,6 +9,8 @@ Rectangle {
     state: "default"
 
     signal clicked
+    signal dropperClicked
+
     property bool active
     property bool dropdown: false
 
@@ -55,18 +57,69 @@ Rectangle {
     }
 
     Rectangle {
+        id: dropper
         visible: root.dropdown
-        implicitWidth: 10
+        implicitWidth: 15
         anchors {
             top: parent.top
+            topMargin: 1
             right: parent.right
+            rightMargin: 1
             bottom: parent.bottom
+            bottomMargin: 1
         }
-        color: "transparent"
+        MouseArea {
+            anchors.fill: parent
+            HoverHandler {
+                id: dropperHover
+                acceptedDevices: PointerDevice.AllDevices
+                cursorShape: Qt.PointingHandCursor
+            }
+            onClicked: {
+                root.dropperClicked();
+            }
+        }
+        color: Colors.secondary
         border.width: 1
         border.color: Colors.secondary
         topRightRadius: Styles.radius
         bottomRightRadius: Styles.radius
+        states: [
+            State {
+                name: "hovered"
+                when: dropperHover.hovered
+                PropertyChanges {
+                    dropper {
+                        border.color: Colors.accent1
+                    }
+                }
+            },
+            State {
+                name: "active"
+                when: root.active
+                PropertyChanges {
+                    root {
+                        color: Colors.accent1
+                        border.color: Colors.accent1
+                    }
+                    label {
+                        color: Colors.background
+                    }
+                    icon {
+                        color: Colors.background
+                    }
+                }
+            },
+            State {
+                name: "default"
+                when: !hover.hovered && !root.active
+                PropertyChanges {
+                    root {
+                        border.color: Colors.secondary
+                    }
+                }
+            }
+        ]
     }
 
     states: [

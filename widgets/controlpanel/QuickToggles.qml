@@ -1,7 +1,10 @@
 import QtQuick
+import QtQuick.Controls
 import QtQuick.Layouts
+import Quickshell
 import qs.config
 import qs.services
+import qs.ui
 import qs.ui.controlpanel
 
 GridLayout {
@@ -39,8 +42,40 @@ GridLayout {
         text: "Night Light"
     }
     QuickToggle {
+        id: themes
         dropdown: true
         icon: ""
         text: "Dark Mode"
+
+        onDropperClicked: themeMenu.visible = !themeMenu.visible
+
+        PopupWindow {
+            id: themeMenu
+            anchor {
+                item: themes
+                edges: Edges.Bottom | Edges.Right
+                gravity: Edges.Bottom | Edges.Left
+            }
+            color: "transparent"
+            implicitWidth: themeLayout.implicitWidth
+            Container {
+                anchors.fill: parent
+                color: Colors.secondary
+                ScrollView {
+                    anchors.fill: parent
+                    ColumnLayout {
+                        id: themeLayout
+                        Repeater {
+                            model: Colors.getThemeNames()
+                            delegate: LabelButton {
+                                required property var modelData
+                                text: modelData
+                                onClicked: Colors.setTheme(modelData)
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

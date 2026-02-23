@@ -16,7 +16,7 @@ Singleton {
         running: true
         command: ["brightnessctl", "--class=backlight", "--list"]
         stdout: StdioCollector {
-            onStreamFinished: console.log(this.text)
+            onStreamFinished: root.hasBacklight = this.text != ""
         }
     }
 

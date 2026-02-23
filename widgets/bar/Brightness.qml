@@ -8,6 +8,7 @@ import qs.ui.bar
 RowLayout {
     id: root
     state: "default"
+    visible: Brightness.hasBacklight
 
     LabelButton {
         font: Fonts.small

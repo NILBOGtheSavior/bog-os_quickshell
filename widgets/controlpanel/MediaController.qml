@@ -79,6 +79,7 @@ StackLayout {
                             anchors.fill: coverImage
                             radius: Styles.radius
                             color: Colors.background
+                            opacity: 0
                         }
                         IconImage {
                             id: coverImage

@@ -39,6 +39,7 @@ GridLayout {
         text: "Night Light"
     }
     QuickToggle {
+        dropdown: true
         icon: ""
         text: "Dark Mode"
     }

@@ -10,6 +10,7 @@ Rectangle {
 
     signal clicked
     property bool active
+    property bool dropdown: false
 
     default property alias contents: contentItem.data
     property alias icon: icon.text
@@ -51,6 +52,21 @@ Rectangle {
             font: Fonts.small
             visible: text !== ""
         }
+    }
+
+    Rectangle {
+        visible: root.dropdown
+        implicitWidth: 10
+        anchors {
+            top: parent.top
+            right: parent.right
+            bottom: parent.bottom
+        }
+        color: "transparent"
+        border.width: 1
+        border.color: Colors.secondary
+        topRightRadius: Styles.radius
+        bottomRightRadius: Styles.radius
     }
 
     states: [

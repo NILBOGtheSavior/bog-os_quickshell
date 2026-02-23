@@ -90,32 +90,16 @@ Rectangle {
                 when: dropperHover.hovered
                 PropertyChanges {
                     dropper {
-                        border.color: Colors.accent1
-                    }
-                }
-            },
-            State {
-                name: "active"
-                when: root.active
-                PropertyChanges {
-                    root {
-                        color: Colors.accent1
-                        border.color: Colors.accent1
-                    }
-                    label {
-                        color: Colors.background
-                    }
-                    icon {
-                        color: Colors.background
+                        color: Colors.secondary
                     }
                 }
             },
             State {
                 name: "default"
-                when: !hover.hovered && !root.active
+                when: !dropperHover.hovered
                 PropertyChanges {
-                    root {
-                        border.color: Colors.secondary
+                    dropper {
+                        color: Colors.mode === "dark" ? Colors.background : Colors.accent1
                     }
                 }
             }
@@ -128,6 +112,7 @@ Rectangle {
             when: hover.hovered && !root.active
             PropertyChanges {
                 root {
+                    color: Colors.background
                     border.color: Colors.accent1
                 }
                 label {
@@ -159,7 +144,14 @@ Rectangle {
             when: !hover.hovered && !root.active
             PropertyChanges {
                 root {
+                    color: Colors.background
                     border.color: Colors.secondary
+                }
+                label {
+                    color: Colors.foreground
+                }
+                icon {
+                    color: Colors.foreground
                 }
             }
         }

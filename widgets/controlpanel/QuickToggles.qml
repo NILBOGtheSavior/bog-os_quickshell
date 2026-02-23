@@ -44,9 +44,11 @@ GridLayout {
     QuickToggle {
         id: themes
         dropdown: true
+        active: Colors.mode === "dark"
         icon: ""
         text: "Dark Mode"
 
+        onClicked: Colors.switchMode()
         onDropperClicked: themeMenu.visible = !themeMenu.visible
 
         PopupWindow {
@@ -57,19 +59,24 @@ GridLayout {
                 gravity: Edges.Bottom | Edges.Left
             }
             color: "transparent"
-            implicitWidth: themeLayout.implicitWidth
+            implicitWidth: themeLayout.implicitWidth + 2
             Container {
                 anchors.fill: parent
-                color: Colors.secondary
+                clip: true
                 ScrollView {
-                    anchors.fill: parent
+                    anchors {
+                        fill: parent
+                        margins: 1
+                    }
                     ColumnLayout {
                         id: themeLayout
                         Repeater {
                             model: Colors.getThemeNames()
                             delegate: LabelButton {
                                 required property var modelData
+                                Layout.fillWidth: true
                                 text: modelData
+                                color: Colors.currentTheme == modelData ? Colors.secondary : Colors.background
                                 onClicked: Colors.setTheme(modelData)
                             }
                         }

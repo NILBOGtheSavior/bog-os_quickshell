@@ -41,6 +41,7 @@ Singleton {
                 accent2: "#f7768e"
             },
             "rosepine": {
+                name: "Rosepine",
                 primary: "#9ccfd8",
                 secondary: "#c4a7e7",
                 background: "#191724",
@@ -49,6 +50,7 @@ Singleton {
                 accent2: "#ebbcba"
             },
             "solarized": {
+                name: "Solarized",
                 primary: "#859900",
                 secondary: "#268bd2",
                 background: "#002b36",
@@ -57,6 +59,7 @@ Singleton {
                 accent2: "#d33682"
             },
             "gruvbox": {
+                name: "Gruvbox",
                 primary: "#b8bb26",
                 secondary: "#83a598",
                 background: "#282828",
@@ -85,6 +88,7 @@ Singleton {
                 accent2: "#33635C"
             },
             "rosepine": {
+                name: "Rosepine",
                 primary: "#56949f",
                 secondary: "#907aa9",
                 background: "#faf4ed",
@@ -93,6 +97,7 @@ Singleton {
                 accent2: "#d7827e"
             },
             "solarized": {
+                name: "Solarized",
                 primary: "#859900",
                 secondary: "#268bd2",
                 background: "#fdf6e3",
@@ -101,6 +106,7 @@ Singleton {
                 accent2: "#d33682"
             },
             "gruvbox": {
+                name: "Gruvbox",
                 primary: "#79740e",
                 secondary: "#076678",
                 background: "#fbf1c7",

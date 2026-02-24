@@ -62,11 +62,8 @@ Rectangle {
         implicitHeight: 20
         anchors {
             left: parent.left
-            leftMargin: 1
             right: parent.right
-            rightMargin: 1
             bottom: parent.bottom
-            bottomMargin: 1
         }
         MouseArea {
             anchors.fill: parent

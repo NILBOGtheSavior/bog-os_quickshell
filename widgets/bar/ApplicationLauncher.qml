@@ -80,7 +80,7 @@ RowLayout {
         anchor.item: searchButton
         color: "transparent"
         implicitWidth: 300
-        implicitHeight: Math.max(scrollView.implicitHeight, 100)
+        implicitHeight: Math.max(scrollView.implicitHeight + 30, 30)
 
         Container {
             anchors.fill: parent

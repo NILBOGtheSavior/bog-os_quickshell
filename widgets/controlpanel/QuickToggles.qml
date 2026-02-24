@@ -81,6 +81,7 @@ GridLayout {
                                 Layout.fillWidth: true
                                 text: modelData
                                 radius: Styles.radius
+                                color: Colors.currentTheme == modelData ? Colors.secondary : Colors.background
                                 onClicked: Colors.setTheme(modelData)
                             }
                         }

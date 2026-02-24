@@ -32,6 +32,7 @@ Singleton {
 
             },
             "tokyonight": {
+                name: "TokyoNight",
                 primary: "#7aa2f7",
                 secondary: "#565f89",
                 background: "#24283b",
@@ -75,14 +76,15 @@ Singleton {
                 accent2: "#A89BC4"
             },
             "tokyonight": {
+                name: "TokyoDay",
                 primary: "#2e7de9",
-                secondary: "#006c86",
-                background: "#e6e7ed",
-                foreground: "#40434f",
+                secondary: "#b4b5b9",
+                background: "#e1e2e7",
+                foreground: "#3760bf",
                 accent1: "#2959aa",
                 accent2: "#33635C"
             },
-            "rosepine-dawn": {
+            "rosepine": {
                 primary: "#56949f",
                 secondary: "#907aa9",
                 background: "#faf4ed",
@@ -175,6 +177,7 @@ Singleton {
         }
     }
 
+    property string name: themes[mode][currentTheme].name || "Theme"
     property color primary: themes[mode][currentTheme].primary
     property color secondary: themes[mode][currentTheme].secondary
     property color background: themes[mode][currentTheme].background

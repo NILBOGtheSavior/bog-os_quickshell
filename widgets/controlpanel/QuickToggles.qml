@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Quickshell
+import Quickshell.Hyprland
 import qs.config
 import qs.services
 import qs.ui
@@ -46,27 +47,30 @@ GridLayout {
         dropdown: true
         active: Colors.mode === "dark"
         icon: ""
-        text: "Dark Mode"
+        text: Colors.name
 
         onClicked: Colors.switchMode()
-        onDropperClicked: themeMenu.visible = !themeMenu.visible
+        onDropperClicked: {
+            themeMenu.visible = !themeMenu.visible;
+            grab.active = !grab.active;
+        }
 
         PopupWindow {
             id: themeMenu
             anchor {
                 item: themes
-                edges: Edges.Bottom | Edges.Right
-                gravity: Edges.Bottom | Edges.Left
+                edges: Edges.Bottom
+                gravity: Edges.Bottom
             }
             color: "transparent"
-            implicitWidth: themeLayout.implicitWidth + 2
+            implicitWidth: themeLayout.implicitWidth + 20
             Container {
                 anchors.fill: parent
                 clip: true
                 ScrollView {
                     anchors {
                         fill: parent
-                        margins: 1
+                        margins: 5
                     }
                     ColumnLayout {
                         id: themeLayout
@@ -76,11 +80,19 @@ GridLayout {
                                 required property var modelData
                                 Layout.fillWidth: true
                                 text: modelData
-                                color: Colors.currentTheme == modelData ? Colors.secondary : Colors.background
+                                radius: Styles.radius
                                 onClicked: Colors.setTheme(modelData)
                             }
                         }
                     }
+                }
+            }
+            HyprlandFocusGrab {
+                id: grab
+                windows: [themeMenu]
+
+                onCleared: {
+                    themeMenu.visible = false;
                 }
             }
         }

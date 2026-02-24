@@ -59,10 +59,10 @@ Rectangle {
     Rectangle {
         id: dropper
         visible: root.dropdown
-        implicitWidth: 15
+        implicitHeight: 20
         anchors {
-            top: parent.top
-            topMargin: 1
+            left: parent.left
+            leftMargin: 1
             right: parent.right
             rightMargin: 1
             bottom: parent.bottom
@@ -82,8 +82,13 @@ Rectangle {
         color: Colors.secondary
         border.width: 1
         border.color: Colors.secondary
-        topRightRadius: Styles.radius
+        bottomLeftRadius: Styles.radius
         bottomRightRadius: Styles.radius
+        Label {
+            anchors.centerIn: parent
+            font: Fonts.small
+            text: `${root.text} 󱞣`
+        }
         states: [
             State {
                 name: "hovered"

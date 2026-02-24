@@ -140,7 +140,7 @@ StackLayout {
                         text: {
                             switch (root.modelData.playbackState) {
                             case 0:
-                                return "";
+                                return "";
                             case 1:
                                 return "";
                             case 2:

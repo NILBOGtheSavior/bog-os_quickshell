@@ -39,8 +39,10 @@ GridLayout {
         }
     }
     QuickToggle {
+        active: NightLight.active
         icon: "󰖨"
         text: "Night Light"
+        onClicked: NightLight.toggleNightLight()
     }
     QuickToggle {
         id: themes

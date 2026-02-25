@@ -6,11 +6,11 @@ import Quickshell
 Singleton {
     PersistentProperties {
         id: persist
-        property string currentTheme: "bogos"
+        property string currentTheme
         property bool darkMode: true
     }
 
-    property string currentTheme: persist.currentTheme
+    property string currentTheme: persist.currentTheme || "bog-os"
     property string mode: persist.darkMode ? "dark" : "light"
 
     readonly property var themes: {

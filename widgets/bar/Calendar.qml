@@ -94,7 +94,7 @@ LabelButton {
                         verticalAlignment: Text.AlignVCenter
                         text: shortName
                         font: Fonts.medium_bold
-                        color: Colors.accent1
+                        color: Colors.primary
 
                         required property var model
                     }
@@ -117,7 +117,7 @@ LabelButton {
                         opacity: model.month === root.currentMonth ? 1 : 0.25
                         text: model.day
                         font: model.day == Time.day && model.month === Time.month ? Fonts.medium_bold : Fonts.medium
-                        color: model.day == Time.day && model.month === Time.month ? Colors.accent1 : Colors.foreground
+                        color: model.day == Time.day && model.month === Time.month ? Colors.primary : Colors.foreground
 
                         required property var model
                     }

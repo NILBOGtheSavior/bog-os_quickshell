@@ -60,7 +60,7 @@ Rectangle {
             when: hover.hovered
             PropertyChanges {
                 label {
-                    color: Colors.accent1
+                    color: Colors.hover
                 }
             }
         },
@@ -71,6 +71,15 @@ Rectangle {
                 label {
                     color: Colors.foreground
                 }
+            }
+        }
+    ]
+    transitions: [
+        Transition {
+            ColorAnimation {
+                property: "color"
+                duration: 100
+                easing.type: Easing.OutCubic
             }
         }
     ]

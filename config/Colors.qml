@@ -71,7 +71,7 @@ Singleton {
                 name: "Catppuccin",
                 //Background
                 background: "#1e1e2e",
-                comment: "",
+                comment: "#6c7086",
                 black: "#313244",
                 // Foreground
                 foreground: "#cdd6f4",
@@ -85,10 +85,10 @@ Singleton {
                 magenta: "#cba6f7",
                 // Color Bindings
                 get primary() {
-                    return this.blue;
+                    return "#f5e0dc";
                 },
                 get secondary() {
-                    return this.magenta;
+                    return "#f2cdcd";
                 }
             }
         },
@@ -144,7 +144,7 @@ Singleton {
                 name: "Catppuccin",
                 //Background
                 background: "#eff1f5",
-                comment: "",
+                comment: "#9ca0b0",
                 black: "#ccd0da",
                 // Foreground
                 foreground: "#4c4f69",
@@ -158,10 +158,10 @@ Singleton {
                 magenta: "#8839ef",
                 // Color Bindings
                 get primary() {
-                    return this.blue;
+                    return "#dc8a78";
                 },
                 get secondary() {
-                    return this.magenta;
+                    return "#dd7878";
                 }
             }
         }

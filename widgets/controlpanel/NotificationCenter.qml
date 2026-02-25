@@ -55,8 +55,7 @@ ColumnLayout {
                     Label {
                         id: placeholder
                         anchors.centerIn: parent
-                        color: Colors.background
-                        font: Fonts.medium_bold
+                        color: Colors.hover
                         Component.onCompleted: randomPlaceholder()
                         function randomPlaceholder() {
                             var options = ["No notifications", "All clear", "You're all caught up", "Nothing to see here", "Inbox zero!", "Peace and quiet", "Enjoy the silence", "No news is good news", "Clean slate", "Nothing new", "You're up to date", "All done here", "Take a break", "Radio silence", "Blissfully empty", "No alerts", "Everything's handled", "Nothing pending", "Looking good", "Zen mode activated", "Distraction-free zone", "No interruptions", "Crystal clear", "Smooth sailing"];

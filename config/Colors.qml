@@ -33,15 +33,12 @@ Singleton {
                 magenta: "#7E6BC4",
                 red: "#c46b6b",
                 cyan: "#6ba2c4",
-
-                // Semantic Roles (Colorblind friendly mapping)
                 get primary() {
                     return this.green;
-                }   // The brand color
-                ,
+                },
                 get secondary() {
                     return this.magenta;
-                } // High contrast vs green
+                }
             },
             "tokyo-night": {
                 name: "ToykoNight",
@@ -89,6 +86,30 @@ Singleton {
                 },
                 get secondary() {
                     return "#f2cdcd";
+                }
+            },
+            "nord": {
+                name: "Nord",
+                // Backgrounds
+                background: "#2e3440",
+                comment: "#4c566a",
+                black: "#3b4252",
+                // Foregrounds
+                foreground: "#d8dee9",
+                white: "#eceff4",
+                // Colors
+                red: "#bf616a",
+                yellow: "#ebcb8b",
+                green: "#a3be8c",
+                cyan: "#88c0d0",
+                blue: "#81a1c1",
+                magenta: "#b48ead",
+                // Color Bindings
+                get primary() {
+                    return this.cyan;
+                },
+                get secondary() {
+                    return this.magenta;
                 }
             }
         },
@@ -162,6 +183,30 @@ Singleton {
                 },
                 get secondary() {
                     return "#dd7878";
+                }
+            },
+            "nord": {
+                name: "Nord",
+                // Backgrounds
+                background: "#eceff4",
+                comment: "#88c0d0",
+                black: "#d8dee9",
+                // Foregrounds
+                foreground: "#2e3440",
+                white: "#3b4252",
+                // Colors
+                red: "#bf616a",
+                yellow: "#ebcb8b",
+                green: "#a3be8c",
+                cyan: "#5e81ac",
+                blue: "#81a1c1",
+                magenta: "#b48ead",
+                // Color Bindings
+                get primary() {
+                    return this.cyan;
+                },
+                get secondary() {
+                    return this.magenta;
                 }
             }
         }

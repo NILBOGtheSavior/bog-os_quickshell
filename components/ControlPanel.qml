@@ -8,7 +8,7 @@ import qs.widgets.controlpanel
 
 PanelWindow {
     id: root
-    visible: true
+    visible: false
     // exclusionMode: ExclusionMode.Normal
     Component.onCompleted: {
         Global.controlPanel = root;

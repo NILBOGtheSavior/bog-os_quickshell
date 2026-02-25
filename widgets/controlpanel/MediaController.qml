@@ -102,7 +102,7 @@ StackLayout {
                             text: Utils.truncateString(root.modelData.trackAlbum, 23)
                         }
                         Label {
-                            color: Colors.accent1
+                            color: Colors.hover
                             font: Fonts.small
                             text: Utils.truncateString(root.modelData.trackArtist, 30)
                         }

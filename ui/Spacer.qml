@@ -9,5 +9,5 @@ Rectangle {
     Layout.bottomMargin: 10
     Layout.leftMargin: 10
     Layout.rightMargin: 10
-    color: Colors.secondary
+    color: Colors.primary
 }

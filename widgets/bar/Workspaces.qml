@@ -20,10 +20,7 @@ RowLayout {
             required property var modelData
 
             Layout.fillHeight: true
-            Layout.topMargin: Styles.padding
-            Layout.bottomMargin: Styles.padding
             implicitWidth: implicitHeight
-
             active: modelData.focused
 
             font: Fonts.small

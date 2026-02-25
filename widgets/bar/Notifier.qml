@@ -12,7 +12,7 @@ Container {
     visible: root.currentNotification !== null || scaleAnim.running
     implicitWidth: layout.implicitWidth + Styles.padding * 2
     Layout.fillHeight: true
-    color: Colors.secondary
+    color: Colors.surface
 
     LabelButton {
         id: layout

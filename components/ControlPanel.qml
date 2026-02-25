@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell
 import Quickshell.Hyprland
@@ -18,16 +19,22 @@ PanelWindow {
         right: true
         bottom: true
     }
-    margins {
-        right: 5
-        top: 5
-        bottom: 5
-    }
     implicitWidth: 350
     // implicitHeight: layout.implicitHeight + Styles.padding * 4
     color: "transparent"
     Container {
-        anchors.fill: parent
+        layer.enabled: true
+        layer.effect: MultiEffect {
+            shadowEnabled: true
+            shadowColor: Colors.shadow
+            shadowBlur: 0.4
+        }
+
+        anchors {
+            fill: parent
+            margins: 5
+        }
+
         ColumnLayout {
             id: layout
             spacing: Styles.spacing

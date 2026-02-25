@@ -22,8 +22,7 @@ Rectangle {
     Layout.fillWidth: true
     implicitHeight: contentItem.height + (Styles.padding * 2)
 
-    color: Colors.background
-    border.width: 1
+    color: Colors.surface
     radius: Styles.radius
 
     MouseArea {
@@ -77,10 +76,8 @@ Rectangle {
             }
         }
         color: Colors.secondary
-        border.width: 1
-        border.color: Colors.secondary
-        bottomLeftRadius: Styles.radius
-        bottomRightRadius: Styles.radius
+        bottomLeftRadius: Styles.radius - 2
+        bottomRightRadius: Styles.radius - 2
         Label {
             anchors.centerIn: parent
             font: Fonts.small
@@ -92,7 +89,7 @@ Rectangle {
                 when: dropperHover.hovered
                 PropertyChanges {
                     dropper {
-                        color: Colors.secondary
+                        color: Colors.hover
                     }
                 }
             },
@@ -101,7 +98,7 @@ Rectangle {
                 when: !dropperHover.hovered
                 PropertyChanges {
                     dropper {
-                        color: Colors.mode === "dark" ? Colors.background : Colors.accent1
+                        color: Colors.surface
                     }
                 }
             }
@@ -114,14 +111,7 @@ Rectangle {
             when: hover.hovered && !root.active
             PropertyChanges {
                 root {
-                    color: Colors.background
-                    border.color: Colors.accent1
-                }
-                label {
-                    color: Colors.accent1
-                }
-                icon {
-                    color: Colors.accent1
+                    color: Colors.hover
                 }
             }
         },
@@ -130,8 +120,7 @@ Rectangle {
             when: root.active
             PropertyChanges {
                 root {
-                    color: Colors.accent1
-                    border.color: Colors.accent1
+                    color: Colors.primary
                 }
                 label {
                     color: Colors.background
@@ -146,8 +135,7 @@ Rectangle {
             when: !hover.hovered && !root.active
             PropertyChanges {
                 root {
-                    color: Colors.background
-                    border.color: Colors.secondary
+                    color: Colors.surface
                 }
                 label {
                     color: Colors.foreground
@@ -160,15 +148,9 @@ Rectangle {
     ]
     transitions: [
         Transition {
-            ParallelAnimation {
-                ColorAnimation {
-                    property: "color"
-                    duration: 100
-                }
-                ColorAnimation {
-                    property: "border.color"
-                    duration: 100
-                }
+            ColorAnimation {
+                property: "color"
+                duration: 100
             }
         }
     ]

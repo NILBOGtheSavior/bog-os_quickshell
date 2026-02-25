@@ -31,7 +31,7 @@ ColumnLayout {
         Layout.maximumHeight: 500
         Layout.preferredHeight: layout.implicitHeight + Styles.spacing * 2
         Layout.fillWidth: true
-        color: Colors.secondary
+        color: Colors.surface
         ScrollView {
             anchors {
                 fill: parent
@@ -85,20 +85,17 @@ ColumnLayout {
                 anchors.fill: parent
                 Rectangle {
                     Layout.fillWidth: true
-                    Layout.leftMargin: 1
-                    Layout.topMargin: 1
-                    Layout.rightMargin: 1
                     implicitHeight: title.implicitHeight
                     topLeftRadius: Styles.radius / 2
                     topRightRadius: Styles.radius / 2
                     color: {
                         switch (notificationRoot.modelData.urgency) {
                         case 0:
-                            return Colors.primary;
+                            return Colors.green;
                         case 1:
-                            return Colors.accent1;
+                            return Colors.yellow;
                         case 2:
-                            return Colors.accent2;
+                            return Colors.red;
                         }
                     }
 

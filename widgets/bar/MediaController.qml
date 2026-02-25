@@ -14,7 +14,6 @@ Repeater {
         required property var modelData
         implicitWidth: layout.width
         Layout.fillHeight: true
-        color: Colors.secondary
         Rectangle {
             id: backgroundMask
             layer.enabled: true
@@ -26,7 +25,6 @@ Repeater {
             id: backgroundImage
             layer.enabled: true
             anchors.fill: parent
-            anchors.margins: 1
             opacity: 0.5
             fillMode: Image.PreserveAspectCrop
             source: player.modelData.trackArtUrl

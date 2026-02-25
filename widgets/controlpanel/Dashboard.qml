@@ -32,7 +32,7 @@ RowLayout {
         Label {
             Layout.alignment: Qt.AlignRight
             font: Fonts.small
-            color: Colors.secondary
+            color: Colors.hover
             text: Weather.description
         }
     }

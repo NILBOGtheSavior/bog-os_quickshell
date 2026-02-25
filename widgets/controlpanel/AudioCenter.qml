@@ -97,7 +97,7 @@ Container {
             IconButton {
                 id: icon
                 radius: height / 2
-                color: root.device.audio.muted ? "transparent" : Colors.secondary
+                active: !root.device.audio.muted
                 text: root.device.audio.muted ? root.mutedIcon : root.activeIcon
 
                 onClicked: {

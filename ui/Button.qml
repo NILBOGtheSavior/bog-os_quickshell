@@ -18,8 +18,7 @@ Rectangle {
     implicitWidth: contentItem.childrenRect.width + (Styles.padding * 2)
     implicitHeight: contentItem.childrenRect.height + (Styles.padding * 2)
 
-    color: Colors.background
-    border.width: 1
+    color: Colors.surface
     radius: Styles.radius
 
     MouseArea {
@@ -52,10 +51,7 @@ Rectangle {
             when: hover.hovered && !root.active
             PropertyChanges {
                 root {
-                    border.color: Colors.accent1
-                }
-                label {
-                    color: Colors.accent1
+                    color: Colors.hover
                 }
             }
         },
@@ -64,8 +60,7 @@ Rectangle {
             when: root.active
             PropertyChanges {
                 root {
-                    color: Colors.accent1
-                    border.color: Colors.accent1
+                    color: Colors.primary
                 }
                 label {
                     color: Colors.background
@@ -77,22 +72,17 @@ Rectangle {
             when: !hover.hovered && !root.active
             PropertyChanges {
                 root {
-                    border.color: Colors.secondary
+                    color: Colors.surface
                 }
             }
         }
     ]
     transitions: [
         Transition {
-            ParallelAnimation {
-                ColorAnimation {
-                    property: "color"
-                    duration: 100
-                }
-                ColorAnimation {
-                    property: "border.color"
-                    duration: 100
-                }
+            ColorAnimation {
+                property: "color"
+                duration: 100
+                easing.type: Easing.OutCubic
             }
         }
     ]

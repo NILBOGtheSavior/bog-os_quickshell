@@ -19,7 +19,6 @@ Rectangle {
     height: 25
 
     color: Colors.background
-    border.width: 1
     radius: Styles.radius
 
     MouseArea {
@@ -49,10 +48,10 @@ Rectangle {
     states: [
         State {
             name: "hovered"
-            when: hover.hovered
+            when: hover.hovered && !root.active
             PropertyChanges {
                 root {
-                    border.color: Colors.accent1
+                    color: Colors.hover
                 }
             }
         },
@@ -61,8 +60,10 @@ Rectangle {
             when: root.active
             PropertyChanges {
                 root {
-                    color: Colors.accent1
-                    border.color: Colors.secondary
+                    color: Colors.primary
+                }
+                label {
+                    color: Colors.background
                 }
             }
         },
@@ -71,7 +72,10 @@ Rectangle {
             when: !hover.hovered && !root.active
             PropertyChanges {
                 root {
-                    border.color: Colors.secondary
+                    color: Colors.surface
+                }
+                label {
+                    color: Colors.foreground
                 }
             }
         }

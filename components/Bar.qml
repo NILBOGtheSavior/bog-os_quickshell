@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell
 import qs.widgets.bar
@@ -13,7 +14,9 @@ Variants {
         required property var modelData
         screen: modelData
 
-        implicitHeight: 30
+        exclusiveZone: 35
+
+        implicitHeight: 40
         color: "transparent"
 
         Component.onCompleted: {
@@ -25,14 +28,17 @@ Variants {
             right: true
         }
 
-        margins {
-            left: 5
-            top: 4
-            right: 5
-        }
-
         Container {
-            anchors.fill: parent
+            anchors {
+                fill: parent
+                margins: 5
+            }
+            layer.enabled: true
+            layer.effect: MultiEffect {
+                shadowEnabled: true
+                shadowColor: Colors.shadow
+                shadowBlur: 0.4
+            }
             RowLayout {
                 id: leftIsland
                 anchors.verticalCenter: parent.verticalCenter
@@ -50,7 +56,7 @@ Variants {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
 
-                height: root.implicitHeight
+                implicitHeight: root.implicitHeight
                 Workspaces {}
             }
             RowLayout {

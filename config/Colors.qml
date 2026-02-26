@@ -2,6 +2,7 @@ pragma Singleton
 
 import QtQuick
 import Quickshell
+import Quickshell.Io
 
 Singleton {
     PersistentProperties {
@@ -10,12 +11,12 @@ Singleton {
         property bool darkMode: true
     }
 
-    property string currentTheme: persist.currentTheme || "bog-os"
+    property string currentTheme: persist.currentTheme || "bogos"
     property string mode: persist.darkMode ? "dark" : "light"
 
     readonly property var themes: {
         "dark": {
-            "bog-os": {
+            "bogos": {
                 name: "BogOS",
                 // Backgrounds
                 background: "#1D2230",
@@ -40,7 +41,7 @@ Singleton {
                     return this.magenta;
                 }
             },
-            "tokyo-night": {
+            "tokyonight": {
                 name: "ToykoNight",
                 // Background
                 background: "#1a1b26",
@@ -114,7 +115,7 @@ Singleton {
             }
         },
         "light": {
-            "bog-os": {
+            "bogos": {
                 name: "BogOS",
                 // Backgrounds
                 background: "#EAE6DA",
@@ -137,7 +138,7 @@ Singleton {
                     return this.magenta;
                 }
             },
-            "tokyo-night": {
+            "tokyonight": {
                 name: "ToykoDay",
                 // Background
                 background: "#e6e7ed",
@@ -235,13 +236,23 @@ Singleton {
 
     function switchMode() {
         persist.darkMode = !persist.darkMode;
+        themeEngine.exec(["/home/nilbog/.config/themes/theme-engine.sh", currentTheme, mode]);
     }
 
     function setTheme(themeName) {
         persist.currentTheme = themeName;
+        const formatColor = c => String(c).replace('#', '');
+        const c1 = formatColor(primary);
+        const c2 = formatColor(secondary);
+        themeEngine.exec(["/home/nilbog/.config/themes/theme-engine.sh", themeName, mode]);
     }
 
     function getThemeNames() {
         return Object.keys(themes[mode]);
+    }
+    Process {
+        id: themeEngine
+        // Use an absolute path to ensure it finds your script
+        command: ["/home/nilbog/.config/themes/theme-engine.sh"]
     }
 }

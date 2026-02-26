@@ -11,6 +11,7 @@ PanelWindow {
     id: root
     visible: false
     // exclusionMode: ExclusionMode.Normal
+    exclusiveZone: implicitWidth - 5
     Component.onCompleted: {
         Global.controlPanel = root;
     }

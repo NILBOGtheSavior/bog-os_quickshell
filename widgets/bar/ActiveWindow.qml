@@ -6,5 +6,5 @@ import qs.ui
 Label {
     id: root
     Layout.preferredWidth: 90
-    text: TopLevel.activeWindow.lastIpcObject.class || "BogOS"
+    text: TopLevel.activeWindow?.lastIpcObject?.class || "BogOS"
 }

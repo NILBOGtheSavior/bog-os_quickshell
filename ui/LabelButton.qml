@@ -12,6 +12,8 @@ Rectangle {
     signal clicked
     property bool active
 
+    property bool close: false
+
     color: "transparent"
     default property alias contents: contentItem.data
     property alias text: label.text

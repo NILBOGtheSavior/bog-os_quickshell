@@ -50,6 +50,7 @@ Variants {
                 SystemMenu {}
                 ApplicationLauncher {}
                 ActiveWindow {}
+                Applications {}
             }
             RowLayout {
                 id: centerIsland

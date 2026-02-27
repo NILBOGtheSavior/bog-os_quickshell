@@ -19,7 +19,8 @@ RowLayout {
 
             required property var modelData
 
-            Layout.fillHeight: true
+            // Layout.fillHeight: true
+            implicitHeight: 22.5
             implicitWidth: implicitHeight
             active: modelData.focused
 

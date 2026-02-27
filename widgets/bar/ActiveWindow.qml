@@ -1,15 +1,10 @@
 import QtQuick
-import Quickshell.Hyprland
+import QtQuick.Layouts
+import qs.services
 import qs.ui
 
 Label {
-    property var activeWindow: Hyprland.activeToplevel
-    text: activeWindow?.lastIpcObject?.class || "BogOS"
-
-    Connections {
-        target: Hyprland
-        function onActiveToplevelChanged() {
-            Hyprland.refreshToplevels();
-        }
-    }
+    id: root
+    Layout.preferredWidth: 90
+    text: TopLevel.activeWindow.lastIpcObject.class || "BogOS"
 }

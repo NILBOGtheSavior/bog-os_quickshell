@@ -86,7 +86,7 @@ RowLayout {
             anchors.fill: parent
             ColumnLayout {
                 Container {
-                    color: Colors.secondary
+                    color: Colors.surface
                     height: 20
                     Layout.fillWidth: true
                     RowLayout {

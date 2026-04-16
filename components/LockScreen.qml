@@ -7,6 +7,7 @@ import Quickshell.Widgets
 import Quickshell.Wayland
 import qs.config
 import qs.ui
+import qs.services
 
 WlSessionLock {
     id: lock
@@ -16,10 +17,16 @@ WlSessionLock {
         Global.lockscreen = lock;
     }
 
+    onLockedChanged: {
+        Auth.pam.start();
+    }
+
     WlSessionLockSurface {
+        id: surface
         color: Colors.background
 
         ColumnLayout {
+            // visible: surface.screen.name === "DP-3"
             anchors.centerIn: parent
             spacing: 20
             Label {
@@ -47,18 +54,30 @@ WlSessionLock {
                 layer.enabled: true
             }
 
+            Label {
+                id: errorBox
+                Layout.alignment: Qt.AlignHCenter
+                color: "red"
+                text: ""
+            }
+
             Container {
                 Layout.alignment: Qt.AlignHCenter
                 color: Colors.surface
-                implicitWidth: inputLayout.width
-                implicitHeight: inputLayout.height
+                implicitWidth: inputLayout.width + 10
+                implicitHeight: inputLayout.height + 10
                 RowLayout {
                     id: inputLayout
-                    width: 150
+                    anchors.centerIn: parent
                     InputLabel {
+                        id: passwordInput
+                        width: 150
                         echoMode: TextInput.Password
                         font: Fonts.large
                         placeholder: "password"
+                        Keys.onReturnPressed: {
+                            Auth.pam.respond(passwordInput.text);
+                        }
                     }
                     Label {
                         text: ""
@@ -69,6 +88,14 @@ WlSessionLock {
                 Layout.alignment: Qt.AlignHCenter
                 font: Fonts.large
                 text: "unlock"
+                onClicked: {
+                    Auth.pam.respond(passwordInput.text);
+                }
+            }
+            Button {
+                Layout.alignment: Qt.AlignHCenter
+                font: Fonts.large
+                text: "unlock (key)"
                 onClicked: lock.locked = false
             }
         }

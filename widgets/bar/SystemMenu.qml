@@ -30,7 +30,7 @@ LabelButton {
             },
             {
                 title: "   Lock",
-                command: ["hyprlock"]
+                command: ["hyprctl", "dispatch", "global", "quickshell:lockscreen"]
             },
             {
                 title: "󰿅   Logout",

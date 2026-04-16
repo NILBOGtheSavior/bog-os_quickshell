@@ -28,8 +28,8 @@ TextInput {
         id: text
         anchors.fill: root
         text: root.placeholder
-        font: Fonts.small
-        color: Colors.secondary
+        font: root.font
+        color: Colors.hover
         visible: root.text.length === 0 && !root.activeFocus
     }
 }

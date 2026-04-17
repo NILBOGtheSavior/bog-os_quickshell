@@ -10,15 +10,13 @@ import qs.ui
 import qs.services
 
 WlSessionLock {
-    id: lock
+    id: root
     locked: false
 
-    Component.onCompleted: {
-        Global.lockscreen = lock;
-    }
+    property var auth: Auth
 
-    onLockedChanged: {
-        Auth.pam.start();
+    Component.onCompleted: {
+        Global.lockscreen = root;
     }
 
     WlSessionLockSurface {
@@ -26,7 +24,7 @@ WlSessionLock {
         color: Colors.background
 
         ColumnLayout {
-            // visible: surface.screen.name === "DP-3"
+            visible: surface.screen.name === "DP-3"
             anchors.centerIn: parent
             spacing: 20
             Label {
@@ -57,8 +55,9 @@ WlSessionLock {
             Label {
                 id: errorBox
                 Layout.alignment: Qt.AlignHCenter
-                color: "red"
-                text: ""
+                visible: Auth.authFailed
+                color: Colors.red
+                text: "incorrect password"
             }
 
             Container {
@@ -71,11 +70,29 @@ WlSessionLock {
                     anchors.centerIn: parent
                     InputLabel {
                         id: passwordInput
-                        width: 150
+                        Layout.minimumWidth: 150
                         echoMode: TextInput.Password
+                        cursorVisible: false
                         font: Fonts.large
                         placeholder: "password"
+                        Connections {
+                            target: Auth.pam
+                            function onResponseRequiredChanged() {
+                                if (Auth.pam.responseRequired) {
+                                    passwordInput.forceActiveFocus();
+                                }
+                            }
+                            function onCompleted(result) {
+                                if (result === 0) {
+                                    passwordInput.text = "";
+                                } else {
+                                    passwordInput.text = "";
+                                    passwordInput.readOnly = false;
+                                }
+                            }
+                        }
                         Keys.onReturnPressed: {
+                            passwordInput.readOnly = true;
                             Auth.pam.respond(passwordInput.text);
                         }
                     }
@@ -92,12 +109,12 @@ WlSessionLock {
                     Auth.pam.respond(passwordInput.text);
                 }
             }
-            Button {
-                Layout.alignment: Qt.AlignHCenter
-                font: Fonts.large
-                text: "unlock (key)"
-                onClicked: lock.locked = false
-            }
+            // Button {
+            //     Layout.alignment: Qt.AlignHCenter
+            //     font: Fonts.large
+            //     text: "unlock (key)"
+            //     onClicked: root.locked = false
+            // }
         }
     }
 }

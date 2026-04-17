@@ -3,12 +3,23 @@ pragma Singleton
 import QtQuick
 import Quickshell
 import Quickshell.Services.Pam
+import Quickshell.Hyprland
 import qs.config
 
 Singleton {
+    id: root
 
-    property bool lock: false
     readonly property alias pam: pam
+    property bool authFailed: false
+
+    GlobalShortcut {
+        name: "lockscreen"
+        description: "Lock the screen"
+        onPressed: {
+            Global.lockscreen.locked = true;
+            pam.start();
+        }
+    }
 
     PamContext {
         id: pam
@@ -16,9 +27,10 @@ Singleton {
 
         onCompleted: result => {
             if (result === PamResult.Success) {
-                if (Global.lockscreen)
-                    Global.lockscreen.locked = false;
+                Global.lockscreen.locked = false;
+                root.authFailed = false;
             } else {
+                root.authFailed = true;
                 pam.start();
             }
         }

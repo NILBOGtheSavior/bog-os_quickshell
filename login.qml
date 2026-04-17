@@ -9,14 +9,10 @@ import qs.config
 import qs.ui
 
 ShellRoot {
-    PanelWindow {
+    Window {
         id: surface
-        anchors {
-            left: true
-            right: true
-            top: true
-            bottom: true
-        }
+        visible: true
+        flags: Qt.FramelessWindowHint | Qt.Window
 
         Rectangle {
             anchors.fill: parent
@@ -54,7 +50,7 @@ ShellRoot {
                 Label {
                     id: errorBox
                     Layout.alignment: Qt.AlignHCenter
-                    visible: Auth.authFailed
+                    // visible: Auth.authFailed
                     color: Colors.red
                     text: "incorrect password"
                 }
@@ -76,7 +72,7 @@ ShellRoot {
                             placeholder: "password"
                             Keys.onReturnPressed: {
                                 passwordInput.readOnly = true;
-                                Auth.pam.respond(passwordInput.text);
+                                // Auth.pam.respond(passwordInput.text);
                             }
                         }
                         Label {
@@ -89,14 +85,14 @@ ShellRoot {
                     font: Fonts.large
                     text: "unlock"
                     onClicked: {
-                        Auth.pam.respond(passwordInput.text);
+                        // Auth.pam.respond(passwordInput.text);
                     }
                 }
                 Button {
                     Layout.alignment: Qt.AlignHCenter
                     font: Fonts.large
                     text: "unlock (key)"
-                    onClicked: root.locked = false
+                    // onClicked: root.locked = false
                 }
             }
         }

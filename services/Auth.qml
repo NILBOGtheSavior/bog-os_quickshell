@@ -12,17 +12,6 @@ Singleton {
     readonly property alias pam: pam
     property bool authFailed: false
 
-    GlobalShortcut {
-        name: "lockscreen"
-        description: "Lock the screen"
-        onPressed: {
-            if (!Global.lockscreen.locked) {
-                Global.lockscreen.locked = true;
-                pam.start();
-            }
-        }
-    }
-
     PamContext {
         id: pam
         config: "quickshell"

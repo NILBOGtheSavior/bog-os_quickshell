@@ -11,12 +11,13 @@ import qs.services
 
 WlSessionLock {
     id: root
-    locked: false
+    locked: true
 
     property var auth: Auth
 
     Component.onCompleted: {
         Global.lockscreen = root;
+        Auth.pam.start();
     }
 
     WlSessionLockSurface {
@@ -30,7 +31,7 @@ WlSessionLock {
             Label {
                 Layout.alignment: Qt.AlignHCenter
                 font: Fonts.xlarge
-                text: "nilbog"
+                text: Quickshell.env("USER")
             }
             IconImage {
                 id: avatar
@@ -84,7 +85,7 @@ WlSessionLock {
                             }
                             function onCompleted(result) {
                                 if (result === 0) {
-                                    passwordInput.text = "";
+                                    Qt.quit();
                                 } else {
                                     passwordInput.text = "";
                                     passwordInput.readOnly = false;
@@ -109,12 +110,12 @@ WlSessionLock {
                     Auth.pam.respond(passwordInput.text);
                 }
             }
-            // Button {
-            //     Layout.alignment: Qt.AlignHCenter
-            //     font: Fonts.large
-            //     text: "unlock (key)"
-            //     onClicked: root.locked = false
-            // }
+            Button {
+                Layout.alignment: Qt.AlignHCenter
+                font: Fonts.large
+                text: "unlock (key)"
+                onClicked: root.locked = false
+            }
         }
     }
 }

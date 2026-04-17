@@ -3,12 +3,34 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Effects
 import Quickshell
+import Quickshell.Io
 import Quickshell.Widgets
 import Quickshell.Services.Greetd
 import qs.config
 import qs.ui
+import qs.widgets.identity
 
 ShellRoot {
+    id: root
+    Process {
+        id: userQuery
+        command: ["sh", "-c", "getent passwd | awk -F: '$3 >= 1000 && $3 < 60000 && $1 != \"nobody\" {print $1}'"]
+        running: true
+
+        stdout: StdioCollector {
+            onStreamFinished: {
+                const userList = data.toString().trim().split('\n');
+                userModel.clear();
+                for (let user of userList) {
+                    console.log("User found: " + user);
+                    userModel.append({user});
+                }
+            }
+        }
+    }
+    ListModel {
+        id: userModel
+    }
     Window {
         id: surface
         visible: true
@@ -27,26 +49,10 @@ ShellRoot {
                     // text: Quickshell.env("USER")
                     text: Greetd.user
                 }
-                IconImage {
-                    id: avatar
+                ProfileIcon {
                     Layout.alignment: Qt.AlignHCenter
-                    implicitSize: 100
-                    source: "file:///var/lib/AccountsService/icons/" + (Quickshell.env("USER") ?? "user")
-                    layer.enabled: true
-                    layer.effect: MultiEffect {
-                        maskSource: mask
-                        maskEnabled: true
-                    }
+                    user: "nilbog"
                 }
-                Rectangle {
-                    id: mask
-                    width: avatar.width
-                    height: avatar.height
-                    radius: width / 2
-                    visible: false
-                    layer.enabled: true
-                }
-
                 Label {
                     id: errorBox
                     Layout.alignment: Qt.AlignHCenter
@@ -93,6 +99,15 @@ ShellRoot {
                     font: Fonts.large
                     text: "unlock (key)"
                     // onClicked: root.locked = false
+                }
+                RowLayout {
+                    Repeater {
+                        model: userModel
+                        delegate: Label {
+                            required property var modelData
+                            text: modelData
+                        }
+                    }
                 }
             }
         }

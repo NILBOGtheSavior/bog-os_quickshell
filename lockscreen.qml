@@ -8,6 +8,7 @@ import Quickshell.Wayland
 import qs.config
 import qs.ui
 import qs.services
+import qs.widgets.identity
 
 WlSessionLock {
     id: root
@@ -33,26 +34,10 @@ WlSessionLock {
                 font: Fonts.xlarge
                 text: Quickshell.env("USER")
             }
-            IconImage {
-                id: avatar
+            ProfileIcon {
                 Layout.alignment: Qt.AlignHCenter
-                implicitSize: 100
-                source: "file:///var/lib/AccountsService/icons/" + (Quickshell.env("USER") ?? "user")
-                layer.enabled: true
-                layer.effect: MultiEffect {
-                    maskSource: mask
-                    maskEnabled: true
-                }
+                user: Quickshell.env("USER")
             }
-            Rectangle {
-                id: mask
-                width: avatar.width
-                height: avatar.height
-                radius: width / 2
-                visible: false
-                layer.enabled: true
-            }
-
             Label {
                 id: errorBox
                 Layout.alignment: Qt.AlignHCenter

@@ -10,6 +10,34 @@ import qs.ui
 
 ShellRoot {
     id: root
+    property var currentUser
+
+    function attemptLogin() {
+        Greetd.createSession(currentUser);
+    }
+
+    Connections {
+        target: Greetd
+
+        function onAuthMessage(message, type, responseRequired) {
+            if (responseRequired) {
+                Greetd.respond(passwordInput.text);
+            }
+        }
+
+        function onStateChanged() {
+            if (Greetd.state === GreetdState.ReadyToLaunch) {
+                Greetd.launch(["start-hyprland"]);
+            }
+        }
+
+        function onErrorMessage(message) {
+            errorBox.text = message;
+            errorBox.visible = true;
+            passwordInput.enabled = true;
+        }
+    }
+
     Process {
         id: userQuery
         command: ["sh", "-c", "getent passwd | awk -F: '$3 >= 1000 && $3 < 60000 && $1 != \"nobody\" {print $1}'"]
@@ -20,11 +48,11 @@ ShellRoot {
                 const userList = data.toString().trim().split('\n');
                 userModel.clear();
                 for (let user of userList) {
-                    console.log("User found: " + user);
                     userModel.append({
-                        user
+                        "username": user
                     });
                 }
+                root.currentUser = userModel.get(0).username;
             }
         }
     }
@@ -46,12 +74,11 @@ ShellRoot {
                 Label {
                     Layout.alignment: Qt.AlignHCenter
                     font: Fonts.xlarge
-                    // text: Quickshell.env("USER")
-                    text: Greetd.user
+                    text: root.currentUser
                 }
                 ProfileIcon {
                     Layout.alignment: Qt.AlignHCenter
-                    user: "nilbog"
+                    user: root.currentUser || ""
                 }
                 Label {
                     id: errorBox
@@ -78,7 +105,6 @@ ShellRoot {
                             placeholder: "password"
                             Keys.onReturnPressed: {
                                 passwordInput.readOnly = true;
-                                // Auth.pam.respond(passwordInput.text);
                             }
                         }
                         Label {
@@ -91,7 +117,7 @@ ShellRoot {
                     font: Fonts.large
                     text: "unlock"
                     onClicked: {
-                        // Auth.pam.respond(passwordInput.text);
+                        root.attemptLogin();
                     }
                 }
                 Button {
@@ -103,9 +129,18 @@ ShellRoot {
                 RowLayout {
                     Repeater {
                         model: userModel
-                        delegate: Label {
+                        delegate: ColumnLayout {
+                            id: userButton
                             required property var modelData
-                            text: modelData
+                            ProfileIcon {
+                                Layout.alignment: Qt.AlignHCenter
+                                size: 50
+                                user: userButton.modelData
+                            }
+
+                            Label {
+                                text: userButton.modelData
+                            }
                         }
                     }
                 }

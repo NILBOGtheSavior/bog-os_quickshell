@@ -4,8 +4,8 @@ import QtQuick.Layouts
 import Quickshell
 import Quickshell.Wayland
 import qs.config
-import qs.ui
 import qs.widgets.identity
+import qs.ui
 import qs.services
 
 WlSessionLock {

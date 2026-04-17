@@ -1,14 +1,12 @@
 pragma ComponentBehavior: Bound
 import QtQuick
-import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell
-import Quickshell.Widgets
 import Quickshell.Wayland
 import qs.config
 import qs.ui
-import qs.services
 import qs.widgets.identity
+import qs.services
 
 WlSessionLock {
     id: root

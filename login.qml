@@ -1,14 +1,12 @@
 pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
-import QtQuick.Effects
 import Quickshell
 import Quickshell.Io
-import Quickshell.Widgets
 import Quickshell.Services.Greetd
 import qs.config
-import qs.ui
 import qs.widgets.identity
+import qs.ui
 
 ShellRoot {
     id: root
@@ -23,7 +21,9 @@ ShellRoot {
                 userModel.clear();
                 for (let user of userList) {
                     console.log("User found: " + user);
-                    userModel.append({user});
+                    userModel.append({
+                        user
+                    });
                 }
             }
         }

@@ -16,8 +16,10 @@ Singleton {
         name: "lockscreen"
         description: "Lock the screen"
         onPressed: {
-            Global.lockscreen.locked = true;
-            pam.start();
+            if (!Global.lockscreen.locked) {
+                Global.lockscreen.locked = true;
+                pam.start();
+            }
         }
     }
 

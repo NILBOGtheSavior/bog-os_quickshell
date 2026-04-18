@@ -13,8 +13,19 @@ Item {
 
     IconImage {
         id: avatar
+        visible: status == Image.Ready
         anchors.fill: parent
         source: "file:///var/lib/AccountsService/icons/" + root.user
+        layer.enabled: true
+        layer.effect: MultiEffect {
+            maskSource: mask
+            maskEnabled: true
+        }
+    }
+    IconImage {
+        visible: !avatar.visible
+        anchors.fill: parent
+        source: 'root:/assets/profile.svg'
         layer.enabled: true
         layer.effect: MultiEffect {
             maskSource: mask

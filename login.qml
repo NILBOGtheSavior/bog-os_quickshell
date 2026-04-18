@@ -84,6 +84,9 @@ ShellRoot {
                                         onClicked: root.currentUser = modelData
                                     }
                                 }
+                                ProfileButton {
+                                    user: "guest"
+                                }
                             }
                             Spacer {}
                             PowerMenu {

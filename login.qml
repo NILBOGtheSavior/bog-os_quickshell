@@ -46,7 +46,8 @@ ShellRoot {
             id: wallpaper
             anchors.fill: parent
 
-            source: "file:/home/nilbog/Pictures/Wallpapers/tokyo02.jpg"
+            source: "file:/usr/share/backgrounds/wallpaper.jpg"
+            fillMode: Image.PreserveAspectCrop
 
             Container {
                 anchors.centerIn: parent
@@ -61,15 +62,17 @@ ShellRoot {
                         color: Colors.surface
                         ColumnLayout {
                             anchors {
-                                top: parent.top
-                                left: parent.left
-                                right: parent.right
+                                fill: parent
                                 topMargin: 20
+                                bottomMargin: 20
                                 leftMargin: 20
                                 rightMargin: 20
                             }
                             spacing: 20
                             Dashboard {}
+                            Item {
+                                Layout.fillHeight: true
+                            }
                             ColumnLayout {
                                 spacing: Styles.spacing * 2
                                 Repeater {
@@ -81,6 +84,10 @@ ShellRoot {
                                         onClicked: root.currentUser = modelData
                                     }
                                 }
+                            }
+                            Spacer {}
+                            PowerMenu {
+                                Layout.alignment: Qt.AlignHCenter
                             }
                         }
                     }
@@ -135,13 +142,18 @@ ShellRoot {
                                     root.attemptLogin();
                                 }
                             }
-                            Button {
-                                Layout.alignment: Qt.AlignHCenter
-                                font: Fonts.large
-                                text: "unlock"
-                                onClicked: {
-                                    root.attemptLogin();
-                                }
+                        }
+                        Button {
+                            anchors {
+                                bottom: parent.bottom
+                                right: parent.right
+                                rightMargin: 20
+                                bottomMargin: 20
+                            }
+                            font: Fonts.large
+                            text: "login"
+                            onClicked: {
+                                root.attemptLogin();
                             }
                         }
                     }

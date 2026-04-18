@@ -16,8 +16,12 @@ RowLayout {
             text: Time.date_full
         }
     }
+    Item {
+        Layout.fillWidth: true
+    }
     ColumnLayout {
         Label {
+            visible: Weather.unit
             Layout.alignment: Qt.AlignRight
             font: Fonts.large
             text: `${Weather.temperature}${Weather.unit} ${Weather.icon}`

@@ -16,28 +16,6 @@ ShellRoot {
         Greetd.createSession(currentUser);
     }
 
-    Connections {
-        target: Greetd
-
-        function onAuthMessage(message, type, responseRequired) {
-            if (responseRequired) {
-                Greetd.respond(passwordInput.text);
-            }
-        }
-
-        function onStateChanged() {
-            if (Greetd.state === GreetdState.ReadyToLaunch) {
-                Greetd.launch(["start-hyprland"]);
-            }
-        }
-
-        function onErrorMessage(message) {
-            errorBox.text = message;
-            errorBox.visible = true;
-            passwordInput.enabled = true;
-        }
-    }
-
     Process {
         id: userQuery
         command: ["sh", "-c", "getent passwd | awk -F: '$3 >= 1000 && $3 < 60000 && $1 != \"nobody\" {print $1}'"]
@@ -64,82 +42,94 @@ ShellRoot {
         visible: true
         flags: Qt.FramelessWindowHint | Qt.Window
 
-        Rectangle {
+        Image {
+            id: wallpaper
             anchors.fill: parent
-            color: Colors.background
-            ColumnLayout {
-                // visible: surface.screen.name === "DP-3"
-                anchors.centerIn: parent
-                spacing: 20
-                Label {
-                    Layout.alignment: Qt.AlignHCenter
-                    font: Fonts.xlarge
-                    text: root.currentUser
-                }
-                ProfileIcon {
-                    Layout.alignment: Qt.AlignHCenter
-                    user: root.currentUser || ""
-                }
-                Label {
-                    id: errorBox
-                    Layout.alignment: Qt.AlignHCenter
-                    // visible: Auth.authFailed
-                    color: Colors.red
-                    text: "incorrect password"
-                }
 
-                Container {
-                    Layout.alignment: Qt.AlignHCenter
-                    color: Colors.surface
-                    implicitWidth: inputLayout.width + 10
-                    implicitHeight: inputLayout.height + 10
-                    RowLayout {
-                        id: inputLayout
-                        anchors.centerIn: parent
-                        InputLabel {
-                            id: passwordInput
-                            Layout.minimumWidth: 150
-                            echoMode: TextInput.Password
-                            cursorVisible: false
-                            font: Fonts.large
-                            placeholder: "password"
-                            Keys.onReturnPressed: {
-                                passwordInput.readOnly = true;
+            source: "file:/home/nilbog/Pictures/Wallpapers/tokyo02.jpg"
+
+            Container {
+                anchors.centerIn: parent
+                width: parent.width / 2
+                height: parent.height / 2
+                RowLayout {
+                    anchors.fill: parent
+                    Container {
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
+                        Layout.preferredWidth: parent.width * 0.3
+                        color: Colors.surface
+                        ColumnLayout {
+                            anchors.centerIn: parent
+                            Dashboard {}
+                            RowLayout {
+                                Repeater {
+                                    model: userModel
+                                    delegate: ProfileButton {
+                                        user: modelData
+                                    }
+                                }
                             }
                         }
-                        Label {
-                            text: ""
-                        }
                     }
-                }
-                Button {
-                    Layout.alignment: Qt.AlignHCenter
-                    font: Fonts.large
-                    text: "unlock"
-                    onClicked: {
-                        root.attemptLogin();
-                    }
-                }
-                Button {
-                    Layout.alignment: Qt.AlignHCenter
-                    font: Fonts.large
-                    text: "unlock (key)"
-                    // onClicked: root.locked = false
-                }
-                RowLayout {
-                    Repeater {
-                        model: userModel
-                        delegate: ColumnLayout {
-                            id: userButton
-                            required property var modelData
+                    Item {
+                        Layout.fillHeight: true
+                        Layout.fillWidth: true
+                        Layout.preferredWidth: parent.width * 0.7
+                        ColumnLayout {
+                            id: layout
+                            anchors.centerIn: parent
+                            Layout.preferredWidth: parent.width * 0.6
+                            spacing: 20
+                            Label {
+                                Layout.alignment: Qt.AlignHCenter
+                                font: Fonts.xlarge
+                                text: root.currentUser
+                            }
                             ProfileIcon {
                                 Layout.alignment: Qt.AlignHCenter
-                                size: 50
-                                user: userButton.modelData
+                                user: root.currentUser || ""
+                            }
+                            Label {
+                                id: errorBox
+                                Layout.alignment: Qt.AlignHCenter
+                                visible: false
+                                color: Colors.red
+                                text: "incorrect password"
                             }
 
-                            Label {
-                                text: userButton.modelData
+                            PasswordInput {
+                                id: passwordField
+                                Connections {
+                                    target: Greetd
+                                    function onAuthMessage(message, type, responseRequired) {
+                                        if (responseRequired) {
+                                            Greetd.respond(passwordField.input.text);
+                                        }
+                                    }
+                                    function onStateChanged() {
+                                        if (Greetd.state === GreetdState.ReadyToLaunch) {
+                                            Greetd.launch(["start-hyprland"]);
+                                        }
+                                    }
+                                    function onErrorMessage(message) {
+                                        errorBox.text = message;
+                                        errorBox.visible = true;
+                                        passwordField.input.enabled = true;
+                                    }
+                                }
+                                Keys.onReturnPressed: {
+                                    passwordField.input.readOnly = true;
+                                    root.attemptLogin();
+                                }
+                            }
+                            Button {
+                                Layout.alignment: Qt.AlignHCenter
+                                font: Fonts.large
+                                text: "unlock"
+                                onClicked: {
+                                    root.attemptLogin();
+                                }
                             }
                         }
                     }

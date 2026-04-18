@@ -23,81 +23,65 @@ WlSessionLock {
         id: surface
         color: Colors.background
 
-        ColumnLayout {
-            visible: surface.screen.name === "DP-3"
+        Container {
             anchors.centerIn: parent
-            spacing: 20
-            Label {
-                Layout.alignment: Qt.AlignHCenter
-                font: Fonts.xlarge
-                text: Quickshell.env("USER")
-            }
-            ProfileIcon {
-                Layout.alignment: Qt.AlignHCenter
-                user: Quickshell.env("USER")
-            }
-            Label {
-                id: errorBox
-                Layout.alignment: Qt.AlignHCenter
-                visible: Auth.authFailed
-                color: Colors.red
-                text: "incorrect password"
-            }
-
-            Container {
-                Layout.alignment: Qt.AlignHCenter
-                color: Colors.surface
-                implicitWidth: inputLayout.width + 10
-                implicitHeight: inputLayout.height + 10
-                RowLayout {
-                    id: inputLayout
-                    anchors.centerIn: parent
-                    InputLabel {
-                        id: passwordInput
-                        Layout.minimumWidth: 150
-                        echoMode: TextInput.Password
-                        cursorVisible: false
-                        font: Fonts.large
-                        placeholder: "password"
-                        Connections {
-                            target: Auth.pam
-                            function onResponseRequiredChanged() {
-                                if (Auth.pam.responseRequired) {
-                                    passwordInput.forceActiveFocus();
-                                }
-                            }
-                            function onCompleted(result) {
-                                if (result === 0) {
-                                    Qt.quit();
-                                } else {
-                                    passwordInput.text = "";
-                                    passwordInput.readOnly = false;
-                                }
+            ColumnLayout {
+                // visible: surface.screen.name === "DP-3"
+                anchors.centerIn: parent
+                spacing: 20
+                Label {
+                    Layout.alignment: Qt.AlignHCenter
+                    font: Fonts.xlarge
+                    text: Quickshell.env("USER")
+                }
+                ProfileIcon {
+                    Layout.alignment: Qt.AlignHCenter
+                    user: Quickshell.env("USER")
+                }
+                Label {
+                    id: errorBox
+                    Layout.alignment: Qt.AlignHCenter
+                    visible: Auth.authFailed
+                    color: Colors.red
+                    text: "incorrect password"
+                }
+                PasswordInput {
+                    id: passwordField
+                    Connections {
+                        target: Auth.pam
+                        function onResponseRequiredChanged() {
+                            if (Auth.pam.responseRequired) {
+                                passwordField.input.forceActiveFocus();
                             }
                         }
-                        Keys.onReturnPressed: {
-                            passwordInput.readOnly = true;
-                            Auth.pam.respond(passwordInput.text);
+                        function onCompleted(result) {
+                            if (result === 0) {
+                                Qt.quit();
+                            } else {
+                                passwordField.input.text = "";
+                                passwordField.input.readOnly = false;
+                            }
                         }
                     }
-                    Label {
-                        text: ""
+                    Keys.onReturnPressed: {
+                        passwordField.input.readOnly = true;
+                        Auth.pam.respond(passwordField.input.text);
                     }
                 }
-            }
-            Button {
-                Layout.alignment: Qt.AlignHCenter
-                font: Fonts.large
-                text: "unlock"
-                onClicked: {
-                    Auth.pam.respond(passwordInput.text);
+                Button {
+                    Layout.alignment: Qt.AlignHCenter
+                    font: Fonts.large
+                    text: "unlock"
+                    onClicked: {
+                        Auth.pam.respond(passwordField.input.text);
+                    }
                 }
-            }
-            Button {
-                Layout.alignment: Qt.AlignHCenter
-                font: Fonts.large
-                text: "unlock (key)"
-                onClicked: root.locked = false
+                Button {
+                    Layout.alignment: Qt.AlignHCenter
+                    font: Fonts.large
+                    text: "unlock (key)"
+                    onClicked: root.locked = false
+                }
             }
         }
     }

@@ -60,13 +60,25 @@ ShellRoot {
                         Layout.preferredWidth: parent.width * 0.3
                         color: Colors.surface
                         ColumnLayout {
-                            anchors.centerIn: parent
+                            anchors {
+                                top: parent.top
+                                left: parent.left
+                                right: parent.right
+                                topMargin: 20
+                                leftMargin: 20
+                                rightMargin: 20
+                            }
+                            spacing: 20
                             Dashboard {}
-                            RowLayout {
+                            ColumnLayout {
+                                spacing: Styles.spacing * 2
                                 Repeater {
                                     model: userModel
                                     delegate: ProfileButton {
+                                        required property var modelData
+                                        Layout.fillWidth: true
                                         user: modelData
+                                        onClicked: root.currentUser = modelData
                                     }
                                 }
                             }

@@ -1,3 +1,4 @@
+pragma ComponentBehavior: Bound
 import QtQuick
 import QtQuick.Layouts
 import Quickshell.Hyprland
@@ -6,12 +7,14 @@ import qs.ui
 
 RowLayout {
     id: root
+
     Repeater {
         model: Hyprland.workspaces.values.filter(ws => {
             return ws.monitor && ws.monitor.name == screen.name;
         })
         delegate: workspace
     }
+
     Component {
         id: workspace
         Button {
@@ -19,10 +22,11 @@ RowLayout {
 
             required property var modelData
 
-            // Layout.fillHeight: true
             implicitHeight: 22.5
             implicitWidth: implicitHeight
+
             active: modelData.focused
+            ghost: !active && modelData.active
 
             font: Fonts.small
             color: Colors.secondary

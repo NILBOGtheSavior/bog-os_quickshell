@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Layouts
 import qs.config
 import qs.ui
 
@@ -10,6 +9,7 @@ Rectangle {
 
     signal clicked
     property bool active
+    property bool ghost
 
     default property alias contents: contentItem.data
     property alias text: label.text
@@ -61,6 +61,18 @@ Rectangle {
             PropertyChanges {
                 root {
                     color: Colors.primary
+                }
+                label {
+                    color: Colors.background
+                }
+            }
+        },
+        State {
+            name: "inactive"
+            when: root.ghost && !root.active
+            PropertyChanges {
+                root {
+                    color: Colors.hover
                 }
                 label {
                     color: Colors.background

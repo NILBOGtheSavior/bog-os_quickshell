@@ -12,7 +12,7 @@ RowLayout {
 
     LabelButton {
         font: Fonts.small
-        text: Brightness.getIcon()
+        text: Brightness.getIcon() || ""
         // onClicked: root.speaker.muted = !root.speaker.muted
     }
     Slider {

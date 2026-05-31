@@ -97,8 +97,8 @@ Container {
             IconButton {
                 id: icon
                 radius: height / 2
-                active: !root.device.audio.muted
-                text: root.device.audio.muted ? root.mutedIcon : root.activeIcon
+                active: !root.device?.audio.muted
+                text: root.device?.audio.muted ? root.mutedIcon : root.activeIcon
 
                 onClicked: {
                     Audio.toggleMute(root.device);
@@ -107,7 +107,7 @@ Container {
             Label {
                 Layout.alignment: Qt.AlignCenter
                 Layout.fillWidth: true
-                text: Utils.truncateString(root.device.nickname || root.device.name, 20)
+                text: Utils.truncateString(root.device?.nickname || root.device?.name, 20) || "Unknown"
             }
             LabelButton {
                 id: arrow
@@ -159,7 +159,7 @@ Container {
             Layout.leftMargin: Styles.spacing
             Layout.rightMargin: Styles.spacing
             from: 0
-            value: root.device.audio.volume
+            value: root.device?.audio.volume || 0
             to: 1
 
             onMoved: {

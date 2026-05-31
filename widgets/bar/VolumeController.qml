@@ -9,16 +9,16 @@ RowLayout {
     id: root
     state: "default"
 
-    property var speaker: Audio.default_output.audio
+    property var speaker: Audio.default_output?.audio
 
     LabelButton {
         font: Fonts.small
         text: {
-            if (root.speaker.volume == 0 || root.speaker.muted)
+            if (root.speaker?.volume == 0 || root.speaker?.muted)
                 return " ";
-            else if (root.speaker.volume < 0.33)
+            else if (root.speaker?.volume < 0.33)
                 return " ";
-            else if (root.speaker.volume < 0.67)
+            else if (root.speaker?.volume < 0.67)
                 return " ";
             else
                 return " ";
@@ -28,7 +28,7 @@ RowLayout {
     Slider {
         id: slider
         from: 0
-        value: root.speaker.volume || 0
+        value: root.speaker?.volume || 0
         to: 1
         onMoved: {
             // This needs to be fixed.

@@ -5,6 +5,8 @@ import Quickshell
 
 Singleton {
     function truncateString(string, length) {
+        if (typeof string !== 'string')
+            return;
         if (string.length > length)
             return `${string.slice(0, length - 1)}…`;
         else

@@ -16,10 +16,10 @@ Singleton {
     }
 
     function focusWindow(window) {
-        Hyprland.dispatch("focuswindow address:0x" + window.address);
+        Hyprland.dispatch(`hl.dsp.focus({ window = "address:0x${window.address}" })`);
     }
 
     function closeWindow(window) {
-        Hyprland.dispatch("closewindow address:0x" + window.address);
+        Hyprland.dispatch(`hl.dsp.window.close({ window = "address:0x${window.address}" })`);
     }
 }

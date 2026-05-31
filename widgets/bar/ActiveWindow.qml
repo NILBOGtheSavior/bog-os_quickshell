@@ -5,6 +5,9 @@ import qs.ui
 
 Label {
     id: root
+    property var lastActive: {
+        return TopLevel.activeWindow?.lastIpcObject?.class;
+    }
     Layout.preferredWidth: 90
-    text: Utils.truncateString(TopLevel.activeWindow?.lastIpcObject?.class, 10) || "BogOS"
+    text: Utils.truncateString(lastActive, 10) || "BogOS"
 }

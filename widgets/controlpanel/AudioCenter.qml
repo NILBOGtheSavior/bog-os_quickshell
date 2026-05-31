@@ -107,7 +107,7 @@ Container {
             Label {
                 Layout.alignment: Qt.AlignCenter
                 Layout.fillWidth: true
-                text: Utils.truncateString(root.device.nickname, 20)
+                text: Utils.truncateString(root.device.nickname || root.device.name, 20)
             }
             LabelButton {
                 id: arrow
@@ -133,7 +133,7 @@ Container {
             implicitHeight: dropdownLayout.implicitHeight
             Layout.leftMargin: Styles.padding
             Layout.rightMargin: Styles.padding
-            color: Colors.secondary
+            color: Colors.surface
             ColumnLayout {
                 id: dropdownLayout
                 anchors.fill: parent
@@ -142,8 +142,8 @@ Container {
                     delegate: LabelButton {
                         required property var modelData
                         Layout.fillWidth: true
-                        color: root.device == modelData ? Colors.accent2 : "transparent"
-                        text: modelData.nickname
+                        color: root.device == modelData ? Colors.hover : "transparent"
+                        text: modelData.nickname || modelData.name
                         onClicked: {
                             Audio.setDevice(root.input, modelData);
                             dropdown.visible = false;

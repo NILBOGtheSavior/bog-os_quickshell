@@ -13,9 +13,10 @@ Singleton {
     readonly property var devices: Pipewire.nodes.values.reduce((acc, node) => {
         if (node.isStream)
             acc.streams.push(node);
-        else if (node.isSink)
+        else if (node.isSink) {
+            console.log(node.name);
             acc.outputs.push(node);
-        else if (node.audio)
+        } else if (node.audio)
             acc.inputs.push(node);
 
         return acc;

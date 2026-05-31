@@ -32,7 +32,7 @@ RowLayout {
             color: Colors.secondary
 
             onClicked: {
-                Hyprland.dispatch(`workspace ${modelData.id}`);
+                modelData.activate();
             }
 
             text: modelData.name

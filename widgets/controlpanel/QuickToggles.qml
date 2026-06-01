@@ -16,6 +16,10 @@ GridLayout {
     QuickToggle {
         icon: "󰀂"
         text: "Network"
+        onClicked: {
+            Network.toggleConnection();
+        }
+        active: Network.device.connected
     }
     QuickToggle {
         active: VPN.connected

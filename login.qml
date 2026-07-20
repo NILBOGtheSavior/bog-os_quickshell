@@ -16,6 +16,10 @@ ShellRoot {
         Greetd.createSession(currentUser);
     }
 
+    function login() {
+        Greetd.launch(["uwsm", "start", "hyprland.desktop"]);
+    }
+
     Process {
         id: userQuery
         command: ["sh", "-c", "getent passwd | awk -F: '$3 >= 1000 && $3 < 60000 && $1 != \"nobody\" {print $1}'"]
@@ -131,7 +135,7 @@ ShellRoot {
                                     }
                                     function onStateChanged() {
                                         if (Greetd.state === GreetdState.ReadyToLaunch) {
-                                            Greetd.launch(["start-hyprland"]);
+                                            root.login();
                                         }
                                     }
                                     function onErrorMessage(message) {

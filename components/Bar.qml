@@ -14,9 +14,7 @@ Variants {
         required property var modelData
         screen: modelData
 
-        exclusiveZone: 35
-
-        implicitHeight: 40
+        implicitHeight: 25
         color: "transparent"
 
         Component.onCompleted: {
@@ -31,13 +29,6 @@ Variants {
         Container {
             anchors {
                 fill: parent
-                margins: 5
-            }
-            layer.enabled: true
-            layer.effect: MultiEffect {
-                shadowEnabled: true
-                shadowColor: Colors.shadow
-                shadowBlur: 0.4
             }
             RowLayout {
                 id: leftIsland
@@ -48,9 +39,7 @@ Variants {
                 spacing: Styles.spacing * 2
 
                 SystemMenu {}
-                ApplicationLauncher {}
                 ActiveWindow {}
-                Applications {}
             }
             RowLayout {
                 id: centerIsland
@@ -58,7 +47,6 @@ Variants {
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 implicitHeight: root.implicitHeight
-                Workspaces {}
             }
             RowLayout {
                 id: rightIsland
@@ -67,20 +55,12 @@ Variants {
                 anchors.rightMargin: Styles.padding * 2
                 spacing: Styles.spacing
 
-                Notifier {}
+                Workspaces {}
                 SystemTray {}
-                MediaController {}
                 Battery {}
-                VolumeController {}
-                Brightness {}
                 Weather {}
                 Calendar {}
                 Clock {}
-                LabelButton {
-                    font: Fonts.large
-                    text: Global.controlPanel.visible ? "" : ""
-                    onClicked: Global.controlPanel.visible = !Global.controlPanel.visible
-                }
             }
         }
     }

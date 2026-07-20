@@ -19,10 +19,11 @@ RowLayout {
         id: workspace
         Button {
             id: button
+            radius: height / 2
 
             required property var modelData
 
-            implicitHeight: 22.5
+            implicitHeight: 20
             implicitWidth: implicitHeight
 
             active: modelData.focused

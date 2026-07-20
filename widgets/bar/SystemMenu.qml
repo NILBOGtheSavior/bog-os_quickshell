@@ -1,16 +1,29 @@
 import QtQuick
+import QtQuick.Effects
 import Quickshell
+import Quickshell.Widgets
 import qs.config
 import qs.ui
 
 LabelButton {
     id: root
     font: Fonts.bogos
-    text: ''
 
     onClicked: {
         menu.visible = !menu.visible;
         menu.grab.active = !menu.grab.active;
+    }
+
+    IconImage {
+        source: "root:/assets/cat.svg"
+        width: 20
+        height: 20
+        layer.enabled: true
+        layer.effect: MultiEffect {
+            brightness: 1.0
+            colorization: 1.0
+            colorizationColor: Colors.foreground
+        }
     }
 
     DropdownMenu {

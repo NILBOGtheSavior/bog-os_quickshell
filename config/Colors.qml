@@ -112,6 +112,32 @@ Singleton {
                 get secondary() {
                     return this.magenta;
                 }
+            },
+            "sakura": {
+                name: "Sakura",
+                // Backgrounds
+                background: "#1E1216",
+                black: "#2D1B22",
+                comment: "#8A6875",
+
+                // Foregrounds
+                foreground: "#DC9AAD",
+                white: "#FFD9DA",
+
+                // Colors
+                red: "#C0345C",
+                magenta: "#E83F6F",
+                yellow: "#EEBAC4",
+                green: "#B85B80",
+                cyan: "#EEBAC4",
+                blue: "#8A6875",
+                // Color Bindings
+                get primary() {
+                    return this.magenta;
+                },
+                get secondary() {
+                    return this.green;
+                }
             }
         },
         "light": {
@@ -208,6 +234,31 @@ Singleton {
                 },
                 get secondary() {
                     return this.magenta;
+                }
+            },
+            "sakura": {
+                name: "Sakura",
+                // Backgrounds
+                background: "#FFD9DA",
+                black: "#EEBAC4",
+                comment: "#B85B80",
+                // Foregrounds
+                foreground: "#C0345C",
+                white: "#1E1216",
+
+                // Colors
+                red: "#C0345C",
+                magenta: "#E83F6F",
+                yellow: "#8A6875",
+                green: "#B85B80",
+                cyan: "#C0345C",
+                blue: "#5A303F",
+                // Color Bindings
+                get primary() {
+                    return this.magenta;
+                },
+                get secondary() {
+                    return this.green;
                 }
             }
         }

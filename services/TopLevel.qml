@@ -2,24 +2,21 @@ pragma Singleton
 
 import QtQuick
 import Quickshell
-import Quickshell.Hyprland
+import Quickshell.Wayland
 
 Singleton {
-    property var activeWindow: Hyprland.activeToplevel
-    readonly property var windows: Hyprland.toplevels
-
-    Connections {
-        target: Hyprland
-        function onActiveToplevelChanged() {
-            Hyprland.refreshToplevels();
-        }
-    }
+    property var activeWindow: ToplevelManager.activeToplevel
+    readonly property var windows: ToplevelManager.toplevels
 
     function focusWindow(window) {
-        Hyprland.dispatch(`hl.dsp.focus({ window = "address:0x${window.address}" })`);
-    }
+        if (!window)
+            return;
 
-    function closeWindow(window) {
-        Hyprland.dispatch(`hl.dsp.window.close({ window = "address:0x${window.address}" })`);
+        if (window.activated) {
+            window.minimized = true;
+        } else {
+            window.minimized = false;
+            window.activate();
+        }
     }
 }

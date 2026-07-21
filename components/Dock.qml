@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Layouts
 import Quickshell
-import qs.widgets.bar
+import qs.widgets.dock
 import qs.config
 import qs.ui
 
@@ -37,7 +37,7 @@ Variants {
 
                 spacing: Styles.spacing * 2
 
-                SystemMenu {}
+                AppMenu {}
                 Applications {}
             }
             RowLayout {
@@ -56,7 +56,6 @@ Variants {
 
                 SystemTray {}
                 Battery {}
-                Weather {}
                 Calendar {}
                 Clock {}
             }

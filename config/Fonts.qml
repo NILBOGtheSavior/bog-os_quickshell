@@ -4,34 +4,29 @@ import QtQuick
 import Quickshell
 
 Singleton {
-    readonly property font bogos: ({
-            family: "BogOS",
-            pixelSize: 18
-        })
-
     readonly property font small: ({
-            family: "BlexMono Nerd Font",
+            family: "Monofur Nerd Font",
             pixelSize: 12
         })
 
     readonly property font medium: ({
-            family: "BlexMono Nerd Font",
-            pixelSize: 15
+            family: "Monofur Nerd Font",
+            pixelSize: 16
         })
 
     readonly property font medium_bold: ({
-            family: "BlexMono Nerd Font",
-            pixelSize: 15,
+            family: "Monofur Nerd Font",
+            pixelSize: 16,
             weight: 800
         })
 
     readonly property font large: ({
-            family: "BlexMono Nerd Font",
+            family: "Monofur Nerd Font",
             pixelSize: 18
         })
 
     readonly property font xlarge: ({
-            family: "BlexMono Nerd Font",
+            family: "Monofur Nerd Font",
             pixelSize: 24
         })
 }

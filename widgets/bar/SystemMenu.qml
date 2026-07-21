@@ -16,8 +16,8 @@ LabelButton {
 
     IconImage {
         source: "root:/assets/cat.svg"
-        width: 20
-        height: 20
+        width: 30
+        height: 30
         layer.enabled: true
         layer.effect: MultiEffect {
             brightness: 1.0
@@ -29,8 +29,8 @@ LabelButton {
     DropdownMenu {
         id: menu
         anchor.item: root
-        anchor.rect.x: root.x - Styles.padding * 2
-        anchor.rect.y: root.height + Styles.padding
+        anchor.edges: Edges.Top
+        anchor.gravity: Edges.Top
 
         menuItems: [
             {

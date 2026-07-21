@@ -11,7 +11,6 @@ PopupWindow {
     implicitWidth: 500
     implicitHeight: 750
 
-    visible: true
     color: "transparent"
 
     Container {

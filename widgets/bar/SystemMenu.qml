@@ -4,14 +4,13 @@ import Quickshell
 import Quickshell.Widgets
 import qs.config
 import qs.ui
+import qs.components
 
 LabelButton {
     id: root
-    font: Fonts.bogos
 
     onClicked: {
         menu.visible = !menu.visible;
-        menu.grab.active = !menu.grab.active;
     }
 
     IconImage {
@@ -26,37 +25,10 @@ LabelButton {
         }
     }
 
-    DropdownMenu {
+    AppMenu {
         id: menu
         anchor.item: root
         anchor.edges: Edges.Top
         anchor.gravity: Edges.Top
-
-        menuItems: [
-            {
-                title: "   Info",
-                command: ["kitty", "--hold", "-e", "fastfetch"]
-            },
-            {
-                title: "󰍷   Suspend",
-                command: ["systemctl", "suspend"]
-            },
-            {
-                title: "   Lock",
-                command: ["hyprctl", "dispatch", "global", "quickshell:lockscreen"]
-            },
-            {
-                title: "󰿅   Logout",
-                command: ["hyprctl", "dispatch", "exit"]
-            },
-            {
-                title: "   Restart",
-                command: ["systemctl", "reboot"]
-            },
-            {
-                title: "󰤆   Shutdown",
-                command: ["systemctl", "poweroff"]
-            }
-        ]
     }
 }

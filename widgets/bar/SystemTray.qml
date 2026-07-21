@@ -11,7 +11,6 @@ import qs.ui
 Container {
     id: root
     visible: SystemTray.applications.length > 0
-    color: Colors.surface
     implicitWidth: layout.implicitWidth + Styles.padding * 2
     Layout.fillHeight: true
     RowLayout {

@@ -1,5 +1,4 @@
 import QtQuick
-import QtQuick.Effects
 import QtQuick.Layouts
 import Quickshell
 import qs.widgets.bar
@@ -55,7 +54,6 @@ Variants {
                 anchors.rightMargin: Styles.padding * 2
                 spacing: Styles.spacing
 
-                Workspaces {}
                 SystemTray {}
                 Battery {}
                 Weather {}

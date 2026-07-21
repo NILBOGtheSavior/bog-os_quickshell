@@ -1,11 +1,10 @@
 import QtQuick
-import Quickshell.Wayland
 import qs.config
 import qs.services
 
 TextInput {
     id: root
-    font: Fonts.small
+    font: Fonts.medium
     color: Colors.foreground
 
     width: 75

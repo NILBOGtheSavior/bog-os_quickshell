@@ -8,10 +8,10 @@ Singleton {
     PersistentProperties {
         id: persist
         property string currentTheme
-        property bool darkMode: true
+        property bool darkMode: false
     }
 
-    property string currentTheme: persist.currentTheme || "bogos"
+    property string currentTheme: persist.currentTheme || "sakura"
     property string mode: persist.darkMode ? "dark" : "light"
 
     readonly property var themes: {
